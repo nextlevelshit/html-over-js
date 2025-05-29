@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessible HTML: Native vs JavaScript</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f8f9fa;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .column {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .column h2 {
+            color: #2d3748;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bad { border-left: 4px solid #e53e3e; }
+        .good { border-left: 4px solid #38a169; }
+
+        /* Old-school JS collapsible styles */
+        .js-collapsible {
+            background: #4a5568;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .js-collapsible:hover {
+            background: #2d3748;
+        }
+
+        .js-content {
+            padding: 0 12px;
+            display: none;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0 0 4px 4px;
+            margin-bottom: 1rem;
+        }
+
+        .js-content.active {
+            display: block;
+            padding: 12px;
+        }
+
+        /* Native details/summary minimal styles */
+        details {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        summary {
+            background: #4a5568;
+            color: white;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            font-size: 16px;
+            list-style: none;
+        }
+
+        summary:hover {
+            background: #2d3748;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: '▶';
+            margin-right: 8px;
+            transition: transform 0.2s;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        details[open] summary {
+            border-radius: 4px 4px 0 0;
+        }
+
+        details > div {
+            padding: 12px;
+            background: #f7fafc;
+        }
+
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin: 1rem 0;
+        }
+
+        .accessibility-note {
+            background: #fef5e7;
+            border: 1px solid #f6ad55;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-size: 14px;
+        }
+
+        .pros-cons {
+            margin: 1rem 0;
+        }
+
+        .pros-cons h4 {
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .pros { color: #38a169; }
+        .cons { color: #e53e3e; }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>🚀 Accessible HTML: Native Elements vs JavaScript Hacks</h1>
+<p><strong>TL;DR:</strong> Stop reinventing the wheel with JavaScript when HTML already solved the problem better, faster, and more accessibly.</p>
+
+<div class="comparison-grid">
+    <!-- Left Column: JavaScript Implementation -->
+    <div class="column bad">
+        <h2>💀 Old School: JavaScript Collapsible</h2>
+
+        <div class="accessibility-note">
+            <strong>⚠️ Accessibility Issues:</strong> No ARIA support, keyboard navigation broken, screen readers confused, focus management missing.
+        </div>
+
+        <!-- JS Collapsible Examples -->
+        <button class="js-collapsible" onclick="toggleContent('content1')">
+            What is Web Accessibility? (Click me)
+        </button>
+        <div class="js-content" id="content1">
+            Web accessibility ensures that websites and digital tools are usable by people with disabilities. This includes visual, auditory, motor, and cognitive impairments.
+        </div>
+
+        <button class="js-collapsible" onclick="toggleContent('content2')">
+            Why WCAG Matters
+        </button>
+        <div class="js-content" id="content2">
+            WCAG (Web Content Accessibility Guidelines) provides the framework for making web content accessible. It's not just legal compliance - it's about inclusive design.
+        </div>
+
+        <button class="js-collapsible" onclick="toggleContent('content3')">
+            Common Accessibility Mistakes
+        </button>
+        <div class="js-content" id="content3">
+            Missing alt text, poor color contrast, keyboard traps, missing focus indicators, and recreating native functionality with JavaScript.
+        </div>
+
+        <div class="code-block">
+            &lt;button onclick="toggleContent('id')"&gt;Click&lt;/button&gt;
+            &lt;div id="content" style="display:none"&gt;
+            Hidden content
+            &lt;/div&gt;
+
+            &lt;script&gt;
+            function toggleContent(id) {
+            const content = document.getElementById(id);
+            if (content.style.display === 'none') {
+            content.style.display = 'block';
+            content.classList.add('active');
+            } else {
+            content.style.display = 'none';
+            content.classList.remove('active');
+            }
+            }
+            &lt;/script&gt;
+        </div>
+
+        <div class="pros-cons">
+            <h4 class="cons">❌ Problems:</h4>
+            <ul>
+                <li>No semantic meaning</li>
+                <li>Screen readers can't understand state</li>
+                <li>No keyboard navigation</li>
+                <li>Requires JavaScript to function</li>
+                <li>No ARIA attributes</li>
+                <li>Poor SEO (hidden content not indexed)</li>
+                <li>Inline event handlers (security risk)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Right Column: Native HTML -->
+    <div class="column good">
+        <h2>✨ Modern: Native HTML Elements</h2>
+
+        <div class="accessibility-note">
+            <strong>🎯 Accessibility Win:</strong> Built-in ARIA, keyboard support, semantic meaning, screen reader friendly, works without JavaScript.
+        </div>
+
+        <!-- Native Details/Summary Examples -->
+        <details name="wacg">
+            <summary>What is Web Accessibility?</summary>
+            <div>
+                Web accessibility ensures that websites and digital tools are usable by people with disabilities. This includes visual, auditory, motor, and cognitive impairments. The native HTML approach provides this functionality with zero JavaScript.
+            </div>
+        </details>
+
+        <details name="wcag">
+            <summary>Why WCAG Matters</summary>
+            <div>
+                WCAG (Web Content Accessibility Guidelines) provides the framework for making web content accessible. It's not just legal compliance - it's about inclusive design. Native elements follow these guidelines by default.
+            </div>
+        </details>
+
+        <details name="wacg">
+            <summary>Common Accessibility Mistakes</summary>
+            <div>
+                Missing alt text, poor color contrast, keyboard traps, missing focus indicators, and recreating native functionality with JavaScript. This one starts open to show the 'open' attribute.
+            </div>
+        </details>
+
+        <div class="code-block">
+            &lt;details&gt;
+            &lt;summary&gt;Click to expand&lt;/summary&gt;
+            &lt;div&gt;
+            Content that's hidden by default,
+            but accessible to screen readers
+            and searchable by search engines.
+            &lt;/div&gt;
+            &lt;/details&gt;
+
+            &lt;!-- That's it. No JavaScript needed. --&gt;
+        </div>
+
+        <div class="pros-cons">
+            <h4 class="pros">✅ Benefits:</h4>
+            <ul>
+                <li>Semantic HTML5 element</li>
+                <li>Built-in ARIA support</li>
+                <li>Keyboard accessible (Space/Enter)</li>
+                <li>Works without JavaScript</li>
+                <li>Screen reader compatible</li>
+                <li>SEO friendly (content indexed)</li>
+                <li>Progressive enhancement ready</li>
+                <li>Animatable with CSS</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <h3>🧠 The Bigger Picture</h3>
+    <p>This pattern extends beyond collapsibles. Consider native alternatives for:</p>
+    <ul>
+        <li><strong>Modals:</strong> <code>&lt;dialog&gt;</code> element vs custom JavaScript overlays</li>
+        <li><strong>Form validation:</strong> HTML5 validation attributes vs custom JS validation</li>
+        <li><strong>Progress indicators:</strong> <code>&lt;progress&gt;</code> vs animated divs</li>
+        <li><strong>Date pickers:</strong> <code>&lt;input type="date"&gt;</code> vs complex widgets</li>
+        <li><strong>Accordions:</strong> Multiple <code>&lt;details&gt;</code> elements vs JavaScript frameworks</li>
+    </ul>
+
+    <p><strong>Remember:</strong> The best accessibility feature is the one that's built-in and works by default. HTML isn't just markup - it's a semantic contract with browsers, assistive technologies, and search engines.</p>
+</div>
+
+<script>
+    // JavaScript for the old-school examples (don't use this approach!)
+    function toggleContent(contentId) {
+        const content = document.getElementById(contentId);
+        const isVisible = content.classList.contains('active');
+
+        if (isVisible) {
+            content.classList.remove('active');
+        } else {
+            content.classList.add('active');
+        }
+    }
+</script>
+</body>
+</html>
