@@ -4,6 +4,618 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Complete Native HTML Dominance Guide</title>
+    <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-card: #1a1a1a;
+            --color-primary: #00ff88;
+            --color-primary-hover: #00cc6a;
+            --color-danger: #ff4757;
+            --color-warning: #ffa502;
+            --color-warning-bg: rgba(255, 165, 2, 0.1);
+            --color-content-bg: #262626;
+            --color-border: #333;
+            --color-text: #e0e0e0;
+            --color-code-bg: #000;
+            --color-code-text: #00ff88;
+            --shadow: 0 8px 32px rgba(0, 255, 136, 0.1);
+            --radius: 12px;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            line-height: 1.7;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--color-bg) 0%, #1a1a2e 100%);
+            color: var(--color-text);
+            min-height: 100vh;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--color-card) 0%, #16213e 100%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--color-primary), transparent);
+            animation: rotate 8s linear infinite;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, var(--color-card) 0%, #16213e 100%);
+            border-radius: calc(var(--radius) - 2px);
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: var(--glow);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+        }
+
+        .column {
+            background: var(--color-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 255, 136, 0.15);
+        }
+
+        .column h3 {
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .bad {
+            border-left: 4px solid var(--color-danger);
+        }
+
+        .bad h3::before {
+            content: '💀 ';
+        }
+
+        .good {
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .good h3::before {
+            content: '⚡ ';
+        }
+
+        .accessibility-note {
+            background: var(--color-warning-bg);
+            border: 1px solid var(--color-warning);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .code-block {
+            background: var(--color-code-bg);
+            color: var(--color-code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.85rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--color-primary);
+            position: relative;
+        }
+
+        .code-block::before {
+            content: 'CODE';
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .pros-cons {
+            margin: 1.5rem 0;
+        }
+
+        .pros-cons h4 {
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            font-size: 1.1rem;
+        }
+
+        .pros-cons ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pros-cons li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pros li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .cons li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--color-danger);
+            font-weight: bold;
+        }
+
+        /* Interactive Elements */
+        .js-collapsible {
+            background: linear-gradient(135deg, var(--color-danger), #c44569);
+            color: white;
+            cursor: pointer;
+            padding: 15px 20px;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .js-collapsible:hover {
+            background: linear-gradient(135deg, #c44569, var(--color-danger));
+            transform: translateY(-2px);
+        }
+
+        .js-content {
+            padding: 0;
+            display: none;
+            background: var(--color-content-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 0 0 8px 8px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .js-content.active {
+            display: block;
+            padding: 20px;
+        }
+
+        details {
+            background: var(--color-card);
+            border: 1px solid var(--color-primary);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        summary {
+            background: linear-gradient(135deg, var(--color-primary), #00cc6a);
+            color: var(--color-bg);
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            list-style: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        summary:hover {
+            background: linear-gradient(135deg, #00cc6a, var(--color-primary));
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::before {
+            content: '▶';
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        details > div {
+            padding: 20px;
+            background: var(--color-content-bg);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styles */
+        .js-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .js-modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .js-modal-content {
+            background: var(--color-card);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow);
+        }
+
+        dialog {
+            border: 1px solid var(--color-primary);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            background: var(--color-card);
+            color: var(--color-text);
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        dialog::backdrop {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--color-content-bg);
+            color: var(--color-text);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .form-group input:invalid {
+            border-color: var(--color-danger);
+        }
+
+        .form-group input:valid {
+            border-color: var(--color-primary);
+        }
+
+        .js-error {
+            color: var(--color-danger);
+            font-size: 14px;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .js-error.active {
+            display: block;
+        }
+
+        /* Progress Styles */
+        .js-progress-container {
+            width: 100%;
+            background: var(--color-border);
+            border-radius: 10px;
+            height: 24px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .js-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-danger), #ff6b7a);
+            width: 0;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        progress {
+            width: 100%;
+            height: 24px;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            border: none;
+            background: var(--color-border);
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: var(--color-border);
+            border-radius: 10px;
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(90deg, var(--color-primary), #00d4ff);
+            border-radius: 10px;
+        }
+
+        progress::-moz-progress-bar {
+            background: linear-gradient(90deg, var(--color-primary), #00d4ff);
+            border-radius: 10px;
+        }
+
+        /* Button Styles */
+        button {
+            background: linear-gradient(135deg, var(--color-primary), #00cc6a);
+            color: var(--color-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #00cc6a, var(--color-primary));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        button:disabled {
+            background: var(--color-border);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* New Component Styles */
+        .datalist-container {
+            position: relative;
+        }
+
+        input[list] {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2300ff88' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .slider-container {
+            margin: 2rem 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--color-border);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            box-shadow: var(--glow);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--glow);
+        }
+
+        .color-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .summary-box {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--color-card), #16213e);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-primary);
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .zen-quote {
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            border-left: 3px solid var(--color-primary);
+            padding-left: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Performance indicators */
+        .perf-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .perf-fast {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--color-primary);
+        }
+
+        .perf-slow {
+            background: rgba(255, 71, 87, 0.2);
+            color: var(--color-danger);
+        }
+    </style>
 </head>
 <body>
 
@@ -385,8 +997,8 @@
 
             <form>
                 <div class="form-group">
-                    <label for="native-email">Email Address</label>
-                    <input type="email" id="native-email" name="email" required
+                    <label for="native-email-wcag">Email Address</label>
+                    <input type="email" id="native-email-wcag" name="email" required
                            placeholder="user@example.com">
                 </div>
 
@@ -1450,5 +2062,146 @@
         "The best code is no code. The second best code is semantic HTML that leverages decades of browser engineering and accessibility research."
     </div>
 </div>
+
+<script>
+    // Minimal JavaScript for the demo comparisons only
+    function toggleContent(id) {
+        const content = document.getElementById(id);
+        if (content.style.display === 'none' || !content.style.display) {
+            content.style.display = 'block';
+            content.classList.add('active');
+        } else {
+            content.style.display = 'none';
+            content.classList.remove('active');
+        }
+    }
+
+    function openJSModal() {
+        document.getElementById('jsModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeJSModal() {
+        document.getElementById('jsModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function validateJSForm(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('js-email').value;
+        const password = document.getElementById('js-password').value;
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+
+        let isValid = true;
+
+        // Reset errors
+        emailError.classList.remove('active');
+        passwordError.classList.remove('active');
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            emailError.classList.add('active');
+            isValid = false;
+        }
+
+        // Password validation
+        if (password.length < 8) {
+            passwordError.classList.add('active');
+            isValid = false;
+        }
+
+        if (isValid) {
+            alert('Form submitted! (This is just a demo)');
+        }
+
+        return false;
+    }
+
+    function startJSProgress() {
+        const progressBar = document.getElementById('jsProgress');
+        const progressText = document.getElementById('jsProgressText');
+        let progress = 0;
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+            }
+
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
+
+            // Change color based on progress
+            if (progress < 30) {
+                progressBar.style.background = 'linear-gradient(90deg, #ff4757, #ff6b7a)';
+            } else if (progress < 70) {
+                progressBar.style.background = 'linear-gradient(90deg, #ffa502, #ffb84d)';
+            } else {
+                progressBar.style.background = 'linear-gradient(90deg, #2ed573, #7bed9f)';
+            }
+        }, 200);
+    }
+
+    function openDatePicker() {
+        const picker = document.getElementById('datePicker');
+        picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function toggleAccordion(id) {
+        const content = document.getElementById(id);
+        if (content.style.display === 'none' || !content.style.display) {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    }
+
+    const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio'];
+
+    function filterCities(value) {
+        const results = document.getElementById('js-results');
+
+        if (!value) {
+            results.style.display = 'none';
+            return;
+        }
+
+        const filtered = cities.filter(city =>
+            city.toLowerCase().includes(value.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+            results.innerHTML = '<div style="padding: 10px; color: #999;">No cities found</div>';
+            results.style.display = 'block';
+            return;
+        }
+
+        results.innerHTML = filtered.map(city =>
+            `<div style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--color-border);"
+              onmouseover="this.style.background='var(--color-primary-hover)'"
+              onmouseout="this.style.background=''"
+              onclick="selectCity('${city}')">${city}</div>`
+        ).join('');
+
+        results.style.display = 'block';
+    }
+
+    function selectCity(city) {
+        document.getElementById('js-search').value = city;
+        document.getElementById('js-results').style.display = 'none';
+    }
+
+    // Hide results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('#js-search') && !e.target.closest('#js-results')) {
+            document.getElementById('js-results').style.display = 'none';
+        }
+    });
+</script>
+
 </body>
 </html>
