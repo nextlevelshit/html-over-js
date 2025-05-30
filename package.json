@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "license": "ISC",
-  "author": "",
+  "author": "Michael W. Czechowski <mail@dailysh.it>",
   "type": "commonjs",
   "main": "index.html",
   "scripts": {
