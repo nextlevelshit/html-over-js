@@ -3,15 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accessible HTML: Native vs JavaScript</title>
+    <title>The Complete Native HTML Dominance Guide</title>
     <style>
+        :root {
+            --color-bg: #0a0a0a;
+            --color-card: #1a1a1a;
+            --color-primary: #00ff88;
+            --color-primary-hover: #00cc6a;
+            --color-danger: #ff4757;
+            --color-warning: #ffa502;
+            --color-warning-bg: rgba(255, 165, 2, 0.1);
+            --color-content-bg: #262626;
+            --color-border: #333;
+            --color-text: #e0e0e0;
+            --color-code-bg: #000;
+            --color-code-text: #00ff88;
+            --shadow: 0 8px 32px rgba(0, 255, 136, 0.1);
+            --radius: 12px;
+            --glow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            max-width: 1200px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            line-height: 1.7;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 2rem;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, var(--color-bg) 0%, #1a1a2e 100%);
+            color: var(--color-text);
+            min-height: 100vh;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--color-card) 0%, #16213e 100%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--color-primary), transparent);
+            animation: rotate 8s linear infinite;
+            z-index: -1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: linear-gradient(135deg, var(--color-card) 0%, #16213e 100%);
+            border-radius: calc(var(--radius) - 2px);
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-primary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: var(--glow);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         .comparison-grid {
@@ -21,76 +104,203 @@
             margin: 2rem 0;
         }
 
+        .section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-primary), #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+        }
+
         .column {
-            background: white;
+            background: var(--color-card);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .column:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 255, 136, 0.15);
+        }
+
+        .column h3 {
+            color: var(--color-text);
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .bad {
+            border-left: 4px solid var(--color-danger);
+        }
+
+        .bad h3::before {
+            content: '💀 ';
+        }
+
+        .good {
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .good h3::before {
+            content: '⚡ ';
+        }
+
+        .accessibility-note {
+            background: var(--color-warning-bg);
+            border: 1px solid var(--color-warning);
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
         }
 
-        .column h2 {
-            color: #2d3748;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+        .code-block {
+            background: var(--color-code-bg);
+            color: var(--color-code-text);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.85rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--color-primary);
+            position: relative;
         }
 
-        .bad { border-left: 4px solid #e53e3e; }
-        .good { border-left: 4px solid #38a169; }
+        .code-block::before {
+            content: 'CODE';
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--color-primary);
+            color: var(--color-bg);
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
 
-        /* Old-school JS collapsible styles */
+        .pros-cons {
+            margin: 1.5rem 0;
+        }
+
+        .pros-cons h4 {
+            margin-bottom: 1rem;
+            color: var(--color-text);
+            font-size: 1.1rem;
+        }
+
+        .pros-cons ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .pros-cons li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pros li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .cons li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--color-danger);
+            font-weight: bold;
+        }
+
+        /* Interactive Elements */
         .js-collapsible {
-            background: #4a5568;
+            background: linear-gradient(135deg, var(--color-danger), #c44569);
             color: white;
             cursor: pointer;
-            padding: 12px;
+            padding: 15px 20px;
             border: none;
             text-align: left;
             outline: none;
             font-size: 16px;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-bottom: 1rem;
             width: 100%;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         .js-collapsible:hover {
-            background: #2d3748;
+            background: linear-gradient(135deg, #c44569, var(--color-danger));
+            transform: translateY(-2px);
         }
 
         .js-content {
-            padding: 0 12px;
+            padding: 0;
             display: none;
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 0 0 4px 4px;
+            background: var(--color-content-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 0 0 8px 8px;
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
         }
 
         .js-content.active {
             display: block;
-            padding: 12px;
+            padding: 20px;
         }
 
-        /* Native details/summary minimal styles */
         details {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
+            background: var(--color-card);
+            border: 1px solid var(--color-primary);
+            border-radius: 8px;
             margin-bottom: 1rem;
+            overflow: hidden;
         }
 
         summary {
-            background: #4a5568;
-            color: white;
-            padding: 12px;
+            background: linear-gradient(135deg, var(--color-primary), #00cc6a);
+            color: var(--color-bg);
+            padding: 15px 20px;
             cursor: pointer;
-            border-radius: 4px 4px 0 0;
             font-size: 16px;
             list-style: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         summary:hover {
-            background: #2d3748;
+            background: linear-gradient(135deg, #00cc6a, var(--color-primary));
         }
 
         summary::-webkit-details-marker {
@@ -99,216 +309,1899 @@
 
         summary::before {
             content: '▶';
-            margin-right: 8px;
-            transition: transform 0.2s;
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+            display: inline-block;
         }
 
         details[open] summary::before {
             transform: rotate(90deg);
         }
 
-        details[open] summary {
-            border-radius: 4px 4px 0 0;
-        }
-
         details > div {
-            padding: 12px;
-            background: #f7fafc;
+            padding: 20px;
+            background: var(--color-content-bg);
+            animation: slideDown 0.3s ease;
         }
 
-        .code-block {
-            background: #1a202c;
-            color: #e2e8f0;
-            padding: 1rem;
-            border-radius: 4px;
-            overflow-x: auto;
-            font-family: 'Courier New', monospace;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal Styles */
+        .js-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .js-modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .js-modal-content {
+            background: var(--color-card);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow);
+        }
+
+        dialog {
+            border: 1px solid var(--color-primary);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            background: var(--color-card);
+            color: var(--color-text);
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        dialog::backdrop {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 16px;
+            background: var(--color-content-bg);
+            color: var(--color-text);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .form-group input:invalid {
+            border-color: var(--color-danger);
+        }
+
+        .form-group input:valid {
+            border-color: var(--color-primary);
+        }
+
+        .js-error {
+            color: var(--color-danger);
             font-size: 14px;
-            margin: 1rem 0;
+            margin-top: 0.5rem;
+            display: none;
         }
 
-        .accessibility-note {
-            background: #fef5e7;
-            border: 1px solid #f6ad55;
-            padding: 1rem;
+        .js-error.active {
+            display: block;
+        }
+
+        /* Progress Styles */
+        .js-progress-container {
+            width: 100%;
+            background: var(--color-border);
+            border-radius: 10px;
+            height: 24px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .js-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-danger), #ff6b7a);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        progress {
+            width: 100%;
+            height: 24px;
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            border: none;
+            background: var(--color-border);
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: var(--color-border);
+            border-radius: 10px;
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(90deg, var(--color-primary), #00d4ff);
+            border-radius: 10px;
+        }
+
+        progress::-moz-progress-bar {
+            background: linear-gradient(90deg, var(--color-primary), #00d4ff);
+            border-radius: 10px;
+        }
+
+        /* Button Styles */
+        button {
+            background: linear-gradient(135deg, var(--color-primary), #00cc6a);
+            color: var(--color-bg);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #00cc6a, var(--color-primary));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+
+        button:disabled {
+            background: var(--color-border);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* New Component Styles */
+        .datalist-container {
+            position: relative;
+        }
+
+        input[list] {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2300ff88' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .slider-container {
+            margin: 2rem 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
             border-radius: 4px;
-            margin: 1rem 0;
-            font-size: 14px;
+            background: var(--color-border);
+            outline: none;
+            -webkit-appearance: none;
         }
 
-        .pros-cons {
-            margin: 1rem 0;
+        input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            box-shadow: var(--glow);
         }
 
-        .pros-cons h4 {
-            margin-bottom: 0.5rem;
-            color: #2d3748;
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--glow);
         }
 
-        .pros { color: #38a169; }
-        .cons { color: #e53e3e; }
+        .color-input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .summary-box {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--color-card), #16213e);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--color-primary);
+            text-align: center;
+        }
+
+        .summary-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        .zen-quote {
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            border-left: 3px solid var(--color-primary);
+            padding-left: 1rem;
+        }
 
         @media (max-width: 768px) {
             .comparison-grid {
                 grid-template-columns: 1fr;
             }
+
+            body {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Performance indicators */
+        .perf-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .perf-fast {
+            background: rgba(0, 255, 136, 0.2);
+            color: var(--color-primary);
+        }
+
+        .perf-slow {
+            background: rgba(255, 71, 87, 0.2);
+            color: var(--color-danger);
         }
     </style>
 </head>
 <body>
-<h1>🚀 Accessible HTML: Native Elements vs JavaScript Hacks</h1>
-<p><strong>TL;DR:</strong> Stop reinventing the wheel with JavaScript when HTML already solved the problem better, faster, and more accessibly.</p>
 
-<div class="comparison-grid">
-    <!-- Left Column: JavaScript Implementation -->
-    <div class="column bad">
-        <h2>💀 Old School: JavaScript Collapsible</h2>
+<div class="hero">
+    <h1>🚀 No JavaScript, No cry</h1>
+    <p class="subtitle">Stop fighting the platform. HTML already solved 90% of your UI problems. This guide exposes the absurdity of JavaScript wheel-reinvention and shows you the path to enlightened web development through semantic markup and progressive enhancement.</p>
+</div>
 
-        <div class="accessibility-note">
-            <strong>⚠️ Accessibility Issues:</strong> No ARIA support, keyboard navigation broken, screen readers confused, focus management missing.
-        </div>
+<!-- COLLAPSIBLES -->
+<div class="section">
+    <h2 class="section-title">🎯 Collapsible Content</h2>
+    <div class="comparison-grid">
+        <div class="column bad">
+            <h3>JavaScript Nightmare <span class="perf-indicator perf-slow">SLOW</span></h3>
 
-        <!-- JS Collapsible Examples -->
-        <button class="js-collapsible" onclick="toggleContent('content1')">
-            What is Web Accessibility? (Click me)
-        </button>
-        <div class="js-content" id="content1">
-            Web accessibility ensures that websites and digital tools are usable by people with disabilities. This includes visual, auditory, motor, and cognitive impairments.
-        </div>
-
-        <button class="js-collapsible" onclick="toggleContent('content2')">
-            Why WCAG Matters
-        </button>
-        <div class="js-content" id="content2">
-            WCAG (Web Content Accessibility Guidelines) provides the framework for making web content accessible. It's not just legal compliance - it's about inclusive design.
-        </div>
-
-        <button class="js-collapsible" onclick="toggleContent('content3')">
-            Common Accessibility Mistakes
-        </button>
-        <div class="js-content" id="content3">
-            Missing alt text, poor color contrast, keyboard traps, missing focus indicators, and recreating native functionality with JavaScript.
-        </div>
-
-        <div class="code-block">
-            &lt;button onclick="toggleContent('id')"&gt;Click&lt;/button&gt;
-            &lt;div id="content" style="display:none"&gt;
-            Hidden content
-            &lt;/div&gt;
-
-            &lt;script&gt;
-            function toggleContent(id) {
-            const content = document.getElementById(id);
-            if (content.style.display === 'none') {
-            content.style.display = 'block';
-            content.classList.add('active');
-            } else {
-            content.style.display = 'none';
-            content.classList.remove('active');
-            }
-            }
-            &lt;/script&gt;
-        </div>
-
-        <div class="pros-cons">
-            <h4 class="cons">❌ Problems:</h4>
-            <ul>
-                <li>No semantic meaning</li>
-                <li>Screen readers can't understand state</li>
-                <li>No keyboard navigation</li>
-                <li>Requires JavaScript to function</li>
-                <li>No ARIA attributes</li>
-                <li>Poor SEO (hidden content not indexed)</li>
-                <li>Inline event handlers (security risk)</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Right Column: Native HTML -->
-    <div class="column good">
-        <h2>✨ Modern: Native HTML Elements</h2>
-
-        <div class="accessibility-note">
-            <strong>🎯 Accessibility Win:</strong> Built-in ARIA, keyboard support, semantic meaning, screen reader friendly, works without JavaScript.
-        </div>
-
-        <!-- Native Details/Summary Examples -->
-        <details name="wacg">
-            <summary>What is Web Accessibility?</summary>
-            <div>
-                Web accessibility ensures that websites and digital tools are usable by people with disabilities. This includes visual, auditory, motor, and cognitive impairments. The native HTML approach provides this functionality with zero JavaScript.
+            <div class="accessibility-note">
+                <strong>⚠️ Accessibility Disaster:</strong> No ARIA support, keyboard navigation broken, screen readers confused, focus management missing. You're essentially telling assistive technology users to get lost.
             </div>
-        </details>
 
-        <details name="wcag">
-            <summary>Why WCAG Matters</summary>
-            <div>
-                WCAG (Web Content Accessibility Guidelines) provides the framework for making web content accessible. It's not just legal compliance - it's about inclusive design. Native elements follow these guidelines by default.
+            <button class="js-collapsible" onclick="toggleContent('content1')">
+                What is Web Accessibility? (Click me if you dare)
+            </button>
+            <div class="js-content" id="content1">
+                Web accessibility ensures that websites and digital tools are usable by people with disabilities. This includes visual, auditory, motor, and cognitive impairments. Too bad this JavaScript implementation ignores all of that.
             </div>
-        </details>
 
-        <details name="wacg">
-            <summary>Common Accessibility Mistakes</summary>
-            <div>
-                Missing alt text, poor color contrast, keyboard traps, missing focus indicators, and recreating native functionality with JavaScript. This one starts open to show the 'open' attribute.
+            <button class="js-collapsible" onclick="toggleContent('content2')">
+                Why WCAG Actually Matters
+            </button>
+            <div class="js-content" id="content2">
+                WCAG provides the framework for making web content accessible. It's not just legal compliance - it's about not being a terrible human being who excludes people from the web.
             </div>
-        </details>
 
-        <div class="code-block">
-            &lt;details&gt;
-            &lt;summary&gt;Click to expand&lt;/summary&gt;
-            &lt;div&gt;
-            Content that's hidden by default,
-            but accessible to screen readers
-            and searchable by search engines.
-            &lt;/div&gt;
-            &lt;/details&gt;
+            <div class="code-block">
+                &lt;!-- The horror show begins --&gt;
+                &lt;button onclick="toggleContent('id')"&gt;Click&lt;/button&gt;
+                &lt;div id="content" style="display:none"&gt;Hidden content&lt;/div&gt;
 
-            &lt;!-- That's it. No JavaScript needed. --&gt;
+                &lt;script&gt;
+                // Because apparently HTML isn't good enough
+                function toggleContent(id) {
+                const content = document.getElementById(id);
+                content.style.display =
+                content.style.display === 'none' ? 'block' : 'none';
+                // Missing: ARIA states, keyboard nav, focus management
+                // Basically everything that makes it accessible
+                }
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="cons">❌ Why This Sucks:</h4>
+                <ul>
+                    <li>Zero semantic meaning - screen readers see meaningless divs</li>
+                    <li>No ARIA attributes - assistive tech has no clue what's happening</li>
+                    <li>Keyboard navigation requires custom implementation</li>
+                    <li>JavaScript dependency - breaks without JS</li>
+                    <li>SEO nightmare - hidden content not properly indexed</li>
+                    <li>State management gets complex with multiple sections</li>
+                    <li>Performance overhead for simple interactions</li>
+                </ul>
+            </div>
         </div>
 
-        <div class="pros-cons">
-            <h4 class="pros">✅ Benefits:</h4>
-            <ul>
-                <li>Semantic HTML5 element</li>
-                <li>Built-in ARIA support</li>
-                <li>Keyboard accessible (Space/Enter)</li>
-                <li>Works without JavaScript</li>
-                <li>Screen reader compatible</li>
-                <li>SEO friendly (content indexed)</li>
-                <li>Progressive enhancement ready</li>
-                <li>Animatable with CSS</li>
-            </ul>
+        <div class="column good">
+            <h3>Native HTML Zen <span class="perf-indicator perf-fast">FAST</span></h3>
+
+            <div class="accessibility-note">
+                <strong>🎯 Accessibility Nirvana:</strong> Built-in ARIA, keyboard support, semantic meaning, screen reader friendly, works without JavaScript. This is what inclusive design looks like.
+            </div>
+
+            <details>
+                <summary>What is Web Accessibility?</summary>
+                <div>
+                    Web accessibility ensures that websites and digital tools are usable by people with disabilities. This includes visual, auditory, motor, and cognitive impairments. The native HTML approach provides this functionality with zero JavaScript - because the web platform actually cares about inclusion.
+                </div>
+            </details>
+
+            <details>
+                <summary>Why WCAG Actually Matters</summary>
+                <div>
+                    WCAG provides the framework for making web content accessible. It's not just legal compliance - it's about building a web that serves everyone. Native elements follow these guidelines by default because they were designed by people who understand accessibility.
+                </div>
+            </details>
+
+            <details>
+                <summary>Progressive Enhancement Philosophy</summary>
+                <div>
+                    Start with functional HTML, enhance with CSS, sprinkle JavaScript only where needed. This approach ensures your content works for everyone, regardless of their device, connection, or abilities. It's not just good engineering - it's good humanity.
+                </div>
+            </details>
+
+            <div class="code-block">
+                &lt;!-- The elegance of simplicity --&gt;
+                &lt;details&gt;
+                &lt;summary&gt;Click to expand&lt;/summary&gt;
+                &lt;div&gt;
+                Content that's hidden by default,
+                but accessible to screen readers,
+                searchable by search engines,
+                and works without JavaScript.
+
+                This is what the web was meant to be.
+                &lt;/div&gt;
+                &lt;/details&gt;
+
+                &lt;!-- That's literally it. No JavaScript required. --&gt;
+                &lt;!-- The browser handles everything: ARIA, keyboard nav, --&gt;
+                &lt;!-- focus management, state persistence. --&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="pros">✅ Why This Rules:</h4>
+                <ul>
+                    <li>Semantic HTML5 element with inherent meaning</li>
+                    <li>Built-in ARIA support - screen readers understand it</li>
+                    <li>Keyboard accessible out of the box (Space/Enter)</li>
+                    <li>Works without JavaScript - progressive enhancement</li>
+                    <li>SEO friendly - search engines can crawl collapsed content</li>
+                    <li>Browser handles state management and animations</li>
+                    <li>Consistent UX across all browsers and platforms</li>
+                    <li>Zero maintenance overhead - it just works</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-<div style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <h3>🧠 The Bigger Picture</h3>
-    <p>This pattern extends beyond collapsibles. Consider native alternatives for:</p>
-    <ul>
-        <li><strong>Modals:</strong> <code>&lt;dialog&gt;</code> element vs custom JavaScript overlays</li>
-        <li><strong>Form validation:</strong> HTML5 validation attributes vs custom JS validation</li>
-        <li><strong>Progress indicators:</strong> <code>&lt;progress&gt;</code> vs animated divs</li>
-        <li><strong>Date pickers:</strong> <code>&lt;input type="date"&gt;</code> vs complex widgets</li>
-        <li><strong>Accordions:</strong> Multiple <code>&lt;details&gt;</code> elements vs JavaScript frameworks</li>
+<!-- MODALS -->
+<div class="section">
+    <h2 class="section-title">🪟 Modal Dialogs</h2>
+    <div class="comparison-grid">
+        <div class="column bad">
+            <h3>JavaScript Chaos <span class="perf-indicator perf-slow">JANKY</span></h3>
+
+            <div class="accessibility-note">
+                <strong>⚠️ Accessibility Nightmare:</strong> Focus trapping broken, ESC key ignored, backdrop clicks inconsistent, ARIA roles missing. Your users with disabilities are stuck in modal hell.
+            </div>
+
+            <button onclick="openJSModal()">Open JS Modal (prepare for suffering)</button>
+
+            <div class="js-modal-overlay" id="jsModal">
+                <div class="js-modal-content">
+                    <h4>JavaScript Modal of Doom</h4>
+                    <p>This modal requires hundreds of lines of custom JavaScript for focus management, ESC key handling, backdrop clicks, and ARIA attributes. And it still probably has bugs.</p>
+                    <button onclick="closeJSModal()">Escape This Hell</button>
+                </div>
+            </div>
+
+            <div class="code-block">
+                &lt;!-- The complexity monster --&gt;
+                &lt;div class="modal-overlay" id="myModal"&gt;
+                &lt;div class="modal-content"&gt;
+                &lt;h4&gt;Modal Title&lt;/h4&gt;
+                &lt;p&gt;Modal content&lt;/p&gt;
+                &lt;button onclick="closeModal()"&gt;Close&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;script&gt;
+                // Welcome to callback hell
+                function openModal() {
+                const modal = document.getElementById('myModal');
+                modal.classList.add('active');
+
+                // Manual focus trapping
+                trapFocus(modal);
+
+                // ESC key handling
+                document.addEventListener('keydown', handleEscape);
+
+                // Backdrop click handling
+                modal.addEventListener('click', handleBackdrop);
+
+                // Disable body scroll
+                document.body.style.overflow = 'hidden';
+
+                // ARIA attributes
+                modal.setAttribute('aria-hidden', 'false');
+                modal.setAttribute('role', 'dialog');
+
+                // Focus management
+                modal.querySelector('button').focus();
+                }
+
+                // And this is just the opening logic...
+                // Closing, focus restoration, cleanup - hundreds more lines
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="cons">❌ The Suffering:</h4>
+                <ul>
+                    <li>Focus trapping requires complex event management</li>
+                    <li>ESC key handling needs custom implementation</li>
+                    <li>Backdrop click behavior is inconsistent across browsers</li>
+                    <li>Body scroll locking breaks on mobile</li>
+                    <li>ARIA attributes must be managed manually</li>
+                    <li>Focus restoration is fragile and bug-prone</li>
+                    <li>Event cleanup leads to memory leaks</li>
+                    <li>Testing requires mocking dozens of edge cases</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="column good">
+            <h3>Native Dialog Enlightenment <span class="perf-indicator perf-fast">PERFECT</span></h3>
+
+            <div class="accessibility-note">
+                <strong>🎯 Accessibility Perfection:</strong> Built-in focus trapping, ESC key support, backdrop clicks, ARIA roles, screen reader announcements. This is what happens when browsers do the heavy lifting.
+            </div>
+
+            <button onclick="document.getElementById('nativeDialog').showModal()">
+                Open Native Dialog (experience bliss)
+            </button>
+
+            <dialog id="nativeDialog">
+                <h4>Native Dialog Zen</h4>
+                <p>This dialog provides built-in focus trapping, ESC key support, backdrop clicks, proper ARIA semantics, body scroll locking, and focus restoration. All with zero custom JavaScript.</p>
+                <p><strong>The browser is your friend.</strong> Stop fighting it.</p>
+                <button onclick="document.getElementById('nativeDialog').close()">
+                    Close (via built-in method)
+                </button>
+            </dialog>
+
+            <div class="code-block">
+                &lt;!-- The path to enlightenment --&gt;
+                &lt;dialog id="myDialog"&gt;
+                &lt;h4&gt;Dialog Title&lt;/h4&gt;
+                &lt;p&gt;Dialog content that just works&lt;/p&gt;
+                &lt;button onclick="this.closest('dialog').close()"&gt;
+                Close
+                &lt;/button&gt;
+                &lt;/dialog&gt;
+
+                &lt;script&gt;
+                // Modal dialog
+                document.getElementById('myDialog').showModal();
+
+                // Non-modal dialog (doesn't block interaction with page)
+                document.getElementById('myDialog').show();
+
+                // That's it. The browser handles:
+                // - Focus trapping
+                // - ESC key handling
+                // - Backdrop click support
+                // - ARIA roles and states
+                // - Body scroll locking
+                // - Focus restoration
+                // - Screen reader announcements
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="pros">✅ The Enlightenment:</h4>
+                <ul>
+                    <li>Built-in focus trapping - no event management needed</li>
+                    <li>ESC key support works automatically</li>
+                    <li>Backdrop clicks handled by browser</li>
+                    <li>Body scroll locking just works</li>
+                    <li>ARIA roles and states managed automatically</li>
+                    <li>Focus restoration is bulletproof</li>
+                    <li>Zero memory leaks or event cleanup</li>
+                    <li>Works consistently across all browsers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FORM VALIDATION -->
+<div class="section">
+    <h2 class="section-title">📝 Form Validation</h2>
+    <div class="comparison-grid">
+        <div class="column bad">
+            <h3>JavaScript Validation Hell <span class="perf-indicator perf-slow">BUGGY</span></h3>
+
+            <div class="accessibility-note">
+                <strong>⚠️ Accessibility Failure:</strong> Custom error messages not properly announced, validation timing issues, focus management broken, inconsistent UX across form fields.
+            </div>
+
+            <form onsubmit="return validateJSForm(event)">
+                <div class="form-group">
+                    <label for="js-email">Email Address</label>
+                    <input type="text" id="js-email" name="email">
+                    <div class="js-error" id="email-error">Please enter a valid email</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="js-password">Password</label>
+                    <input type="password" id="js-password" name="password">
+                    <div class="js-error" id="password-error">Password must be at least 8 characters</div>
+                </div>
+
+                <button type="submit">Submit (pray it works)</button>
+            </form>
+
+            <div class="code-block">
+                &lt;!-- The validation nightmare --&gt;
+                &lt;form onsubmit="return validateForm(event)"&gt;
+                &lt;input type="text" id="email" name="email"&gt;
+                &lt;div class="error" id="email-error"&gt;&lt;/div&gt;
+
+                &lt;input type="password" id="password"&gt;
+                &lt;div class="error" id="password-error"&gt;&lt;/div&gt;
+
+                &lt;button type="submit"&gt;Submit&lt;/button&gt;
+                &lt;/form&gt;
+
+                &lt;script&gt;
+                function validateForm(event) {
+                event.preventDefault();
+                let isValid = true;
+
+                // Email validation
+                const email = document.getElementById('email').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const emailError = document.getElementById('email-error');
+
+                if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email';
+                emailError.classList.add('active');
+                isValid = false;
+                } else {
+                emailError.classList.remove('active');
+                }
+
+                // Password validation
+                const password = document.getElementById('password').value;
+                const passwordError = document.getElementById('password-error');
+
+                if (password.length &lt; 8) {
+                passwordError.textContent = 'Password must be at least 8 characters';
+                passwordError.classList.add('active');
+                isValid = false;
+                } else {
+                passwordError.classList.remove('active');
+                }
+
+                // Focus management
+                if (!isValid) {
+                const firstError = document.querySelector('.error.active');
+                if (firstError) {
+                firstError.previousElementSibling.focus();
+                }
+                }
+
+                return isValid;
+                }
+
+                // Real-time validation (more complexity)
+                document.getElementById('email').addEventListener('blur', validateEmail);
+                document.getElementById('password').addEventListener('input', validatePassword);
+                // ... hundreds more lines of validation logic
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="cons">❌ The Validation Suffering:</h4>
+                <ul>
+                    <li>Custom regex patterns that miss edge cases</li>
+                    <li>Manual error message management and display</li>
+                    <li>Event listener management becomes complex</li>
+                    <li>Inconsistent validation timing across fields</li>
+                    <li>Screen readers may not announce custom errors</li>
+                    <li>Form submission logic gets tangled with validation</li>
+                    <li>Different validation rules for client vs server</li>
+                    <li>Styling validation states requires CSS gymnastics</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="column good">
+            <h3>Native HTML5 Validation Zen <span class="perf-indicator perf-fast">SOLID</span></h3>
+
+            <div class="accessibility-note">
+                <strong>🎯 Accessibility Excellence:</strong> Built-in error announcements, proper ARIA attributes, consistent validation timing, native browser UX that users already understand.
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <label for="native-email">Email Address</label>
+                    <input type="email" id="native-email" name="email" required
+                           placeholder="user@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="native-password">Password</label>
+                    <input type="password" id="native-password" name="password"
+                           required minlength="8"
+                           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                           title="Must contain at least 8 characters with uppercase, lowercase, and number">
+                </div>
+
+                <div class="form-group">
+                    <label for="native-url">Website URL</label>
+                    <input type="url" id="native-url" name="website"
+                           placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="native-phone">Phone Number</label>
+                    <input type="tel" id="native-phone" name="phone"
+                           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                           placeholder="123-456-7890">
+                </div>
+
+                <button type="submit">Submit (it just works)</button>
+            </form>
+
+            <div class="code-block">
+                &lt;!-- The path to validation enlightenment --&gt;
+                &lt;form&gt;
+                &lt;!-- Email validation built-in --&gt;
+                &lt;input type="email" name="email" required&gt;
+
+                &lt;!-- Password with length and pattern --&gt;
+                &lt;input type="password" name="password"
+                required minlength="8"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                title="Must contain uppercase, lowercase, and number"&gt;
+
+                &lt;!-- URL validation --&gt;
+                &lt;input type="url" name="website"&gt;
+
+                &lt;!-- Phone number with pattern --&gt;
+                &lt;input type="tel" name="phone"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"&gt;
+
+                &lt;!-- Number with range --&gt;
+                &lt;input type="number" name="age" min="18" max="120"&gt;
+
+                &lt;!-- Custom validation message --&gt;
+                &lt;input type="text" name="username"
+                pattern="[a-zA-Z0-9_]{3,20}"
+                title="3-20 characters, letters, numbers, underscore only"&gt;
+
+                &lt;button type="submit"&gt;Submit&lt;/button&gt;
+                &lt;/form&gt;
+
+                &lt;!-- Optional: Custom validation with Constraint API --&gt;
+                &lt;script&gt;
+                // Only if you need custom logic beyond HTML5
+                const input = document.querySelector('[name="username"]');
+                input.addEventListener('input', function() {
+                if (this.value.includes('admin')) {
+                this.setCustomValidity('Username cannot contain "admin"');
+                } else {
+                this.setCustomValidity('');
+                }
+                });
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="pros">✅ The Validation Enlightenment:</h4>
+                <ul>
+                    <li>Built-in validation for email, URL, number, tel, date types</li>
+                    <li>Pattern attribute for custom regex validation</li>
+                    <li>Min/max length and value constraints</li>
+                    <li>Required attribute for mandatory fields</li>
+                    <li>Automatic error messages in user's language</li>
+                    <li>:valid and :invalid CSS pseudo-classes</li>
+                    <li>Form won't submit until all fields are valid</li>
+                    <li>Constraint Validation API for custom logic</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PROGRESS INDICATORS -->
+<div class="section">
+    <h2 class="section-title">📊 Progress Indicators</h2>
+    <div class="comparison-grid">
+        <div class="column bad">
+            <h3>JavaScript Progress Chaos <span class="perf-indicator perf-slow">JANKY</span></h3>
+
+            <div class="accessibility-note">
+                <strong>⚠️ Accessibility Disaster:</strong> No semantic meaning, screen readers can't announce progress, missing ARIA labels, custom implementation breaks assistive technology.
+            </div>
+
+            <div class="js-progress-container">
+                <div class="js-progress-bar" id="jsProgress"></div>
+            </div>
+            <p>JavaScript Progress: <span id="jsProgressText">0%</span></p>
+            <button onclick="startJSProgress()">Start JS Progress (watch it struggle)</button>
+
+            <div class="code-block">
+                &lt;!-- The overcomplicated approach --&gt;
+                &lt;div class="progress-container"&gt;
+                &lt;div class="progress-bar" id="progressBar"&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="progress-text" id="progressText"&gt;0%&lt;/div&gt;
+
+                &lt;style&gt;
+                .progress-container {
+                width: 100%;
+                height: 20px;
+                background: #ddd;
+                border-radius: 10px;
+                overflow: hidden;
+                }
+
+                .progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #4CAF50, #45a049);
+                width: 0%;
+                transition: width 0.3s ease;
+                border-radius: 10px;
+                }
+                &lt;/style&gt;
+
+                &lt;script&gt;
+                function updateProgress(percentage) {
+                const progressBar = document.getElementById('progressBar');
+                const progressText = document.getElementById('progressText');
+
+                // Manual width calculation
+                progressBar.style.width = percentage + '%';
+                progressText.textContent = percentage + '%';
+
+                // Manual ARIA updates (often forgotten)
+                progressBar.setAttribute('aria-valuenow', percentage);
+                progressBar.setAttribute('aria-valuetext', percentage + ' percent');
+
+                // Color changes based on progress
+                if (percentage &lt; 30) {
+                progressBar.style.background = '#f44336';
+                } else if (percentage &lt; 70) {
+                progressBar.style.background = '#ff9800';
+                } else {
+                progressBar.style.background = '#4CAF50';
+                }
+                }
+
+                // File upload progress example
+                function uploadFile(file) {
+                const xhr = new XMLHttpRequest();
+                xhr.upload.addEventListener('progress', function(e) {
+                if (e.lengthComputable) {
+                const percentage = (e.loaded / e.total) * 100;
+                updateProgress(Math.round(percentage));
+                }
+                });
+                // ... more upload logic
+                }
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="cons">❌ Progress Bar Problems:</h4>
+                <ul>
+                    <li>No semantic meaning - just styled divs</li>
+                    <li>ARIA attributes must be managed manually</li>
+                    <li>Screen readers can't announce progress changes</li>
+                    <li>Custom styling requires complex CSS</li>
+                    <li>Animation performance varies across browsers</li>
+                    <li>Value calculations prone to rounding errors</li>
+                    <li>Indeterminate progress requires additional logic</li>
+                    <li>Color coding needs manual implementation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="column good">
+            <h3>Native Progress Perfection <span class="perf-indicator perf-fast">SMOOTH</span></h3>
+
+            <div class="accessibility-note">
+                <strong>🎯 Accessibility Paradise:</strong> Semantic HTML element, built-in ARIA support, screen reader announcements, consistent browser styling, works everywhere.
+            </div>
+
+            <progress value="32" max="100">32%</progress>
+            <p>File Upload Progress</p>
+
+            <progress value="70" max="100">70%</progress>
+            <p>Processing Data</p>
+
+            <progress>Loading...</progress>
+            <p>Indeterminate Progress (no value attribute)</p>
+
+            <div class="slider-container">
+                <label for="progressDemo">Adjust Progress:</label>
+                <input type="range" id="progressDemo" min="0" max="100" value="50"
+                       oninput="document.getElementById('demoProgress').value = this.value">
+                <progress id="demoProgress" value="50" max="100">50%</progress>
+            </div>
+
+            <div class="code-block">
+                &lt;!-- The elegant solution --&gt;
+                &lt;!-- Determinate progress --&gt;
+                &lt;progress value="32" max="100"&gt;32%&lt;/progress&gt;
+                &lt;label&gt;File Upload: 32%&lt;/label&gt;
+
+                &lt;!-- Indeterminate progress (no value) --&gt;
+                &lt;progress&gt;Loading...&lt;/progress&gt;
+
+                &lt;!-- With form integration --&gt;
+                &lt;form&gt;
+                &lt;label for="file"&gt;Choose file:&lt;/label&gt;
+                &lt;input type="file" id="file" name="file"&gt;
+                &lt;progress id="uploadProgress" style="display:none"&gt;&lt;/progress&gt;
+                &lt;/form&gt;
+
+                &lt;script&gt;
+                // Simple file upload with native progress
+                document.getElementById('file').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const progress = document.getElementById('uploadProgress');
+                progress.style.display = 'block';
+                progress.removeAttribute('value'); // Indeterminate
+
+                const xhr = new XMLHttpRequest();
+
+                xhr.upload.addEventListener('progress', function(e) {
+                if (e.lengthComputable) {
+                // Native progress element handles everything
+                progress.value = e.loaded;
+                progress.max = e.total;
+                }
+                });
+
+                xhr.addEventListener('load', function() {
+                progress.style.display = 'none';
+                });
+
+                // Upload logic...
+                });
+                &lt;/script&gt;
+
+                &lt;!-- CSS customization (optional) --&gt;
+                &lt;style&gt;
+                progress {
+                width: 100%;
+                height: 20px;
+                }
+
+                /* Webkit browsers */
+                progress::-webkit-progress-bar {
+                background-color: #f0f0f0;
+                border-radius: 10px;
+                }
+
+                progress::-webkit-progress-value {
+                background: linear-gradient(90deg, #4CAF50, #45a049);
+                border-radius: 10px;
+                }
+
+                /* Firefox */
+                progress::-moz-progress-bar {
+                background: linear-gradient(90deg, #4CAF50, #45a049);
+                border-radius: 10px;
+                }
+                &lt;/style&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="pros">✅ Native Progress Advantages:</h4>
+                <ul>
+                    <li>Semantic HTML element with inherent meaning</li>
+                    <li>Built-in ARIA support for screen readers</li>
+                    <li>Automatic progress announcements</li>
+                    <li>Indeterminate state without extra code</li>
+                    <li>Consistent styling across browsers</li>
+                    <li>Form integration and validation support</li>
+                    <li>Hardware acceleration for smooth animations</li>
+                    <li>Automatic value/max ratio calculations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DATE PICKERS -->
+<div class="section">
+    <h2 class="section-title">📅 Date Pickers</h2>
+    <div class="comparison-grid">
+        <div class="column bad">
+            <h3>JavaScript Date Picker Hell <span class="perf-indicator perf-slow">BLOATED</span></h3>
+
+            <div class="accessibility-note">
+                <strong>⚠️ Accessibility Nightmare:</strong> Keyboard navigation broken, screen reader confusion, custom date format parsing errors, focus management disasters, mobile UX inconsistencies.
+            </div>
+
+            <div class="form-group">
+                <label for="js-date">Select Date (JavaScript)</label>
+                <input type="text" id="js-date" placeholder="MM/DD/YYYY" readonly onclick="openDatePicker()">
+                <div id="datePicker" style="display:none; position:absolute; background:white; border:1px solid #ccc; z-index:1000;">
+                    <!-- Imagine 200+ lines of calendar HTML here -->
+                    <p style="padding:20px; color:#666;">
+                        [Complex calendar widget would be here]<br>
+                        Requires: jQuery UI, Moment.js, custom CSS,<br>
+                        keyboard handlers, ARIA implementation,<br>
+                        mobile touch events, and your sanity.
+                    </p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                &lt;!-- The complexity monster --&gt;
+                &lt;input type="text" id="datePicker" placeholder="Select date..."&gt;
+
+                &lt;!-- Include massive libraries --&gt;
+                &lt;script src="jquery.min.js"&gt;&lt;/script&gt;
+                &lt;script src="moment.min.js"&gt;&lt;/script&gt;
+                &lt;script src="jquery-ui.min.js"&gt;&lt;/script&gt;
+                &lt;link rel="stylesheet" href="jquery-ui.css"&gt;
+
+                &lt;script&gt;
+                $(document).ready(function() {
+                $('#datePicker').datepicker({
+                dateFormat: 'mm/dd/yy',
+                showOtherMonths: true,
+                selectOtherMonths: true,
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '1900:2100',
+                showButtonPanel: true,
+                closeText: 'Close',
+                currentText: 'Today',
+
+                // Accessibility nightmare
+                beforeShow: function(input, inst) {
+                // Manual ARIA setup
+                inst.dpDiv.attr('role', 'dialog');
+                inst.dpDiv.attr('aria-label', 'Choose date');
+                },
+
+                // Custom keyboard navigation
+                onSelect: function(dateText, inst) {
+                // Manual validation
+                var selectedDate = moment(dateText, 'MM/DD/YYYY');
+                if (!selectedDate.isValid()) {
+                alert('Invalid date format');
+                return false;
+                }
+
+                // Update ARIA attributes
+                $(this).attr('aria-expanded', 'false');
+                },
+
+                // Handle ESC key
+                onClose: function() {
+                $(this).focus();
+                }
+                });
+
+                // Mobile responsive handling
+                if ($(window).width() &lt; 768) {
+                $('#datePicker').datepicker('option', 'numberOfMonths', 1);
+                }
+
+                // Custom validation
+                $('#datePicker').on('blur', function() {
+                var value = $(this).val();
+                var date = moment(value, 'MM/DD/YYYY', true);
+
+                if (value && !date.isValid()) {
+                $(this).addClass('error');
+                $(this).attr('aria-invalid', 'true');
+                } else {
+                $(this).removeClass('error');
+                $(this).attr('aria-invalid', 'false');
+                }
+                });
+                });
+
+                // Additional 500+ lines for:
+                // - Custom date formatting
+                // - Timezone handling
+                // - Localization
+                // - Theme customization
+                // - Event handling
+                // - Mobile touch support
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="cons">❌ Date Picker Disasters:</h4>
+                <ul>
+                    <li>Massive JavaScript libraries (jQuery UI = 250KB+)</li>
+                    <li>Complex keyboard navigation implementation</li>
+                    <li>Screen reader compatibility requires custom ARIA</li>
+                    <li>Mobile UX often breaks or feels non-native</li>
+                    <li>Date format parsing errors and edge cases</li>
+                    <li>Timezone handling becomes a nightmare</li>
+                    <li>Localization requires additional libraries</li>
+                    <li>Theming and styling consistency issues</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="column good">
+            <h3>Native Date Input Paradise <span class="perf-indicator perf-fast">PERFECT</span></h3>
+
+            <div class="accessibility-note">
+                <strong>🎯 Accessibility Perfection:</strong> Native keyboard navigation, screen reader support, platform-consistent UX, automatic validation, works on all devices with zero configuration.
+            </div>
+
+            <div class="form-group">
+                <label for="native-date">Date</label>
+                <input type="date" id="native-date" name="date"
+                       min="2020-01-01" max="2030-12-31"
+                       value="2024-06-15">
+            </div>
+
+            <div class="form-group">
+                <label for="native-datetime">Date and Time</label>
+                <input type="datetime-local" id="native-datetime" name="datetime"
+                       min="2024-01-01T00:00" max="2024-12-31T23:59">
+            </div>
+
+            <div class="form-group">
+                <label for="native-time">Time</label>
+                <input type="time" id="native-time" name="time"
+                       min="09:00" max="17:00" step="900">
+            </div>
+
+            <div class="form-group">
+                <label for="native-month">Month</label>
+                <input type="month" id="native-month" name="month">
+            </div>
+
+            <div class="form-group">
+                <label for="native-week">Week</label>
+                <input type="week" id="native-week" name="week">
+            </div>
+
+            <div class="code-block">
+                &lt;!-- The enlightened approach --&gt;
+                &lt;!-- Basic date picker --&gt;
+                &lt;input type="date" name="birthday"
+                min="1900-01-01" max="2024-12-31"&gt;
+
+                &lt;!-- Date and time --&gt;
+                &lt;input type="datetime-local" name="appointment"
+                min="2024-01-01T09:00" max="2024-12-31T17:00"&gt;
+
+                &lt;!-- Time only --&gt;
+                &lt;input type="time" name="meeting-time"
+                min="09:00" max="17:00" step="900"&gt;
+
+                &lt;!-- Month picker --&gt;
+                &lt;input type="month" name="birth-month"&gt;
+
+                &lt;!-- Week picker --&gt;
+                &lt;input type="week" name="vacation-week"&gt;
+
+                &lt;!-- With validation and default value --&gt;
+                &lt;input type="date" name="event-date"
+                required
+                min="2024-01-01"
+                max="2024-12-31"
+                value="2024-06-15"&gt;
+
+                &lt;!-- Optional: Custom styling --&gt;
+                &lt;style&gt;
+                input[type="date"],
+                input[type="datetime-local"],
+                input[type="time"],
+                input[type="month"],
+                input[type="week"] {
+                /* Browser handles the picker UI */
+                /* You just style the input field */
+                padding: 12px;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                font-size: 16px;
+                }
+
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                /* Customize the calendar icon */
+                filter: invert(1);
+                cursor: pointer;
+                }
+                &lt;/style&gt;
+
+                &lt;!-- Optional: JavaScript for dynamic constraints --&gt;
+                &lt;script&gt;
+                // Set minimum date to today
+                document.querySelector('[name="event-date"]').min =
+                new Date().toISOString().split('T')[0];
+
+                // Dynamic max date (30 days from now)
+                const futureDate = new Date();
+                futureDate.setDate(futureDate.getDate() + 30);
+                document.querySelector('[name="event-date"]').max =
+                futureDate.toISOString().split('T')[0];
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="pros">✅ Native Date Input Excellence:</h4>
+                <ul>
+                    <li>Zero JavaScript required - works out of the box</li>
+                    <li>Native OS date picker on mobile devices</li>
+                    <li>Automatic keyboard navigation and accessibility</li>
+                    <li>Built-in date validation and format handling</li>
+                    <li>Consistent UX that users already understand</li>
+                    <li>Automatic localization (user's preferred format)</li>
+                    <li>Min/max date constraints built-in</li>
+                    <li>Form validation integration works perfectly</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ACCORDIONS -->
+<div class="section">
+    <h2 class="section-title">🪗 Accordions</h2>
+    <div class="comparison-grid">
+        <div class="column bad">
+            <h3>JavaScript Framework Overkill <span class="perf-indicator perf-slow">HEAVY</span></h3>
+
+            <div class="accessibility-note">
+                <strong>⚠️ Framework Fatigue:</strong> Massive bundle sizes, complex state management, over-engineered solutions for simple disclosure widgets, dependency hell for basic interactions.
+            </div>
+
+            <div style="border: 1px solid var(--color-danger); border-radius: 8px; overflow: hidden; margin: 1rem 0;">
+                <div style="background: linear-gradient(135deg, var(--color-danger), #c44569); color: white; padding: 15px; cursor: pointer;" onclick="toggleAccordion('acc1')">
+                    <strong>React/Vue/Angular Accordion Framework</strong>
+                </div>
+                <div id="acc1" style="display: none; padding: 20px; background: var(--color-content-bg);">
+                    This "simple" accordion requires a full JavaScript framework, state management, component lifecycle handling, prop drilling, and probably Redux for complex cases. Bundle size: 500KB+ for basic functionality.
+                </div>
+            </div>
+
+            <div style="border: 1px solid var(--color-danger); border-radius: 8px; overflow: hidden; margin: 1rem 0;">
+                <div style="background: linear-gradient(135deg, var(--color-danger), #c44569); color: white; padding: 15px; cursor: pointer;" onclick="toggleAccordion('acc2')">
+                    <strong>Why We Chose This Complex Solution</strong>
+                </div>
+                <div id="acc2" style="display: none; padding: 20px; background: var(--color-content-bg);">
+                    "We needed state management for our accordion component that might eventually need to sync with our Redux store and support server-side rendering and have optimistic updates and..."
+                </div>
+            </div>
+
+            <div class="code-block">
+                &lt;!-- React Accordion Component (simplified) --&gt;
+                import React, { useState, useContext, createContext } from 'react';
+
+                const AccordionContext = createContext();
+
+                const AccordionProvider = ({ children, allowMultiple = false }) =&gt; {
+                const [openItems, setOpenItems] = useState(new Set());
+
+                const toggle = (id) =&gt; {
+                setOpenItems(prev =&gt; {
+                const next = new Set(prev);
+                if (next.has(id)) {
+                next.delete(id);
+                } else {
+                if (!allowMultiple) {
+                next.clear();
+                }
+                next.add(id);
+                }
+                return next;
+                });
+                };
+
+                return (
+                &lt;AccordionContext.Provider value={{ openItems, toggle }}&gt;
+                {children}
+                &lt;/AccordionContext.Provider&gt;
+                );
+                };
+
+                const AccordionItem = ({ id, title, children }) =&gt; {
+                const { openItems, toggle } = useContext(AccordionContext);
+                const isOpen = openItems.has(id);
+
+                return (
+                &lt;div className="accordion-item"&gt;
+                &lt;button
+                className="accordion-header"
+                onClick={() =&gt; toggle(id)}
+                aria-expanded={isOpen}
+                aria-controls={`accordion-content-${id}`}
+                &gt;
+                {title}
+                &lt;/button&gt;
+                &lt;div
+                id={`accordion-content-${id}`}
+                className={`accordion-content ${isOpen ? 'open' : ''}`}
+                aria-hidden={!isOpen}
+                &gt;
+                {children}
+                &lt;/div&gt;
+                &lt;/div&gt;
+                );
+                };
+
+                // Usage
+                &lt;AccordionProvider allowMultiple={true}&gt;
+                &lt;AccordionItem id="item1" title="Section 1"&gt;
+                Content 1
+                &lt;/AccordionItem&gt;
+                &lt;AccordionItem id="item2" title="Section 2"&gt;
+                Content 2
+                &lt;/AccordionItem&gt;
+                &lt;/AccordionProvider&gt;
+
+                // Plus: CSS modules, styled-components, animation libraries,
+                // testing utilities, storybook stories, TypeScript definitions...
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="cons">❌ Framework Accordion Problems:</h4>
+                <ul>
+                    <li>Massive bundle size for simple disclosure functionality</li>
+                    <li>Complex state management for basic show/hide</li>
+                    <li>Component lifecycle overhead and re-render issues</li>
+                    <li>Prop drilling and context complexity</li>
+                    <li>Testing requires mocking framework internals</li>
+                    <li>Server-side rendering complications</li>
+                    <li>Framework version dependency and upgrade pain</li>
+                    <li>Over-engineered solution for semantic HTML problem</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="column good">
+            <h3>Native Details/Summary Mastery <span class="perf-indicator perf-fast">ELEGANT</span></h3>
+
+            <div class="accessibility-note">
+                <strong>🎯 Semantic Excellence:</strong> Built-in ARIA, keyboard navigation, screen reader support, zero JavaScript required, works everywhere, follows web standards perfectly.
+            </div>
+
+            <details>
+                <summary>Native HTML Accordion Section 1</summary>
+                <div>
+                    This accordion uses zero JavaScript, works with screen readers, has built-in keyboard navigation, and provides semantic meaning. The browser handles all state management, animations, and accessibility concerns.
+                </div>
+            </details>
+
+            <details>
+                <summary>Why Native HTML Elements Rule</summary>
+                <div>
+                    <p>Native HTML elements come with decades of accessibility research, cross-browser testing, and user experience optimization built-in. They work consistently across all devices and assistive technologies.</p>
+                    <p>When you use semantic HTML, you're leveraging the collective wisdom of the web platform instead of reinventing the wheel with custom JavaScript.</p>
+                </div>
+            </details>
+
+            <details open>
+                <summary>Advanced Native Features</summary>
+                <div>
+                    <p>The <code>open</code> attribute makes sections expanded by default. You can style the disclosure triangle, animate the content, and even nest accordions.</p>
+                    <details>
+                        <summary>Nested Accordion</summary>
+                        <div>Nested accordions work perfectly with zero additional code.</div>
+                    </details>
+                </div>
+            </details>
+
+            <div class="code-block">
+                &lt;!-- The zen of native accordions --&gt;
+                &lt;details&gt;
+                &lt;summary&gt;Click to expand&lt;/summary&gt;
+                &lt;div&gt;
+                Content that's hidden by default,
+                but accessible to screen readers,
+                searchable by search engines,
+                and animated by the browser.
+                &lt;/div&gt;
+                &lt;/details&gt;
+
+                &lt;!-- Open by default --&gt;
+                &lt;details open&gt;
+                &lt;summary&gt;Expanded by default&lt;/summary&gt;
+                &lt;div&gt;This content is visible initially.&lt;/div&gt;
+                &lt;/details&gt;
+
+                &lt;!-- Nested accordions --&gt;
+                &lt;details&gt;
+                &lt;summary&gt;Parent Section&lt;/summary&gt;
+                &lt;div&gt;
+                &lt;p&gt;Parent content&lt;/p&gt;
+                &lt;details&gt;
+                &lt;summary&gt;Child Section&lt;/summary&gt;
+                &lt;div&gt;Nested content works perfectly&lt;/div&gt;
+                &lt;/details&gt;
+                &lt;/div&gt;
+                &lt;/details&gt;
+
+                &lt;!-- Optional: Custom styling --&gt;
+                &lt;style&gt;
+                details {
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                margin-bottom: 1rem;
+                }
+
+                summary {
+                background: #f5f5f5;
+                padding: 1rem;
+                cursor: pointer;
+                font-weight: bold;
+                }
+
+                summary:hover {
+                background: #e5e5e5;
+                }
+
+                details[open] summary {
+                border-bottom: 1px solid #ccc;
+                }
+
+                details &gt; div {
+                padding: 1rem;
+                }
+
+                /* Hide the default disclosure triangle */
+                summary::-webkit-details-marker {
+                display: none;
+                }
+
+                /* Custom disclosure indicator */
+                summary::before {
+                content: '▶';
+                margin-right: 0.5rem;
+                transition: transform 0.2s;
+                }
+
+                details[open] summary::before {
+                transform: rotate(90deg);
+                }
+                &lt;/style&gt;
+
+                &lt;!-- Optional: JavaScript for enhanced behavior --&gt;
+                &lt;script&gt;
+                // Close other accordions when one opens (exclusive mode)
+                document.querySelectorAll('details').forEach(detail =&gt; {
+                detail.addEventListener('toggle', function() {
+                if (this.open) {
+                // Close other details elements
+                document.querySelectorAll('details[open]').forEach(other =&gt; {
+                if (other !== this) other.removeAttribute('open');
+                });
+                }
+                });
+                });
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="pros">✅ Native Accordion Advantages:</h4>
+                <ul>
+                    <li>Zero JavaScript required - works without any scripts</li>
+                    <li>Built-in accessibility and ARIA support</li>
+                    <li>Semantic HTML with inherent meaning</li>
+                    <li>SEO friendly - search engines index collapsed content</li>
+                    <li>Keyboard navigation works automatically</li>
+                    <li>Screen reader compatible out of the box</li>
+                    <li>Consistent behavior across all browsers</li>
+                    <li>Can be enhanced with CSS and optional JavaScript</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SEARCH & AUTOCOMPLETE -->
+<div class="section">
+    <h2 class="section-title">🔍 Search & Autocomplete</h2>
+    <div class="comparison-grid">
+        <div class="column bad">
+            <h3>JavaScript Autocomplete Chaos <span class="perf-indicator perf-slow">COMPLEX</span></h3>
+
+            <div class="accessibility-note">
+                <strong>⚠️ Accessibility Nightmare:</strong> Custom dropdown management, keyboard navigation bugs, screen reader confusion, focus trapping issues, ARIA implementation gaps.
+            </div>
+
+            <div class="form-group">
+                <label for="js-search">City Search (JavaScript)</label>
+                <input type="text" id="js-search" placeholder="Type to search cities..."
+                       onkeyup="filterCities(this.value)" autocomplete="off">
+                <div id="js-results" style="display:none; position:absolute; background:var(--color-card); border:1px solid var(--color-border); max-height:200px; overflow-y:auto; z-index:100;">
+                    <!-- Results populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="code-block">
+                &lt;!-- The overcomplicated approach --&gt;
+                &lt;input type="text" id="search" placeholder="Search..."
+                onkeyup="handleSearch(event)"
+                onkeydown="handleKeyNav(event)"
+                onfocus="showResults()"
+                onblur="hideResults()"&gt;
+                &lt;div id="results" class="dropdown-results"&gt;&lt;/div&gt;
+
+                &lt;script&gt;
+                let currentFocus = -1;
+                const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];
+
+                function handleSearch(e) {
+                const value = e.target.value.toLowerCase();
+                const results = document.getElementById('results');
+
+                if (!value) {
+                results.style.display = 'none';
+                return;
+                }
+
+                const filtered = cities.filter(city =&gt;
+                city.toLowerCase().includes(value)
+                );
+
+                // Build HTML
+                results.innerHTML = filtered.map((city, index) =&gt;
+                `&lt;div class="result-item"
+                onclick="selectCity('${city}')"
+                data-index="${index}"&gt;${city}&lt;/div&gt;`
+                ).join('');
+
+                results.style.display = 'block';
+                currentFocus = -1;
+
+                // Manual ARIA updates
+                results.setAttribute('role', 'listbox');
+                e.target.setAttribute('aria-expanded', 'true');
+                e.target.setAttribute('aria-autocomplete', 'list');
+                }
+
+                function handleKeyNav(e) {
+                const results = document.querySelectorAll('.result-item');
+
+                if (e.key === 'ArrowDown') {
+                currentFocus++;
+                if (currentFocus &gt;= results.length) currentFocus = 0;
+                setActive(results);
+                e.preventDefault();
+                } else if (e.key === 'ArrowUp') {
+                currentFocus--;
+                if (currentFocus &lt; 0) currentFocus = results.length - 1;
+                setActive(results);
+                e.preventDefault();
+                } else if (e.key === 'Enter') {
+                if (currentFocus &gt; -1 && results[currentFocus]) {
+                selectCity(results[currentFocus].textContent);
+                }
+                e.preventDefault();
+                } else if (e.key === 'Escape') {
+                hideResults();
+                }
+                }
+
+                function setActive(results) {
+                results.forEach((item, index) =&gt; {
+                item.classList.toggle('active', index === currentFocus);
+                item.setAttribute('aria-selected', index === currentFocus);
+                });
+                }
+
+                function selectCity(city) {
+                document.getElementById('search').value = city;
+                hideResults();
+                }
+
+                function hideResults() {
+                document.getElementById('results').style.display = 'none';
+                document.getElementById('search').setAttribute('aria-expanded', 'false');
+                }
+
+                // Handle click outside
+                document.addEventListener('click', function(e) {
+                if (!e.target.closest('#search') && !e.target.closest('#results')) {
+                hideResults();
+                }
+                });
+
+                // Additional complexity for:
+                // - Debouncing API calls
+                // - Loading states
+                // - Error handling
+                // - Mobile touch events
+                // - Performance optimization
+                // - Screen reader announcements
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="cons">❌ JavaScript Autocomplete Problems:</h4>
+                <ul>
+                    <li>Complex keyboard navigation implementation</li>
+                    <li>Manual ARIA attribute management</li>
+                    <li>Focus management and blur event handling</li>
+                    <li>Dropdown positioning and z-index issues</li>
+                    <li>Screen reader compatibility requires extensive work</li>
+                    <li>Mobile touch and scroll behavior inconsistencies</li>
+                    <li>Performance issues with large datasets</li>
+                    <li>Cross-browser event handling differences</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="column good">
+            <h3>Native Datalist Perfection <span class="perf-indicator perf-fast">SIMPLE</span></h3>
+
+            <div class="accessibility-note">
+                <strong>🎯 Accessibility Paradise:</strong> Built-in keyboard navigation, screen reader support, native OS integration, consistent UX, zero JavaScript required.
+            </div>
+
+            <div class="form-group">
+                <label for="native-city">City Search (Native)</label>
+                <input type="text" id="native-city" list="cities"
+                       placeholder="Type or select a city...">
+                <datalist id="cities">
+                    <option value="New York">
+                    <option value="Los Angeles">
+                    <option value="Chicago">
+                    <option value="Houston">
+                    <option value="Phoenix">
+                    <option value="Philadelphia">
+                    <option value="San Antonio">
+                    <option value="San Diego">
+                    <option value="Dallas">
+                    <option value="San Jose">
+                </datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="native-browser">Browser Choice</label>
+                <input type="text" id="native-browser" list="browsers"
+                       placeholder="Choose your browser...">
+                <datalist id="browsers">
+                    <option value="Chrome" label="Google Chrome">
+                    <option value="Firefox" label="Mozilla Firefox">
+                    <option value="Safari" label="Apple Safari">
+                    <option value="Edge" label="Microsoft Edge">
+                    <option value="Opera" label="Opera Browser">
+                </datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="native-email">Email Domain</label>
+                <input type="email" id="native-email" list="email-domains"
+                       placeholder="user@domain.com">
+                <datalist id="email-domains">
+                    <option value="@gmail.com">
+                    <option value="@yahoo.com">
+                    <option value="@outlook.com">
+                    <option value="@hotmail.com">
+                    <option value="@icloud.com">
+                </datalist>
+            </div>
+
+            <div class="code-block">
+                &lt;!-- The elegant native solution --&gt;
+                &lt;label for="city-search"&gt;Choose a city:&lt;/label&gt;
+                &lt;input type="text" id="city-search" list="cities"
+                placeholder="Type or select..."&gt;
+
+                &lt;datalist id="cities"&gt;
+                &lt;option value="New York"&gt;
+                &lt;option value="Los Angeles"&gt;
+                &lt;option value="Chicago"&gt;
+                &lt;option value="Houston"&gt;
+                &lt;option value="Phoenix"&gt;
+                &lt;/datalist&gt;
+
+                &lt;!-- With labels for additional info --&gt;
+                &lt;input type="text" list="products"&gt;
+                &lt;datalist id="products"&gt;
+                &lt;option value="iPhone 15" label="Apple - Latest model"&gt;
+                &lt;option value="Samsung Galaxy S24" label="Samsung - Android"&gt;
+                &lt;option value="Google Pixel 8" label="Google - Pure Android"&gt;
+                &lt;/datalist&gt;
+
+                &lt;!-- Works with other input types --&gt;
+                &lt;input type="email" list="email-providers"&gt;
+                &lt;datalist id="email-providers"&gt;
+                &lt;option value="@gmail.com"&gt;
+                &lt;option value="@yahoo.com"&gt;
+                &lt;option value="@outlook.com"&gt;
+                &lt;/datalist&gt;
+
+                &lt;input type="url" list="popular-sites"&gt;
+                &lt;datalist id="popular-sites"&gt;
+                &lt;option value="https://github.com"&gt;
+                &lt;option value="https://stackoverflow.com"&gt;
+                &lt;option value="https://developer.mozilla.org"&gt;
+                &lt;/datalist&gt;
+
+                &lt;!-- Optional: Dynamic options with JavaScript --&gt;
+                &lt;script&gt;
+                // Only if you need dynamic data
+                fetch('/api/cities')
+                .then(response =&gt; response.json())
+                .then(cities =&gt; {
+                const datalist = document.getElementById('cities');
+                cities.forEach(city =&gt; {
+                const option = document.createElement('option');
+                option.value = city.name;
+                option.label = city.country;
+                datalist.appendChild(option);
+                });
+                });
+
+                // Form validation works automatically
+                document.querySelector('form').addEventListener('submit', function(e) {
+                const input = document.getElementById('city-search');
+                // Browser handles validation
+                if (!input.validity.valid) {
+                input.reportValidity();
+                e.preventDefault();
+                }
+                });
+                &lt;/script&gt;
+            </div>
+
+            <div class="pros-cons">
+                <h4 class="pros">✅ Native Datalist Advantages:</h4>
+                <ul>
+                    <li>Zero JavaScript required for basic functionality</li>
+                    <li>Built-in keyboard navigation (arrows, enter, esc)</li>
+                    <li>Screen reader compatible with proper announcements</li>
+                    <li>Native OS integration and consistent UX</li>
+                    <li>Works with form validation automatically</li>
+                    <li>Supports additional context with label attribute</li>
+                    <li>Integrates with different input types (email, url, etc.)</li>
+                    <li>Graceful degradation - still works as regular input</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="summary-box">
+    <h3>The Path to HTML Enlightenment</h3>
+    <p>You've witnessed the truth: <strong>90% of modern JavaScript UI frameworks are solving problems that HTML already solved.</strong> Native elements provide accessibility, keyboard navigation, screen reader support, consistent UX, and semantic meaning - all for free.</p>
+
+    <p><strong>The choice is yours:</strong></p>
+    <ul style="text-align: left; max-width: 600px; margin: 2rem auto;">
+        <li>Continue fighting the platform with complex JavaScript implementations</li>
+        <li>Or embrace the zen of semantic HTML and progressive enhancement</li>
     </ul>
 
-    <p><strong>Remember:</strong> The best accessibility feature is the one that's built-in and works by default. HTML isn't just markup - it's a semantic contract with browsers, assistive technologies, and search engines.</p>
+    <p>Stop reinventing the wheel. <strong>The web platform is your friend.</strong></p>
+
+    <div class="zen-quote">
+        "The best code is no code. The second best code is semantic HTML that leverages decades of browser engineering and accessibility research."
+    </div>
 </div>
 
 <script>
-    // JavaScript for the old-school examples (don't use this approach!)
-    function toggleContent(contentId) {
-        const content = document.getElementById(contentId);
-        const isVisible = content.classList.contains('active');
-
-        if (isVisible) {
-            content.classList.remove('active');
-        } else {
+    // Minimal JavaScript for the demo comparisons only
+    function toggleContent(id) {
+        const content = document.getElementById(id);
+        if (content.style.display === 'none' || !content.style.display) {
+            content.style.display = 'block';
             content.classList.add('active');
+        } else {
+            content.style.display = 'none';
+            content.classList.remove('active');
         }
     }
+
+    function openJSModal() {
+        document.getElementById('jsModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeJSModal() {
+        document.getElementById('jsModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function validateJSForm(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('js-email').value;
+        const password = document.getElementById('js-password').value;
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+
+        let isValid = true;
+
+        // Reset errors
+        emailError.classList.remove('active');
+        passwordError.classList.remove('active');
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            emailError.classList.add('active');
+            isValid = false;
+        }
+
+        // Password validation
+        if (password.length < 8) {
+            passwordError.classList.add('active');
+            isValid = false;
+        }
+
+        if (isValid) {
+            alert('Form submitted! (This is just a demo)');
+        }
+
+        return false;
+    }
+
+    function startJSProgress() {
+        const progressBar = document.getElementById('jsProgress');
+        const progressText = document.getElementById('jsProgressText');
+        let progress = 0;
+
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+            }
+
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.round(progress) + '%';
+
+            // Change color based on progress
+            if (progress < 30) {
+                progressBar.style.background = 'linear-gradient(90deg, #ff4757, #ff6b7a)';
+            } else if (progress < 70) {
+                progressBar.style.background = 'linear-gradient(90deg, #ffa502, #ffb84d)';
+            } else {
+                progressBar.style.background = 'linear-gradient(90deg, #2ed573, #7bed9f)';
+            }
+        }, 200);
+    }
+
+    function openDatePicker() {
+        const picker = document.getElementById('datePicker');
+        picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function toggleAccordion(id) {
+        const content = document.getElementById(id);
+        if (content.style.display === 'none' || !content.style.display) {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    }
+
+    const cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia', 'San Antonio'];
+
+    function filterCities(value) {
+        const results = document.getElementById('js-results');
+
+        if (!value) {
+            results.style.display = 'none';
+            return;
+        }
+
+        const filtered = cities.filter(city =>
+            city.toLowerCase().includes(value.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+            results.innerHTML = '<div style="padding: 10px; color: #999;">No cities found</div>';
+            results.style.display = 'block';
+            return;
+        }
+
+        results.innerHTML = filtered.map(city =>
+            `<div style="padding: 10px; cursor: pointer; border-bottom: 1px solid var(--color-border);"
+              onmouseover="this.style.background='var(--color-primary-hover)'"
+              onmouseout="this.style.background=''"
+              onclick="selectCity('${city}')">${city}</div>`
+        ).join('');
+
+        results.style.display = 'block';
+    }
+
+    function selectCity(city) {
+        document.getElementById('js-search').value = city;
+        document.getElementById('js-results').style.display = 'none';
+    }
+
+    // Hide results when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('#js-search') && !e.target.closest('#js-results')) {
+            document.getElementById('js-results').style.display = 'none';
+        }
+    });
 </script>
+
 </body>
 </html>
