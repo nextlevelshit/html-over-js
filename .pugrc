@@ -11,7 +11,7 @@
 			},
 			"sections": {
 				"disclosure": {
-					"title": "🎯 Progressive Disclosure Patterns",
+					"title": "🎯 Details/Summary Patterns",
 					"js_title": "JavaScript-Dependent Implementation",
 					"js_badge": "COMPLEX",
 					"js_warning": "Implementation Overhead: Manual ARIA state management, keyboard event handling, focus management, and screen reader compatibility.",
