@@ -1,13 +1,38 @@
 {
-  "name": "dhbw-html",
-  "version": "0.0.0",
-  "description": "",
-  "license": "ISC",
-  "author": "Michael W. Czechowski <mail@dailysh.it>",
-  "type": "commonjs",
-  "main": "index.html",
-  "scripts": {
-    "start": "npx serve . -p 1312 --cors",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  }
+	"name": "html-over-js",
+	"version": "0.0.0",
+	"description": "",
+	"main": "index.pug",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "parcel --public-url / index.pug --open",
+		"build": "parcel build index.pug --no-minify",
+		"format": "prettier --write src/**/*.pug index.pug package.json && prettier --write --parser json .pugrc"
+	},
+	"author": "Michael Werner Czechowski <mail@dailysh.it>",
+	"license": "Apache-2.0",
+	"devDependencies": {
+		"@prettier/plugin-pug": "^3.1.0",
+		"parcel-bundler": "^1.10.3",
+		"prettier": "^3.3.3",
+		"pug": "^3.0.3"
+	},
+	"prettier": {
+		"singleQuote": false,
+		"tabWidth": 4,
+		"semi": true,
+		"arrowParens": "always",
+		"useTabs": true,
+		"jsxSingleQuote": false,
+		"bracketSpacing": false,
+		"printWidth": 160,
+		"trailingComma": "all",
+		"bracketSameLine": false,
+		"htmlWhitespaceSensitivity": "strict",
+		"proseWrap": "never",
+		"singleAttributePerLine": false,
+		"plugins": [
+			"@prettier/plugin-pug"
+		]
+	}
 }

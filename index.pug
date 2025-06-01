@@ -1,0 +1,228 @@
+include src/components/mixins
+
+doctype html
+html(lang=lang, dir=dir)
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title= t.meta.title
+		meta(name="description", content=t.meta.description)
+		link(rel="stylesheet", href="src/main.css")
+
+	body.search_plugin_added
+		//- Hero Section
+		.hero
+			h1= t.hero.title
+			p.subtitle= t.hero.subtitle
+
+		//- Progressive Disclosure Section
+		+section(t.sections.disclosure.title)
+			.comparison-grid
+				+badColumn(t.sections.disclosure.js_title, t.sections.disclosure.js_badge, t.sections.disclosure.js_warning)
+					+jsCollapsible("content1", "Custom Collapsible Architecture", t.sections.disclosure.js_content1)
+					+jsCollapsible("content2", "State Management Challenges", t.sections.disclosure.js_content2)
+					+consList(t.sections.disclosure.js_cons_title, t.sections.disclosure.js_cons)
+
+				+goodColumn(t.sections.disclosure.native_title, t.sections.disclosure.native_badge, t.sections.disclosure.native_note)
+					details(name="architecture")
+						summary= t.sections.disclosure.native_semantic_title
+						div= t.sections.disclosure.native_semantic_content
+
+					details(name="architecture")
+						summary= t.sections.disclosure.native_enhancement_title
+						div= t.sections.disclosure.native_enhancement_content
+
+					details(name="architecture")
+						summary= t.sections.disclosure.native_performance_title
+						div= t.sections.disclosure.native_performance_content
+
+					+prosList(t.sections.disclosure.native_pros_title, t.sections.disclosure.native_pros)
+
+		//- Modal Section
+		+section(t.sections.modals.title)
+			.comparison-grid
+				+badColumn(t.sections.modals.js_title, t.sections.modals.js_badge, t.sections.modals.js_warning)
+					button(onclick="openJSModal()")= t.sections.modals.js_button
+
+					#jsModal.js-modal-overlay
+						.js-modal-content
+							h4= t.sections.modals.js_modal_title
+							p= t.sections.modals.js_modal_content
+							p
+								strong= t.sections.modals.js_modal_issue
+							button(onclick="closeJSModal()")= t.sections.modals.js_modal_close
+
+					+consList(t.sections.modals.js_cons_title, t.sections.modals.js_cons)
+
+				+goodColumn(t.sections.modals.native_title, t.sections.modals.native_badge, t.sections.modals.native_note)
+					button(onclick="document.getElementById('nativeDialog').showModal()")= t.sections.modals.native_button
+
+					dialog#nativeDialog
+						h4= t.sections.modals.native_dialog_title
+						p= t.sections.modals.native_dialog_content
+						p
+							strong= t.sections.modals.native_dialog_advantage
+						button(onclick="document.getElementById('nativeDialog').close()")= t.sections.modals.native_dialog_close
+
+					+prosList(t.sections.modals.native_pros_title, t.sections.modals.native_pros)
+
+		//- Form Validation Section
+		+section(t.sections.validation.title)
+			.comparison-grid
+				+badColumn(t.sections.validation.js_title, t.sections.validation.js_badge, t.sections.validation.js_warning)
+					form(onsubmit="return validateJSForm(event)")
+						+formGroup(t.sections.validation.js_email_label)
+							input#js-email(name="email", type="text")
+							#email-error.js-error= t.sections.validation.js_email_error
+
+						+formGroup(t.sections.validation.js_regex_label)
+							input#js-regex(name="uuid", type="text")
+							#regex-error.js-error= t.sections.validation.js_regex_error
+
+						button(type="submit")= t.sections.validation.js_submit
+
+					+consList(t.sections.validation.js_cons_title, t.sections.validation.js_cons)
+
+				+goodColumn(t.sections.validation.native_title, t.sections.validation.native_badge, t.sections.validation.native_note)
+					form
+						+formGroup(t.sections.validation.native_email_label)
+							input#native-email(name="email", type="email", placeholder=t.sections.validation.native_email_placeholder, required)
+
+						+formGroup(t.sections.validation.native_uuid_label)
+							input#native-uuid(
+								name="uuid",
+								type="text",
+								pattern="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+								placeholder=t.sections.validation.native_uuid_placeholder,
+								title=t.sections.validation.native_uuid_title,
+								required
+							)
+
+						+formGroup(t.sections.validation.native_api_label)
+							input#native-api(name="api", type="url", placeholder=t.sections.validation.native_api_placeholder)
+
+						button(type="submit")= t.sections.validation.native_submit
+
+					+prosList(t.sections.validation.native_pros_title, t.sections.validation.native_pros)
+
+		//- Progress Section
+		+section(t.sections.progress.title)
+			.comparison-grid
+				+badColumn(t.sections.progress.js_title, t.sections.progress.js_badge, t.sections.progress.js_warning)
+					.js-progress-container
+						#jsProgress.js-progress-bar
+
+					p= t.sections.progress.js_text + " "
+						span#jsProgressText 0%
+					button(onclick="startJSProgress()")= t.sections.progress.js_button
+
+					+consList(t.sections.progress.js_cons_title, t.sections.progress.js_cons)
+
+				+goodColumn(t.sections.progress.native_title, t.sections.progress.native_badge, t.sections.progress.native_note)
+					p= t.sections.progress.native_compilation
+					progress(max="100", value="75")= t.sections.progress.native_compilation_text
+
+					p= t.sections.progress.native_indeterminate
+					progress= t.sections.progress.native_indeterminate_text
+
+					p= t.sections.progress.native_dynamic + " "
+						span#nativeProgressText 0%
+					progress#nativeProgress(max="100", value="0") 0%
+					button(onclick="startNativeProgress()")= t.sections.progress.native_button
+
+					+prosList(t.sections.progress.native_pros_title, t.sections.progress.native_pros)
+
+		//- Temporal Input Section
+		+section(t.sections.temporal.title)
+			.comparison-grid
+				+badColumn(t.sections.temporal.js_title, t.sections.temporal.js_badge, t.sections.temporal.js_warning)
+					+formGroup(t.sections.temporal.js_label)
+						input#js-date(type="text", placeholder=t.sections.temporal.js_placeholder, readonly, onclick="openDatePicker()")
+						#datePicker(style="display: none; position: absolute; background: white; border: 1px solid #ccc; z-index: 1000")
+							p(style="padding: 20px; color: #666")= t.sections.temporal.js_picker_content
+
+					+consList(t.sections.temporal.js_cons_title, t.sections.temporal.js_cons)
+
+				+goodColumn(t.sections.temporal.native_title, t.sections.temporal.native_badge, t.sections.temporal.native_note)
+					+formGroup(t.sections.temporal.native_release_label)
+						input#native-date(name="date", type="date", value="2024-12-15", min="2024-01-01", max="2025-12-31")
+
+					+formGroup(t.sections.temporal.native_timestamp_label)
+						input#native-datetime(name="datetime", type="datetime-local", step="1")
+
+					+formGroup(t.sections.temporal.native_window_label)
+						input#native-time(name="time", type="time", min="02:00", max="18:00", step="900")
+
+					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
+
+		//- Autocomplete Section
+		+section(t.sections.autocomplete.title)
+			.comparison-grid
+				+badColumn(t.sections.autocomplete.js_title, t.sections.autocomplete.js_badge, t.sections.autocomplete.js_warning)
+					+formGroup(t.sections.autocomplete.js_label)
+						input#js-search(type="text", placeholder=t.sections.autocomplete.js_placeholder, autocomplete="off", onkeyup="filterFrameworks(this.value)")
+						#js-results(
+							style="display: none; position: absolute; background: var(--color-card); border: 1px solid var(--color-border); max-height: 200px; overflow-y: auto; z-index: 100"
+						)
+
+					+consList(t.sections.autocomplete.js_cons_title, t.sections.autocomplete.js_cons)
+
+				+goodColumn(t.sections.autocomplete.native_title, t.sections.autocomplete.native_badge, t.sections.autocomplete.native_note)
+					+formGroup(t.sections.autocomplete.native_framework_label)
+						input#native-framework(type="text", list="frameworks", placeholder=t.sections.autocomplete.native_framework_placeholder)
+						datalist#frameworks
+							option(value="React") React - Component-based library
+							option(value="Vue.js") Vue.js - Progressive framework
+							option(value="Angular") Angular - Full platform
+							option(value="Svelte") Svelte - Compile-time framework
+							option(value="Solid") Solid - Fine-grained reactivity
+							option(value="Alpine.js") Alpine.js - Minimal framework
+							option(value="Lit") Lit - Web Components library
+							option(value="Preact") Preact - Lightweight React alternative
+
+					+formGroup(t.sections.autocomplete.native_language_label)
+						input#native-language(type="text", list="languages", placeholder=t.sections.autocomplete.native_language_placeholder)
+						datalist#languages
+							option(value="JavaScript", label="JavaScript - Dynamic scripting")
+							option(value="TypeScript", label="TypeScript - Typed JavaScript")
+							option(value="Python", label="Python - General purpose")
+							option(value="Rust", label="Rust - Systems programming")
+							option(value="Go", label="Go - Concurrent systems")
+							option(value="WebAssembly", label="WebAssembly - High-performance web")
+							option(value="C", label="C - Low-level systems")
+							option(value="C++", label="C++ - High-performance systems")
+							option(value="C#", label="C# - .NET ecosystem")
+							option(value="Java", label="Java - Cross-platform enterprise")
+							option(value="Kotlin", label="Kotlin - Modern JVM language")
+							option(value="Swift", label="Swift - iOS and macOS")
+							option(value="Ruby", label="Ruby - Web development (Rails)")
+							option(value="PHP", label="PHP - Server-side scripting")
+							option(value="Perl", label="Perl - Text processing")
+							option(value="Haskell", label="Haskell - Functional programming")
+							option(value="Elixir", label="Elixir - Scalable applications")
+							option(value="Dart", label="Dart - Web and mobile apps")
+							option(value="Scala", label="Scala - Functional JVM language")
+							option(value="Lua", label="Lua - Lightweight scripting")
+							option(value="R", label="R - Statistical computing")
+							option(value="Julia", label="Julia - High-performance computing")
+							option(value="Shell", label="Shell - Command-line scripting")
+							option(value="MATLAB", label="MATLAB - Engineering and science")
+
+					+prosList(t.sections.autocomplete.native_pros_title, t.sections.autocomplete.native_pros)
+
+		//- Summary Section
+		.summary-box
+			h3= t.summary.title
+			p= t.summary.content
+
+			p
+				strong= t.summary.approach_title
+			ul(style="text-align: left; max-width: 600px; margin: 2rem auto")
+				each item in t.summary.approach_items
+					li= item
+
+			p= t.summary.closing
+
+			.zen-quote= t.summary.quote
+
+		script(src="src/main.js")

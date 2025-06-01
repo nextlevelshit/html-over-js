@@ -1,0 +1,48 @@
+mixin section(title)
+	.section
+		h2.section-title= title
+		block
+
+mixin badColumn(title, badge, warning)
+	.column.bad
+		h3= title + " "
+			span.perf-indicator.perf-slow= badge
+
+		.accessibility-note
+			strong ⚠️ #{warning}
+
+		block
+
+mixin goodColumn(title, badge, note)
+	.column.good
+		h3= title + " "
+			span.perf-indicator.perf-fast= badge
+
+		.accessibility-note
+			strong 🎯 #{note}
+
+		block
+
+mixin jsCollapsible(id, title, content)
+	.js-wrapper
+		.js-content(id=id)= content
+		button.js-collapsible(onclick=`toggleContent('${id}')`)= title
+
+mixin formGroup(label)
+	.form-group
+		label= label
+		block
+
+mixin consList(title, items)
+	.pros-cons
+		h4.cons= title
+		ul
+			each item in items
+				li= item
+
+mixin prosList(title, items)
+	.pros-cons
+		h4.pros= title
+		ul
+			each item in items
+				li= item

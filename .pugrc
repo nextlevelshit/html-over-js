@@ -1,0 +1,207 @@
+{
+	"locals": {
+		"t": {
+			"meta": {
+				"title": "Web Platform Fundamentals: Building with Native HTML",
+				"description": "Master native HTML capabilities and progressive enhancement patterns. This guide demonstrates how leveraging built-in browser features reduces complexity, improves performance, and creates more maintainable codebases."
+			},
+			"hero": {
+				"title": "🚀 Web Platform Fundamentals",
+				"subtitle": "Master native HTML capabilities and progressive enhancement patterns. This guide demonstrates how leveraging built-in browser features reduces complexity, improves performance, and creates more maintainable codebases."
+			},
+			"sections": {
+				"disclosure": {
+					"title": "🎯 Progressive Disclosure Patterns",
+					"js_title": "JavaScript-Dependent Implementation",
+					"js_badge": "COMPLEX",
+					"js_warning": "Implementation Overhead: Manual ARIA state management, keyboard event handling, focus management, and screen reader compatibility.",
+					"js_content1": "Custom collapsible implementations require comprehensive event handling, state synchronization across components, and careful attention to accessibility requirements including proper ARIA attributes and keyboard navigation patterns.",
+					"js_content2": "Managing state across multiple collapsible sections introduces complexity in event coordination, memory management, and performance optimization, particularly when dealing with dynamic content loading.",
+					"js_cons_title": "❌ Architecture Complexity:",
+					"js_cons": [
+						"Event delegation and memory leak prevention",
+						"ARIA state synchronization and keyboard trap management",
+						"Cross-browser compatibility and polyfill requirements"
+					],
+					"native_title": "Native Details/Summary Elements",
+					"native_badge": "ZERO-JS",
+					"native_note": "Platform Integration: Built-in ARIA semantics, keyboard navigation, screen reader support, and browser-optimized animations.",
+					"native_semantic_title": "Semantic HTML Architecture",
+					"native_semantic_content": "The HTML5 details/summary pattern provides declarative progressive disclosure without JavaScript dependencies. Browser engines handle state management, accessibility, and user interaction patterns according to platform conventions.",
+					"native_enhancement_title": "Progressive Enhancement Benefits",
+					"native_enhancement_content": "Starting with functional HTML ensures graceful degradation across all environments. CSS and JavaScript become enhancement layers rather than functional requirements, improving reliability and reducing technical debt.",
+					"native_performance_title": "Performance Characteristics",
+					"native_performance_content": "Native elements eliminate bundle size overhead, reduce runtime memory consumption, and leverage browser optimizations unavailable to custom implementations. Hardware acceleration and efficient event handling come built-in.",
+					"native_pros_title": "✅ Platform Advantages:",
+					"native_pros": [
+						"Zero JavaScript footprint with full accessibility compliance",
+						"Browser-native performance optimizations and hardware acceleration",
+						"Consistent cross-platform behavior with no maintenance overhead"
+					]
+				},
+				"modals": {
+					"title": "🪟 Modal Dialog Patterns",
+					"js_title": "Custom Modal Implementation",
+					"js_badge": "BRITTLE",
+					"js_warning": "Critical Requirements: Focus trapping, inert background content, ESC key handling, backdrop click management, and ARIA modal semantics.",
+					"js_button": "Launch Custom Modal",
+					"js_modal_title": "Custom Modal Architecture",
+					"js_modal_content": "This approach requires managing the modal stack, preventing background interaction, coordinating focus management, and ensuring proper cleanup to avoid memory leaks and accessibility violations.",
+					"js_modal_issue": "Critical Issue: Background content remains accessible to screen readers and keyboard navigation without explicit inert management.",
+					"js_modal_close": "Close Modal",
+					"js_cons_title": "❌ Implementation Challenges:",
+					"js_cons": [
+						"Focus trap implementation and restoration complexity",
+						"Modal stack management and z-index coordination",
+						"Event cleanup and memory leak prevention"
+					],
+					"native_title": "Native Dialog Element",
+					"native_badge": "ROBUST",
+					"native_note": "Built-in Capabilities: Automatic focus trapping, inert background management, ESC key support, and proper modal semantics.",
+					"native_button": "Launch Native Dialog",
+					"native_dialog_title": "Native Dialog Element",
+					"native_dialog_content": "The HTML5 dialog element provides robust modal functionality with automatic focus management, backdrop interaction handling, and proper accessibility semantics built into the browser engine.",
+					"native_dialog_advantage": "Key Advantage: Background content becomes automatically inert, preventing interaction and screen reader access without additional implementation.",
+					"native_dialog_close": "Close Dialog",
+					"native_pros_title": "✅ Engine-Level Features:",
+					"native_pros": [
+						"Automatic focus trapping with proper restoration",
+						"Built-in ESC key handling and backdrop click support",
+						"Modal semantics and inert background management"
+					]
+				},
+				"validation": {
+					"title": "📝 Constraint Validation Patterns",
+					"js_title": "Custom Validation Logic",
+					"js_badge": "FRAGILE",
+					"js_warning": "Validation Complexity: Custom error messaging, timing coordination, accessibility announcements, and server-client synchronization.",
+					"js_email_label": "Email Validation",
+					"js_email_error": "Invalid email format detected",
+					"js_regex_label": "Pattern Matching (UUID)",
+					"js_regex_error": "UUID format required: 8-4-4-4-12 hex digits",
+					"js_submit": "Validate Form",
+					"js_cons_title": "❌ Validation Brittleness:",
+					"js_cons": [
+						"Regex patterns miss edge cases and internationalization",
+						"Error timing and accessibility announcement coordination",
+						"Client-server validation drift and synchronization issues"
+					],
+					"native_title": "Constraint Validation API",
+					"native_badge": "SPEC-COMPLIANT",
+					"native_note": "Standards-Based: Automatic error announcements, internationalized messages, and CSS pseudo-class integration.",
+					"native_email_label": "Email Validation",
+					"native_email_placeholder": "developer@example.org",
+					"native_uuid_label": "UUID Pattern",
+					"native_uuid_placeholder": "550e8400-e29b-41d4-a716-446655440000",
+					"native_uuid_title": "Enter a valid UUID format (e.g., 550e8400-e29b-41d4-a716-446655440000)",
+					"native_api_label": "API Endpoint URL",
+					"native_api_placeholder": "https://api.example.org/v1",
+					"native_submit": "Submit Form",
+					"native_pros_title": "✅ Specification Compliance:",
+					"native_pros": [
+						"RFC-compliant validation patterns with internationalization",
+						"Automatic error messaging in user's preferred language",
+						"CSS pseudo-classes (:valid, :invalid) for styling integration"
+					]
+				},
+				"progress": {
+					"title": "📊 Progress Indication Patterns",
+					"js_title": "Custom Progress Implementation",
+					"js_badge": "SEMANTIC-VOID",
+					"js_warning": "Accessibility Gap: No semantic meaning without explicit ARIA implementation and screen reader progress announcements.",
+					"js_text": "Build Progress:",
+					"js_button": "Start Build Process",
+					"js_cons_title": "❌ Semantic Limitations:",
+					"js_cons": [
+						"No inherent semantic meaning for assistive technologies",
+						"Manual ARIA live region management for progress updates",
+						"Custom animation performance and value interpolation"
+					],
+					"native_title": "Native Progress Element",
+					"native_badge": "SEMANTIC",
+					"native_note": "Semantic Integration: Built-in progress role, automatic ARIA value announcements, and indeterminate state support.",
+					"native_compilation": "Compilation Progress",
+					"native_compilation_text": "75% complete",
+					"native_indeterminate": "Indeterminate Operation (processing)",
+					"native_indeterminate_text": "Processing dependencies...",
+					"native_dynamic": "Dynamic Progress:",
+					"native_button": "Start Process",
+					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros": [
+						"Built-in progress role with automatic value announcements",
+						"Indeterminate state support for unknown duration operations",
+						"Platform-optimized rendering and animation performance"
+					]
+				},
+				"temporal": {
+					"title": "📅 Temporal Input Patterns",
+					"js_title": "Custom Date Picker",
+					"js_badge": "HEAVYWEIGHT",
+					"js_warning": "Implementation Scope: Calendar widget architecture, keyboard navigation, internationalization, timezone handling, and mobile touch optimization.",
+					"js_label": "Deployment Date (Custom)",
+					"js_placeholder": "YYYY-MM-DD",
+					"js_picker_content": "[Calendar widget implementation]\nRequires: Date manipulation library, internationalization,\nkeyboard navigation, mobile gesture handling,\ntimezone calculations, accessibility compliance.",
+					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons": [
+						"Large JavaScript libraries and complex calendar logic",
+						"Mobile UX inconsistency with platform date pickers",
+						"Internationalization complexity and timezone edge cases"
+					],
+					"native_title": "Native Temporal Inputs",
+					"native_badge": "PLATFORM-NATIVE",
+					"native_note": "OS Integration: Platform-consistent UI, automatic keyboard navigation, built-in validation, and internationalization support.",
+					"native_release_label": "Release Date",
+					"native_timestamp_label": "Build Timestamp",
+					"native_window_label": "Deployment Window",
+					"native_pros_title": "✅ Platform Integration:",
+					"native_pros": [
+						"Zero-bundle impact with native OS picker integration",
+						"Automatic validation and internationalization support",
+						"Consistent UX aligned with platform conventions"
+					]
+				},
+				"autocomplete": {
+					"title": "🔍 Autocomplete Patterns",
+					"js_title": "Custom Autocomplete",
+					"js_badge": "INTERACTION-HEAVY",
+					"js_warning": "Interaction Complexity: Dropdown positioning, keyboard navigation, ARIA combobox implementation, and mobile touch handling.",
+					"js_label": "Framework Search (Custom)",
+					"js_placeholder": "Type framework name...",
+					"js_cons_title": "❌ Interaction Management:",
+					"js_cons": [
+						"Complex ARIA combobox implementation and state management",
+						"Dropdown positioning and viewport collision detection",
+						"Mobile keyboard optimization and touch event handling"
+					],
+					"native_title": "Native Datalist Element",
+					"native_badge": "ZERO-CONFIG",
+					"native_note": "Native Combobox: Built-in ARIA combobox semantics, keyboard navigation, and platform-consistent interaction patterns.",
+					"native_framework_label": "JavaScript Framework",
+					"native_framework_placeholder": "Select or type framework...",
+					"native_language_label": "Programming Language",
+					"native_language_placeholder": "Choose language...",
+					"native_pros_title": "✅ Zero-Configuration Benefits:",
+					"native_pros": [
+						"Native combobox semantics with automatic ARIA support",
+						"Platform-consistent keyboard and interaction patterns",
+						"Form validation integration and graceful degradation"
+					]
+				}
+			},
+			"summary": {
+				"title": "Platform-First Development",
+				"content": "Native HTML elements represent years of browser engineering, accessibility research, and web standards evolution. They provide robust functionality with minimal implementation overhead and maximum compatibility.",
+				"approach_title": "The Progressive Enhancement Approach:",
+				"approach_items": [
+					"Build with semantic HTML that functions universally",
+					"Enhance visual design through CSS without breaking functionality",
+					"Layer JavaScript for complex interactions where native capabilities are insufficient"
+				],
+				"closing": "Leverage browser engines rather than reimplementing their functionality. Your codebase will be more maintainable, your users will have better experiences.",
+				"quote": "The most sophisticated architecture is often the one that uses existing, well-tested components. Native HTML elements provide decades of optimization and accessibility engineering—build upon this foundation rather than around it."
+			}
+		},
+		"lang": "en",
+		"dir": "ltr"
+	}
+}
