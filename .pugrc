@@ -2,11 +2,11 @@
 	"locals": {
 		"t": {
 			"meta": {
-				"title": "Web Platform Fundamentals: Building with Native HTML",
+				"title": "HTML Fundamentals: Building with Native HTML",
 				"description": "Master native HTML capabilities and progressive enhancement patterns. This guide demonstrates how leveraging built-in browser features reduces complexity, improves performance, and creates more maintainable codebases."
 			},
 			"hero": {
-				"title": "🚀 Web Platform Fundamentals",
+				"title": "🚀 HTML Fundamentals",
 				"subtitle": "Master native HTML capabilities and progressive enhancement patterns. This guide demonstrates how leveraging built-in browser features reduces complexity, improves performance, and creates more maintainable codebases."
 			},
 			"sections": {
