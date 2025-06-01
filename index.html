@@ -146,6 +146,19 @@
           content: '⚠️ ';
       }
 
+      .bad button {
+          background: var(--color-danger);
+      }
+
+      .bad button:hover {
+          background: var(--color-danger);
+      }
+
+      .bad button:focus {
+          outline: var(--focus-outline-danger);
+          outline-offset: var(--focus-offset);
+      }
+
       .good {
           border-left: 3px solid var(--color-primary);
       }
@@ -236,7 +249,6 @@
 
       /* Interactive Elements */
       .js-collapsible {
-          background: var(--color-danger);
           color: white;
           cursor: pointer;
           padding: 12px 16px;
@@ -247,34 +259,31 @@
           border-radius: var(--radius);
           margin-bottom: 1rem;
           width: 100%;
-          transition: all 0.2s ease;
           font-family: inherit;
           font-weight: 500;
       }
 
-      .js-collapsible:hover {
-          background: #c82333;
-          transform: translateY(-1px);
-      }
-
-      .js-collapsible:focus {
-          outline: var(--focus-outline-danger);
-          outline-offset: var(--focus-offset);
+      .js-wrapper {
+          display: flex;
+          flex-direction: column-reverse;
       }
 
       .js-content {
-          padding: 0;
           display: none;
           background: var(--color-content-bg);
           border: 1px solid var(--color-border);
           border-radius: 0 0 var(--radius) var(--radius);
           margin-bottom: 1rem;
-          transition: all 0.2s ease;
       }
 
       .js-content.active {
           display: block;
-          padding: 16px;
+          padding: 0.5rem;
+      }
+
+      .js-content.active + .js-collapsible {
+          border-radius: var(--radius) var(--radius) 0 0;
+          margin-bottom: 0;
       }
 
       details {
@@ -349,6 +358,7 @@
       }
 
       .js-modal-content {
+          margin: auto;
           background: var(--color-bg);
           padding: 2rem;
           border-radius: var(--radius);
@@ -364,6 +374,7 @@
       }
 
       dialog {
+          margin: auto;
           border: 1px solid var(--color-border);
           border-radius: var(--radius);
           padding: 2rem;
@@ -371,7 +382,7 @@
           color: var(--color-text);
           box-shadow: var(--shadow);
           max-width: 500px;
-          width: 90%;
+          width: 90vw;
       }
 
       dialog:focus {
@@ -398,7 +409,7 @@
       .form-group input, .form-group textarea, .form-group select {
           width: 100%;
           padding: 10px 12px;
-          border: 1px solid var(--color-border);
+          border: 2px solid var(--color-border);
           border-radius: var(--radius);
           font-size: 1rem;
           background: var(--color-bg);
@@ -409,8 +420,8 @@
 
       .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
           outline: var(--focus-outline);
-          outline-offset: -2px;
-          border-color: var(--color-primary);
+          outline-offset: 2px;
+          border-color: var(--color-border);
       }
 
       .form-group input:invalid {
@@ -640,8 +651,9 @@
 <body class="search_plugin_added">
 
 <div class="hero">
-  <h1>🚀 Built-in HTML Components</h1>
-  <p class="subtitle">Discover the power of semantic HTML and native browser features. This guide shows you how to build accessible, performant interfaces using the web platform's built-in components with progressive enhancement.</p>
+  <h1>🚀 No more (JS) Drama</h1>
+  <p class="subtitle">Discover the power of semantic HTML and native browser features. This guide shows you how to build
+    accessible, performant interfaces using the web platform's built-in components with progressive enhancement.</p>
 </div>
 
 <!-- COLLAPSIBLES -->
@@ -655,18 +667,24 @@
         <strong>⚠️ Accessibility:</strong> Requires manual ARIA, keyboard nav, and screen reader support.
       </div>
 
-      <button class="js-collapsible" onclick="toggleContent('content1')">
-        What is Web Accessibility?
-      </button>
-      <div class="js-content" id="content1">
-        Web accessibility ensures that websites work for people with disabilities. Custom implementations need careful attention to accessibility requirements.
+      <div class="js-wrapper">
+        <div class="js-content" id="content1">
+          Web accessibility ensures that websites work for people with disabilities. Custom implementations need careful
+          attention to accessibility requirements.
+        </div>
+        <button class="js-collapsible" onclick="toggleContent('content1')">
+          What is Web Accessibility?
+        </button>
       </div>
 
-      <button class="js-collapsible" onclick="toggleContent('content2')">
-        Why WCAG Guidelines Matter
-      </button>
-      <div class="js-content" id="content2">
-        WCAG provides the framework for accessible web content. Following these guidelines ensures your content works for assistive technologies.
+      <div class="js-wrapper">
+        <div class="js-content" id="content2">
+          WCAG provides the framework for accessible web content. Following these guidelines ensures your content works
+          for assistive technologies.
+        </div>
+        <button class="js-collapsible" onclick="toggleContent('content2')">
+          Why WCAG Guidelines Matter
+        </button>
       </div>
 
       <div class="pros-cons">
@@ -686,24 +704,27 @@
         <strong>🎯 Built-in:</strong> ARIA support, keyboard navigation, screen reader compatibility work automatically.
       </div>
 
-      <details>
+      <details name="a11y">
         <summary>What is Web Accessibility?</summary>
         <div>
-          Web accessibility ensures that websites work for people with disabilities. Native HTML elements provide accessibility features automatically, following established web standards.
+          Web accessibility ensures that websites work for people with disabilities. Native HTML elements provide
+          accessibility features automatically, following established web standards.
         </div>
       </details>
 
-      <details>
+      <details name="a11y">
         <summary>Why WCAG Guidelines Matter</summary>
         <div>
-          WCAG provides the framework for accessible web content. Native elements follow these guidelines by default, reducing development complexity.
+          WCAG provides the framework for accessible web content. Native elements follow these guidelines by default,
+          reducing development complexity.
         </div>
       </details>
 
-      <details>
+      <details name="a11y">
         <summary>Progressive Enhancement Benefits</summary>
         <div>
-          Start with functional HTML, enhance with CSS, add JavaScript where needed. This ensures your content works across all devices and abilities.
+          Start with functional HTML, enhance with CSS, add JavaScript where needed. This ensures your content works
+          across all devices and abilities.
         </div>
       </details>
 
@@ -727,7 +748,8 @@
       <h3>Custom Modal Implementation <span class="perf-indicator perf-slow">INVOLVED</span></h3>
 
       <div class="accessibility-note">
-        <strong>⚠️ Requirements:</strong> Focus trapping, ESC handling, backdrop interaction, ARIA roles need custom development.
+        <strong>⚠️ Requirements:</strong> Focus trapping, ESC handling, backdrop interaction, ARIA roles need custom
+        development.
       </div>
 
       <button onclick="openJSModal()">Open Custom Modal</button>
@@ -735,7 +757,9 @@
       <div class="js-modal-overlay" id="jsModal">
         <div class="js-modal-content">
           <h4>Custom Modal Implementation</h4>
-          <p>This modal requires custom JavaScript for focus management, keyboard handling, and ARIA attributes. While flexible, it needs careful implementation.</p>
+          <p>This modal requires custom JavaScript for focus management, keyboard handling, and ARIA attributes. While
+            flexible, it needs careful implementation.</p>
+          <p>All the text in the background can still be focused and the user does not get informed.</p>
           <button onclick="closeJSModal()">Close Modal</button>
         </div>
       </div>
@@ -763,7 +787,8 @@
 
       <dialog id="nativeDialog">
         <h4>Native Dialog Element</h4>
-        <p>This dialog provides built-in focus trapping, keyboard support, backdrop interaction, and ARIA semantics automatically.</p>
+        <p>This dialog provides built-in focus trapping, keyboard support, backdrop interaction, and ARIA semantics
+          automatically.</p>
         <p><strong>The browser handles the complexity for you.</strong></p>
         <button onclick="document.getElementById('nativeDialog').close()">
           Close Dialog
@@ -868,12 +893,14 @@
       <h3>Custom Progress Implementation <span class="perf-indicator perf-slow">STYLED</span></h3>
 
       <div class="accessibility-note">
-        <strong>⚠️ Requirements:</strong> Semantic meaning, screen reader announcements, ARIA labels need custom implementation.
+        <strong>⚠️ Requirements:</strong> Semantic meaning, screen reader announcements, ARIA labels need custom
+        implementation.
       </div>
 
       <div class="js-progress-container">
         <div class="js-progress-bar" id="jsProgress"></div>
       </div>
+
       <p>Custom Progress: <span id="jsProgressText">0%</span></p>
       <button onclick="startJSProgress()">Start Progress Demo</button>
 
@@ -894,15 +921,15 @@
         <strong>🎯 Built-in:</strong> Semantic element, native ARIA support, automatic screen reader announcements.
       </div>
 
-      <progress id="nativeProgress" max="100" value="0">0%</progress>
-      <p>Native Progress: <span id="nativeProgressText">0%</span></p>
-      <button onclick="startNativeProgress()">Start Progress Demo</button>
-
-      <progress max="100" value="70">70%</progress>
       <p>Static Progress Example</p>
+      <progress max="100" value="70">70%</progress>
 
-      <progress>Loading...</progress>
       <p>Indeterminate Progress (no value attribute)</p>
+      <progress>Loading...</progress>
+
+      <p>Native Progress: <span id="nativeProgressText">0%</span></p>
+      <progress id="nativeProgress" max="100" value="0">0%</progress>
+      <button onclick="startNativeProgress()">Start Progress Demo</button>
 
       <div class="pros-cons">
         <h4 class="pros">✅ Native Progress Benefits:</h4>
@@ -924,7 +951,8 @@
       <h3>Custom Date Picker <span class="perf-indicator perf-slow">LIBRARY</span></h3>
 
       <div class="accessibility-note">
-        <strong>⚠️ Complexity:</strong> Keyboard navigation, screen reader support, date parsing, mobile UX need development.
+        <strong>⚠️ Complexity:</strong> Keyboard navigation, screen reader support, date parsing, mobile UX need
+        development.
       </div>
 
       <div class="form-group">
@@ -954,7 +982,8 @@
       <h3>Native Date Inputs <span class="perf-indicator perf-fast">PLATFORM</span></h3>
 
       <div class="accessibility-note">
-        <strong>🎯 Platform:</strong> Native keyboard navigation, screen reader support, platform-consistent UX, automatic validation.
+        <strong>🎯 Platform:</strong> Native keyboard navigation, screen reader support, platform-consistent UX,
+        automatic validation.
       </div>
 
       <div class="form-group">
@@ -992,7 +1021,8 @@
       <h3>Custom Autocomplete <span class="perf-indicator perf-slow">FEATURED</span></h3>
 
       <div class="accessibility-note">
-        <strong>⚠️ Requirements:</strong> Dropdown management, keyboard navigation, screen reader support, focus management.
+        <strong>⚠️ Requirements:</strong> Dropdown management, keyboard navigation, screen reader support, focus
+        management.
       </div>
 
       <div class="form-group">
@@ -1025,26 +1055,97 @@
         <label for="native-city">City Search (Native)</label>
         <input id="native-city" list="cities" placeholder="Type or select a city..." type="text">
         <datalist id="cities">
+          <!-- Original core cities with proper names -->
           <option value="Berlin">
-          </option>
-          <option value="Vienna">
-          </option>
-          <option value="Zurich">
-          </option>
-          <option value="Munich">
-          </option>
+          <option value="Wien">
+          <option value="Zürich">
+          <option value="München">
           <option value="Hamburg">
-          </option>
           <option value="Salzburg">
-          </option>
-          <option value="Geneva">
-          </option>
-          <option value="Frankfurt">
-          </option>
-          <option value="Cologne">
-          </option>
+          <option value="Genève">
+          <option value="Frankfurt am Main">
+          <option value="Köln">
           <option value="Stuttgart">
-          </option>
+
+            <!-- Extended German cities -->
+          <option value="Dresden">
+          <option value="Leipzig">
+          <option value="Düsseldorf">
+          <option value="Dortmund">
+          <option value="Essen">
+          <option value="Bremen">
+          <option value="Hannover">
+          <option value="Nürnberg">
+          <option value="Duisburg">
+          <option value="Bochum">
+          <option value="Wuppertal">
+          <option value="Bielefeld">
+          <option value="Bonn">
+          <option value="Münster">
+          <option value="Karlsruhe">
+          <option value="Mannheim">
+          <option value="Augsburg">
+          <option value="Wiesbaden">
+          <option value="Gelsenkirchen">
+          <option value="Mönchengladbach">
+          <option value="Braunschweig">
+          <option value="Chemnitz">
+          <option value="Kiel">
+          <option value="Aachen">
+          <option value="Halle (Saale)">
+          <option value="Magdeburg">
+          <option value="Freiburg im Breisgau">
+          <option value="Krefeld">
+          <option value="Lübeck">
+          <option value="Oberhausen">
+
+            <!-- Austrian cities -->
+          <option value="Graz">
+          <option value="Linz">
+          <option value="Innsbruck">
+          <option value="Klagenfurt">
+          <option value="Villach">
+          <option value="Wels">
+          <option value="Sankt Pölten">
+          <option value="Dornbirn">
+          <option value="Steyr">
+          <option value="Wiener Neustadt">
+
+            <!-- Swiss cities -->
+          <option value="Basel">
+          <option value="Bern">
+          <option value="Lausanne">
+          <option value="Winterthur">
+          <option value="Luzern">
+          <option value="St. Gallen">
+          <option value="Lugano">
+          <option value="Biel/Bienne">
+          <option value="Thun">
+          <option value="Köniz">
+
+            <!-- South Tyrolean cities -->
+          <option value="Bozen">
+          <option value="Meran">
+          <option value="Brixen">
+          <option value="Bruneck">
+          <option value="Sterzing">
+          <option value="Schlanders">
+          <option value="Eppan">
+          <option value="Leifers">
+          <option value="Klausen">
+          <option value="Neumarkt">
+
+            <!-- Alsatian cities -->
+          <option value="Strasbourg">
+          <option value="Mulhouse">
+          <option value="Colmar">
+          <option value="Haguenau">
+          <option value="Schiltigheim">
+          <option value="Illkirch-Graffenstaden">
+          <option value="Saint-Louis">
+          <option value="Sélestat">
+          <option value="Bischwiller">
+          <option value="Saverne">
         </datalist>
       </div>
 
@@ -1066,19 +1167,53 @@
       </div>
 
       <div class="form-group">
-        <label for="native-company">Company Domain</label>
-        <input id="native-company" list="company-domains" placeholder="company-name" type="text">
+        <label for="company-domain">Company Domain</label>
+        <input
+            aria-describedby="company-domain-hint"
+            autocomplete="organization"
+            id="company-domain"
+            list="company-domains"
+            placeholder="e.g., siemens, volkswagen"
+            type="text"
+        >
+        <small class="form-text text-muted" id="company-domain-hint">
+          Enter your company's domain name without www or .com
+        </small>
+
         <datalist id="company-domains">
-          <option value="siemens">
-          </option>
-          <option value="volkswagen">
-          </option>
-          <option value="bmw">
-          </option>
-          <option value="mercedes-benz">
-          </option>
-          <option value="bosch">
-          </option>
+          <!-- German automotive & industrial giants -->
+          <option label="Volkswagen AG" value="volkswagen">
+          <option label="Mercedes-Benz Group" value="mercedes-benz">
+          <option label="BMW Group" value="bmw">
+          <option label="Audi AG" value="audi">
+          <option label="Porsche AG" value="porsche">
+
+            <!-- Industrial conglomerates -->
+          <option label="Siemens AG" value="siemens">
+          <option label="Robert Bosch GmbH" value="bosch">
+          <option label="thyssenkrupp AG" value="thyssenkrupp">
+          <option label="Continental AG" value="continental">
+          <option label="Schaeffler Group" value="schaeffler">
+
+            <!-- Tech & Software -->
+          <option label="SAP SE" value="sap">
+          <option label="Infineon Technologies" value="infineon">
+          <option label="Software AG" value="software-ag">
+
+            <!-- Energy & Utilities -->
+          <option label="E.ON SE" value="eon">
+          <option label="RWE AG" value="rwe">
+          <option label="Wintershall Dea" value="wintershall-dea">
+
+            <!-- Chemicals & Pharma -->
+          <option label="BASF SE" value="basf">
+          <option label="Bayer AG" value="bayer">
+          <option label="Merck KGaA" value="merck">
+
+            <!-- Retail & Consumer -->
+          <option label="Adidas AG" value="adidas">
+          <option label="Puma SE" value="puma">
+          <option label="Metro AG" value="metro">
         </datalist>
       </div>
 
@@ -1096,7 +1231,8 @@
 
 <div class="summary-box">
   <h3>Embrace Built-in Web Components</h3>
-  <p>Native HTML elements provide rich functionality with built-in accessibility, keyboard navigation, and consistent user experience. These elements represent years of browser engineering and web standards development.</p>
+  <p>Native HTML elements provide rich functionality with built-in accessibility, keyboard navigation, and consistent
+    user experience. These elements represent years of browser engineering and web standards development.</p>
 
   <p><strong>The approach:</strong></p>
   <ul style="text-align: left; max-width: 600px; margin: 2rem auto;">
@@ -1108,7 +1244,8 @@
   <p>Build with the platform, not against it. <strong>Your users will thank you.</strong></p>
 
   <div class="zen-quote">
-    "The most elegant code leverages existing solutions. Native HTML elements provide decades of accessibility research and browser optimization - use them as your foundation."
+    "The most elegant code leverages existing solutions. Native HTML elements provide decades of accessibility research
+    and browser optimization - use them as your foundation."
   </div>
 </div>
 
@@ -1133,7 +1270,7 @@
   // Rest of existing JavaScript functions remain unchanged
   function toggleContent(id) {
     const content = document.getElementById(id);
-    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    content.classList.toggle("active");
   }
 
   function openJSModal() {
@@ -1192,6 +1329,7 @@
     // Alsatian cities (historically German-speaking)
     'Strasbourg', 'Mulhouse', 'Colmar', 'Haguenau', 'Schiltigheim', 'Illkirch-Graffenstaden', 'Saint-Louis', 'Sélestat', 'Bischwiller', 'Saverne'
   ];
+
   function filterCities(value) {
     const results = document.getElementById('js-results');
     if (!value) {
