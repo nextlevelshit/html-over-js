@@ -189,7 +189,7 @@
 				}
 			},
 			"summary": {
-				"title": "Platform-First Development",
+				"title": "HTML-First Development",
 				"content": "Native HTML elements represent years of browser engineering, accessibility research, and web standards evolution. They provide robust functionality with minimal implementation overhead and maximum compatibility.",
 				"approach_title": "The Progressive Enhancement Approach:",
 				"approach_items": [
