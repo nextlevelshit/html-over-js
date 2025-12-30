@@ -5,7 +5,7 @@
 	"main": "index.pug",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "parcel --port 1312 --public-url / index.pug --open",
+		"start": "parcel --port 1314 --public-url / index.pug --open",
 		"build": "parcel build index.pug --out-dir dist --public-url /html-over-js --no-minify",
 		"format": "prettier --write src/**/*.pug index.pug package.json && prettier --write --parser json .pugrc"
 	},

@@ -155,6 +155,36 @@ html(lang=lang, dir=dir)
 
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
+		//- Range Slider Section
+		+section(t.sections.range.title)
+			.comparison-grid
+				+badColumn(t.sections.range.js_title, t.sections.range.js_badge, t.sections.range.js_warning)
+					+formGroup(t.sections.range.js_label)
+						.js-slider-container
+							.js-slider-track
+								.js-slider-thumb(style="left: 50%")
+							input(type="hidden", value="50")
+
+					+consList(t.sections.range.js_cons_title, t.sections.range.js_cons)
+
+				+goodColumn(t.sections.range.native_title, t.sections.range.native_badge, t.sections.range.native_note)
+					+formGroup(t.sections.range.native_volume_label)
+						input(type="range", min="0", max="100", value="50")
+
+					+formGroup(t.sections.range.native_brightness_label)
+						input(type="range", min="0", max="100", value="75", style="accent-color: #f59e0b")
+
+					+formGroup(t.sections.range.native_quality_label)
+						input(type="range", min="1", max="5", value="3", step="1", list="quality-ticks")
+						datalist#quality-ticks
+							option(value="1", label="Low")
+							option(value="2")
+							option(value="3", label="Medium")
+							option(value="4")
+							option(value="5", label="High")
+
+					+prosList(t.sections.range.native_pros_title, t.sections.range.native_pros)
+
 		//- Autocomplete Section
 		+section(t.sections.autocomplete.title)
 			.comparison-grid

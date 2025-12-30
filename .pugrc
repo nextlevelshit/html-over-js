@@ -160,6 +160,31 @@
 						"Consistent UX aligned with platform conventions"
 					]
 				},
+				"range": {
+					"title": "🎚️ Range Slider Patterns",
+					"js_title": "Custom Slider Implementation",
+					"js_badge": "COMPLEX",
+					"js_warning": "Implementation Scope: Drag handling, touch events, value interpolation, track/thumb styling, and ARIA slider semantics.",
+					"js_label": "Volume Control (Custom)",
+					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons": [
+						"Complex mouse/touch event coordination and drag handling",
+						"Manual ARIA slider implementation with value announcements",
+						"Cross-browser styling inconsistencies and thumb positioning"
+					],
+					"native_title": "Native Range Input",
+					"native_badge": "ZERO-JS",
+					"native_note": "Platform Native: Built-in drag handling, keyboard support, ARIA slider semantics, and touch optimization.",
+					"native_volume_label": "Volume Level",
+					"native_brightness_label": "Brightness",
+					"native_quality_label": "Quality (with ticks)",
+					"native_pros_title": "✅ Native Advantages:",
+					"native_pros": [
+						"Zero JavaScript with full keyboard and touch support",
+						"Built-in ARIA slider role with automatic announcements",
+						"Datalist integration for tick marks and snap points"
+					]
+				},
 				"autocomplete": {
 					"title": "🔍 Autocomplete Patterns",
 					"js_title": "Custom Autocomplete",
