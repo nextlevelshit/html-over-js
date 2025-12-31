@@ -490,14 +490,34 @@ dialog::backdrop {
     border-color: var(--color-danger);
 }
 
-.good .form-group input:valid {
+.good .form-group input,
+.good .form-group textarea,
+.good .form-group select {
+    background: #ffffff;
+    border-color: var(--color-primary);
+}
+
+.good .form-group input:focus,
+.good .form-group textarea:focus,
+.good .form-group select:focus {
+    outline: var(--focus-outline);
     border-color: var(--color-primary);
 }
 
 .bad .form-group input,
+.bad .form-group textarea,
+.bad .form-group select,
 .bad .form-group input:valid,
 .bad .form-group input:invalid {
     border-color: #c5c5c7;
+    background: #f8f8f8;
+}
+
+.bad .form-group input:focus,
+.bad .form-group textarea:focus,
+.bad .form-group select:focus {
+    outline: 2px solid #86868b;
+    border-color: #86868b;
 }
 
 .js-error {
