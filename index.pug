@@ -414,19 +414,23 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.autocomplete.native_pros_title, t.sections.autocomplete.native_pros)
 
 		//- Summary Section
-		.summary-box
-			h3= t.summary.title
-			p= t.summary.content
+		.summary-section
+			.summary-content
+				h3= t.summary.title
+				p= t.summary.content
+				ul.summary-list
+					each item in t.summary.approach_items
+						li= item
+				p.summary-closing= t.summary.closing
 
-			p
-				strong= t.summary.approach_title
-			ul(style="text-align: left; max-width: 600px; margin: 2rem auto")
-				each item in t.summary.approach_items
-					li= item
-
-			p= t.summary.closing
-
-			.zen-quote= t.summary.quote
+			.summary-links
+				h3 Related Projects
+				a.link-card(href="https://codecrispi.es/" target="_blank" rel="noopener")
+					.link-card-title Code Crispies
+					.link-card-description Interactive HTML & CSS learning platform with hands-on exercises and live preview
+				a.link-card(href="https://librete.ch/" target="_blank" rel="noopener")
+					.link-card-title LibreTECH
+					.link-card-description Open-source consulting, software architecture, and web engineering expertise
 
 		script.
 			// JavaScript functions
