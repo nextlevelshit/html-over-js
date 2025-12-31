@@ -160,6 +160,31 @@
 						"Consistent UX aligned with platform conventions"
 					]
 				},
+				"color": {
+					"title": "🎨 Color Picker Patterns",
+					"js_title": "Custom Color Picker",
+					"js_badge": "HEAVYWEIGHT",
+					"js_warning": "Implementation Scope: Color space math, gradient rendering, hue/saturation controls, alpha channel, and format conversion (hex, rgb, hsl).",
+					"js_label": "Theme Color (Custom)",
+					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons": [
+						"Complex color space mathematics and conversions",
+						"Custom UI for hue wheels, gradients, and alpha sliders",
+						"Large library dependencies for full color picker functionality"
+					],
+					"native_title": "Native Color Input",
+					"native_badge": "ZERO-JS",
+					"native_note": "OS Integration: Platform-native color picker with eyedropper, recent colors, and accessibility built-in.",
+					"native_primary_label": "Primary Color",
+					"native_accent_label": "Accent Color",
+					"native_bg_label": "Background Color",
+					"native_pros_title": "✅ Native Advantages:",
+					"native_pros": [
+						"Zero JavaScript with full OS color picker integration",
+						"Eyedropper tool on supported browsers (Chrome, Edge)",
+						"Automatic hex value handling with form integration"
+					]
+				},
 				"range": {
 					"title": "🎚️ Range Slider Patterns",
 					"js_title": "Custom Slider Implementation",

@@ -155,6 +155,29 @@ html(lang=lang, dir=dir)
 
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
+		//- Color Picker Section
+		+section(t.sections.color.title)
+			.comparison-grid
+				+badColumn(t.sections.color.js_title, t.sections.color.js_badge, t.sections.color.js_warning)
+					+formGroup(t.sections.color.js_label)
+						.js-color-picker
+							.js-color-preview(style="background: #3b82f6")
+							input(type="text", value="#3b82f6", readonly)
+
+					+consList(t.sections.color.js_cons_title, t.sections.color.js_cons)
+
+				+goodColumn(t.sections.color.native_title, t.sections.color.native_badge, t.sections.color.native_note)
+					+formGroup(t.sections.color.native_primary_label)
+						input(type="color", value="#3b82f6")
+
+					+formGroup(t.sections.color.native_accent_label)
+						input(type="color", value="#f59e0b")
+
+					+formGroup(t.sections.color.native_bg_label)
+						input(type="color", value="#1e293b")
+
+					+prosList(t.sections.color.native_pros_title, t.sections.color.native_pros)
+
 		//- Range Slider Section
 		+section(t.sections.range.title)
 			.comparison-grid

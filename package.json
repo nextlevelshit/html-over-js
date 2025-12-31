@@ -2,18 +2,19 @@
 	"name": "html-over-js",
 	"version": "0.0.0",
 	"description": "",
-	"main": "index.pug",
+	"source": "index.pug",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "parcel --port 1314 --public-url / index.pug --open",
-		"build": "parcel build index.pug --out-dir dist --public-url /html-over-js --no-minify",
+		"start": "parcel index.pug --port 1314 --open",
+		"build": "parcel build index.pug --dist-dir dist --public-url /html-over-js --no-optimize",
 		"format": "prettier --write src/**/*.pug index.pug package.json && prettier --write --parser json .pugrc"
 	},
 	"author": "Michael Werner Czechowski <mail@dailysh.it>",
 	"license": "Apache-2.0",
 	"devDependencies": {
+		"@parcel/transformer-pug": "^2.14.4",
 		"@prettier/plugin-pug": "^3.1.0",
-		"parcel-bundler": "^1.10.3",
+		"parcel": "^2.14.4",
 		"prettier": "^3.3.3",
 		"pug": "^3.0.3"
 	},
