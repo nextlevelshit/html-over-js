@@ -1,21 +1,22 @@
 :root {
-    --color-bg: #ffffff;
-    --color-card: #f8f9fa;
-    --color-primary: #0066cc;
-    --color-primary-hover: #0052a3;
-    --color-danger: #dc3545;
+    --color-bg: #fafafa;
+    --color-card: #ffffff;
+    --color-primary: #1e5f8a;
+    --color-primary-hover: #174a6c;
+    --color-danger: #86868b;
     --color-warning: #856404;
     --color-warning-bg: #fff3cd;
-    --color-content-bg: #f1f3f4;
-    --color-border: #dee2e6;
-    --color-text: #212529;
-    --color-text-muted: #6c757d;
-    --color-code-bg: #f8f9fa;
-    --color-code-text: #0066cc;
-    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --radius: 8px;
-    --focus-outline: 2px solid #0066cc;
-    --focus-outline-danger: 2px solid #dc3545;
+    --color-content-bg: #f5f5f7;
+    --color-border: #e5e5e7;
+    --color-text: #1d1d1f;
+    --color-text-muted: #86868b;
+    --color-code-bg: #f5f5f7;
+    --color-code-text: #1e5f8a;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --radius: 12px;
+    --focus-outline: 2px solid #1e5f8a;
+    --focus-outline-danger: 2px solid #86868b;
     --focus-offset: 2px;
 }
 
@@ -26,11 +27,11 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    max-width: 1200px;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    max-width: 960px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 3rem 1.5rem;
     background: var(--color-bg);
     color: var(--color-text);
     min-height: 100vh;
@@ -38,31 +39,22 @@ body {
 
 .hero {
     text-align: center;
-    margin-bottom: 4rem;
-    padding: 3rem;
-    background: var(--color-card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--color-border);
-}
-
-.hero:focus-within {
-    outline: var(--focus-outline);
-    outline-offset: var(--focus-offset);
+    margin-bottom: 3rem;
+    padding: 2rem 0;
 }
 
 .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
     color: var(--color-primary);
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.02em;
 }
 
 .hero .subtitle {
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: var(--color-text-muted);
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
     line-height: 1.5;
 }
@@ -75,89 +67,53 @@ body {
 }
 
 .section {
-    margin: 4rem 0;
+    margin: 2.5rem 0;
 }
 
 .section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem 0;
-    text-align: center;
-    color: var(--color-primary);
-    position: relative;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding: 0;
+    text-align: left;
+    color: var(--color-text);
     font-weight: 600;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: var(--color-primary);
 }
 
 .column {
     background: var(--color-card);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    border: 1px solid var(--color-border);
-    transition: box-shadow 0.2s ease;
+    transition: all 0.2s ease;
     position: relative;
 }
 
 .column:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.column:focus-within {
-    outline: var(--focus-outline);
-    outline-offset: var(--focus-offset);
-}
-
-.column.bad:focus-within {
-    outline: var(--focus-outline-danger);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
 }
 
 .column h3 {
     color: var(--color-text);
-    border-bottom: 1px solid var(--color-border);
-    padding-bottom: 1rem;
-    margin-bottom: 2rem;
-    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 
 .bad {
-    border-left: 3px solid var(--color-danger);
+    border-top: 3px solid var(--color-text-muted);
 }
 
-.bad h3::before {
-    content: '⚠️ ';
-}
-
-.bad button {
-    background: var(--color-danger);
-}
-
-.bad button:hover {
-    background: var(--color-danger);
-}
-
-.bad button:focus {
-    outline: var(--focus-outline-danger);
-    outline-offset: var(--focus-offset);
+.bad h3 {
+    color: var(--color-text-muted);
 }
 
 .good {
-    border-left: 3px solid var(--color-primary);
+    border-top: 3px solid var(--color-primary);
 }
 
-.good h3::before {
-    content: '✅ ';
+.good h3 {
+    color: var(--color-primary);
 }
 
 .accessibility-note {
