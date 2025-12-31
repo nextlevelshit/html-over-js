@@ -1,6 +1,8 @@
-mixin section(title, code)
+mixin section(title, description, code)
 	.section
 		h2.section-title= title
+		if description
+			p.section-description= description
 		if code
 			code.section-code= code
 		block
@@ -52,14 +54,14 @@ mixin formGroup(label)
 		block
 
 mixin consList(title, items)
-	.pros-cons
+	.pros-cons.cons-list
 		h4.cons= title
 		ul
 			each item in items
 				li= item
 
 mixin prosList(title, items)
-	.pros-cons
+	.pros-cons.pros-list
 		h4.pros= title
 		ul
 			each item in items

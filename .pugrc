@@ -12,6 +12,7 @@
 			"sections": {
 				"disclosure": {
 					"title": "Collapsible Content",
+					"description": "The details element creates a disclosure widget where content is visible only when toggled open. The summary child provides the clickable label. Browser handles open/close state, keyboard navigation (Enter/Space), and ARIA expanded state automatically. The open attribute reflects current state and can be set via JavaScript or HTML.",
 					"code": "<details> <summary>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -42,6 +43,7 @@
 				},
 				"modals": {
 					"title": "Modal Dialogs",
+					"description": "The dialog element with showModal() creates a modal with automatic focus trapping, inert background (prevents interaction outside), ESC key dismissal, and ::backdrop pseudo-element for overlay styling. The close() method dismisses it. returnValue property captures form submission values. Works with forms using method=\"dialog\".",
 					"code": "<dialog>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -74,6 +76,7 @@
 				},
 				"validation": {
 					"title": "Form Validation",
+					"description": "HTML5 Constraint Validation API provides built-in validation via type (email, url, number), pattern (regex), required, min/max, minlength/maxlength attributes. CSS pseudo-classes :valid/:invalid/:required enable styling. setCustomValidity() allows custom messages. checkValidity() and reportValidity() trigger validation programmatically.",
 					"code": "<input type=\"email\" pattern=\"...\" required>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -109,6 +112,7 @@
 				},
 				"progress": {
 					"title": "Progress Bars",
+					"description": "The progress element represents task completion. Set value and max for determinate progress; omit value for indeterminate (loading) state. Screen readers announce progress role and percentage automatically. Styleable via ::-webkit-progress-bar and ::-webkit-progress-value pseudo-elements. Falls back to text content in unsupported browsers.",
 					"code": "<progress value=\"70\" max=\"100\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -139,6 +143,7 @@
 				},
 				"temporal": {
 					"title": "Date/Time Inputs",
+					"description": "Native date/time inputs (date, time, datetime-local, month, week) provide OS-native pickers with built-in validation, localized formatting, keyboard navigation, and touch support. Attributes min/max constrain range, step controls increments. valueAsDate and valueAsNumber properties enable programmatic access. No external libraries required.",
 					"code": "<input type=\"date\"> <input type=\"time\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -167,6 +172,7 @@
 				},
 				"fieldset": {
 					"title": "Form Grouping",
+					"description": "Fieldset semantically groups related form controls. Legend provides accessible name for the group. Setting disabled on fieldset disables all descendant form elements. Screen readers announce the legend when entering the group. Use for logical form sections like shipping/billing address, payment methods, or preference groups.",
 					"code": "<fieldset> <legend>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -189,6 +195,7 @@
 				},
 				"output": {
 					"title": "Calculated Results",
+					"description": "The output element represents a calculation result or user action outcome. The for attribute links it to input elements used in the calculation (space-separated IDs). Screen readers announce it as a live region. Form association via name attribute enables inclusion in form submission. Semantic alternative to generic span for computed values.",
 					"code": "<output for=\"a b\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -212,6 +219,7 @@
 				},
 				"meter": {
 					"title": "Measurements",
+					"description": "Meter represents a scalar measurement within a known range (disk space, relevance, password strength). Distinct from progress: meter shows static measurement, progress shows task completion. Attributes low/high/optimum define thresholds; browser changes color automatically (green/yellow/red). Screen readers announce value with context.",
 					"code": "<meter value=\"0.7\" low=\"0.3\" high=\"0.8\" optimum=\"1\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -237,6 +245,7 @@
 				},
 				"figure": {
 					"title": "Figures & Captions",
+					"description": "Figure represents self-contained content referenced from the main flow (images, diagrams, code snippets, quotes). Figcaption provides the caption, positioned first or last child. Screen readers announce the semantic relationship. Content can be moved without affecting document flow. Not limited to images—works for any illustrative content.",
 					"code": "<figure> <figcaption>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -259,6 +268,7 @@
 				},
 				"popover": {
 					"title": "Popovers",
+					"description": "The popover attribute creates top-layer content dismissed by clicking outside or pressing ESC. popovertarget links trigger to popover by ID. Auto popovers (default) have light-dismiss; manual popovers require explicit closing. Uses top layer (above all z-index). showPopover(), hidePopover(), togglePopover() for programmatic control. ::backdrop styles the overlay.",
 					"code": "<div popover> <button popovertarget=\"...\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -285,6 +295,7 @@
 				},
 				"color": {
 					"title": "Color Picker",
+					"description": "Native color input opens OS color picker with eyedropper tool (Chrome/Edge), recent colors, and full color space selection. Returns 7-character hex value (#rrggbb). No alpha channel support. Combine with datalist for preset color suggestions. Zero JavaScript, zero dependencies, consistent with OS appearance. Input/change events for real-time updates.",
 					"code": "<input type=\"color\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -311,6 +322,7 @@
 				},
 				"range": {
 					"title": "Range Slider",
+					"description": "Range input provides a slider for numeric values within min/max bounds. Step attribute controls increments. Connect to datalist for tick marks and snap points. Built-in ARIA slider role, keyboard navigation (arrows), and touch/mouse support. valueAsNumber property for direct numeric access. Styleable via ::-webkit-slider-thumb and related pseudo-elements.",
 					"code": "<input type=\"range\" min=\"0\" max=\"100\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
@@ -337,6 +349,7 @@
 				},
 				"autocomplete": {
 					"title": "Autocomplete",
+					"description": "Datalist provides autocomplete suggestions for text inputs. Link via list attribute matching datalist id. Browser handles filtering, keyboard navigation, and display. Options can include value and label attributes. Works with text, email, url, tel, search, range, and color inputs. Gracefully degrades in older browsers. No JavaScript required for basic functionality.",
 					"code": "<input list=\"...\"> <datalist id=\"...\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",

@@ -72,11 +72,19 @@ body {
 
 .section-title {
     font-size: 1.25rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     padding: 0;
     text-align: left;
     color: var(--color-text);
     font-weight: 600;
+}
+
+.section-description {
+    color: #86868b;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    max-width: 80%;
+    margin-bottom: 0.75rem;
 }
 
 .section-code {
@@ -282,9 +290,10 @@ body {
     padding: 0.5rem 0;
     padding-left: 1.5rem;
     position: relative;
+    font-weight: 500;
 }
 
-.good .pros li::before {
+.pros-list li::before {
     content: '✓';
     position: absolute;
     left: 0;
@@ -292,7 +301,7 @@ body {
     font-weight: bold;
 }
 
-.bad .cons li::before {
+.cons-list li::before {
     content: '✗';
     position: absolute;
     left: 0;

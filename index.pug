@@ -16,7 +16,7 @@ html(lang=lang, dir=dir)
 			p.subtitle= t.hero.subtitle
 
 		//- Progressive Disclosure Section
-		+section(t.sections.disclosure.title, t.sections.disclosure.code)
+		+section(t.sections.disclosure.title, t.sections.disclosure.description, t.sections.disclosure.code)
 			.comparison-grid
 				+badColumn(t.sections.disclosure.js_title, t.sections.disclosure.js_badge, t.sections.disclosure.js_warning)
 					+jsCollapsible("content1", "Custom Collapsible Architecture", t.sections.disclosure.js_content1)
@@ -39,7 +39,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.disclosure.native_pros_title, t.sections.disclosure.native_pros)
 
 		//- Modal Section
-		+section(t.sections.modals.title, t.sections.modals.code)
+		+section(t.sections.modals.title, t.sections.modals.description, t.sections.modals.code)
 			.comparison-grid
 				+badColumn(t.sections.modals.js_title, t.sections.modals.js_badge, t.sections.modals.js_warning)
 					button(onclick="openJSModal()")= t.sections.modals.js_button
@@ -67,7 +67,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.modals.native_pros_title, t.sections.modals.native_pros)
 
 		//- Form Validation Section
-		+section(t.sections.validation.title, t.sections.validation.code)
+		+section(t.sections.validation.title, t.sections.validation.description, t.sections.validation.code)
 			.comparison-grid
 				+badColumn(t.sections.validation.js_title, t.sections.validation.js_badge, t.sections.validation.js_warning)
 					form(onsubmit="return validateJSForm(event)")
@@ -106,7 +106,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.validation.native_pros_title, t.sections.validation.native_pros)
 
 		//- Progress Section
-		+section(t.sections.progress.title, t.sections.progress.code)
+		+section(t.sections.progress.title, t.sections.progress.description, t.sections.progress.code)
 			.comparison-grid
 				+badColumn(t.sections.progress.js_title, t.sections.progress.js_badge, t.sections.progress.js_warning)
 					.js-progress-container
@@ -133,7 +133,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.progress.native_pros_title, t.sections.progress.native_pros)
 
 		//- Temporal Input Section
-		+section(t.sections.temporal.title, t.sections.temporal.code)
+		+section(t.sections.temporal.title, t.sections.temporal.description, t.sections.temporal.code)
 			.comparison-grid
 				+badColumn(t.sections.temporal.js_title, t.sections.temporal.js_badge, t.sections.temporal.js_warning)
 					+formGroup(t.sections.temporal.js_label)
@@ -156,16 +156,16 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
 		//- Fieldset Section
-		+section(t.sections.fieldset.title, t.sections.fieldset.code)
+		+section(t.sections.fieldset.title, t.sections.fieldset.description, t.sections.fieldset.code)
 			.comparison-grid
 				+badColumn(t.sections.fieldset.js_title, t.sections.fieldset.js_badge, t.sections.fieldset.js_warning)
 					.js-form-section
 						.js-section-title Shipping Address
 						.js-section-content
 							+formGroup("Street")
-								input(type="text", placeholder="123 Main St")
+								input(type="text", placeholder="Leopoldstraße 1")
 							+formGroup("City")
-								input(type="text", placeholder="New York")
+								input(type="text", placeholder="Munich")
 
 					+consList(t.sections.fieldset.js_cons_title, t.sections.fieldset.js_cons)
 
@@ -173,9 +173,9 @@ html(lang=lang, dir=dir)
 					fieldset
 						legend Shipping Address
 						+formGroup("Street")
-							input(type="text", placeholder="123 Main St")
+							input(type="text", placeholder="Leopoldstraße 1")
 						+formGroup("City")
-							input(type="text", placeholder="New York")
+							input(type="text", placeholder="Munich")
 
 					fieldset(disabled)
 						legend Billing Address (disabled)
@@ -187,7 +187,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.fieldset.native_pros_title, t.sections.fieldset.native_pros)
 
 		//- Output Section
-		+section(t.sections.output.title, t.sections.output.code)
+		+section(t.sections.output.title, t.sections.output.description, t.sections.output.code)
 			.comparison-grid
 				+badColumn(t.sections.output.js_title, t.sections.output.js_badge, t.sections.output.js_warning)
 					.js-calculator
@@ -215,7 +215,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.output.native_pros_title, t.sections.output.native_pros)
 
 		//- Meter Section
-		+section(t.sections.meter.title, t.sections.meter.code)
+		+section(t.sections.meter.title, t.sections.meter.description, t.sections.meter.code)
 			.comparison-grid
 				+badColumn(t.sections.meter.js_title, t.sections.meter.js_badge, t.sections.meter.js_warning)
 					.js-gauge-container
@@ -238,7 +238,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.meter.native_pros_title, t.sections.meter.native_pros)
 
 		//- Figure Section
-		+section(t.sections.figure.title, t.sections.figure.code)
+		+section(t.sections.figure.title, t.sections.figure.description, t.sections.figure.code)
 			.comparison-grid
 				+badColumn(t.sections.figure.js_title, t.sections.figure.js_badge, t.sections.figure.js_warning)
 					.js-image-container
@@ -260,7 +260,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.figure.native_pros_title, t.sections.figure.native_pros)
 
 		//- Popover Section
-		+section(t.sections.popover.title, t.sections.popover.code)
+		+section(t.sections.popover.title, t.sections.popover.description, t.sections.popover.code)
 			.comparison-grid
 				+badColumn(t.sections.popover.js_title, t.sections.popover.js_badge, t.sections.popover.js_warning)
 					button(onclick="toggleJsPopover()")= t.sections.popover.js_button
@@ -278,7 +278,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.popover.native_pros_title, t.sections.popover.native_pros)
 
 		//- Color Picker Section
-		+section(t.sections.color.title, t.sections.color.code)
+		+section(t.sections.color.title, t.sections.color.description, t.sections.color.code)
 			.comparison-grid
 				+badColumn(t.sections.color.js_title, t.sections.color.js_badge, t.sections.color.js_warning)
 					+formGroup(t.sections.color.js_label)
@@ -301,7 +301,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.color.native_pros_title, t.sections.color.native_pros)
 
 		//- Range Slider Section
-		+section(t.sections.range.title, t.sections.range.code)
+		+section(t.sections.range.title, t.sections.range.description, t.sections.range.code)
 			.comparison-grid
 				+badColumn(t.sections.range.js_title, t.sections.range.js_badge, t.sections.range.js_warning)
 					+formGroup(t.sections.range.js_label)
@@ -331,7 +331,7 @@ html(lang=lang, dir=dir)
 					+prosList(t.sections.range.native_pros_title, t.sections.range.native_pros)
 
 		//- Autocomplete Section
-		+section(t.sections.autocomplete.title, t.sections.autocomplete.code)
+		+section(t.sections.autocomplete.title, t.sections.autocomplete.description, t.sections.autocomplete.code)
 			.comparison-grid
 				+badColumn(t.sections.autocomplete.js_title, t.sections.autocomplete.js_badge, t.sections.autocomplete.js_warning)
 					+formGroup(t.sections.autocomplete.js_label)
