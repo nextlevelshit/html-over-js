@@ -241,10 +241,19 @@ body {
 }
 
 .pros-cons h4 {
-    margin-bottom: 1rem;
-    color: var(--color-text);
-    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8125rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pros-cons h4.cons {
+    color: #8b6b6b;
+}
+
+.pros-cons h4.pros {
+    color: var(--color-primary);
 }
 
 .pros-cons ul {
@@ -270,7 +279,7 @@ body {
     content: '✗';
     position: absolute;
     left: 0;
-    color: var(--color-danger);
+    color: #8b6b6b;
     font-weight: bold;
 }
 
