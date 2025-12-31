@@ -649,30 +649,86 @@ input[type="range"] {
     outline-offset: var(--focus-offset);
 }
 
-.summary-box {
+.summary-section {
     margin-top: 4rem;
-    padding: 2rem;
-    background: var(--color-card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--color-border);
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
 }
 
-.summary-box h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-primary);
+.summary-content {
+    text-align: left;
+}
+
+.summary-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
     font-weight: 600;
 }
 
-.zen-quote {
-    font-style: italic;
+.summary-content p {
     color: var(--color-text-muted);
-    font-size: 1rem;
-    margin-top: 1.5rem;
-    border-left: 3px solid var(--color-primary);
-    padding-left: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.summary-list {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 1rem 0;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+}
+
+.summary-list li {
+    padding: 0.25rem 0;
+}
+
+.summary-closing {
+    font-size: 0.8125rem;
+}
+
+.summary-links h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.link-card {
+    display: block;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.link-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.link-card-title {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+}
+
+.link-card-description {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .summary-section {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 768px) {
