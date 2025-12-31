@@ -837,3 +837,34 @@ meter::-webkit-meter-even-less-good-value {
     font-size: 0.875rem;
     color: var(--color-text-muted);
 }
+
+/* Output and Calculator styles */
+.js-calculator,
+.native-calculator {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.js-calculator input,
+.native-calculator input {
+    width: 80px;
+}
+
+.js-result,
+.output-display {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--color-content-bg);
+    border-radius: var(--radius);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+output {
+    font-weight: 600;
+    color: var(--color-primary);
+}

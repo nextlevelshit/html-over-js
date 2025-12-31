@@ -155,6 +155,34 @@ html(lang=lang, dir=dir)
 
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
+		//- Output Section
+		+section(t.sections.output.title)
+			.comparison-grid
+				+badColumn(t.sections.output.js_title, t.sections.output.js_badge, t.sections.output.js_warning)
+					.js-calculator
+						label Quantity:
+						input#js-qty(type="number", value="1", min="1", oninput="updateJsTotal()")
+						span ×
+						label Price: $
+						input#js-price(type="number", value="29.99", step="0.01", oninput="updateJsTotal()")
+						.js-result
+							span Total: $
+							span#js-total 29.99
+
+					+consList(t.sections.output.js_cons_title, t.sections.output.js_cons)
+
+				+goodColumn(t.sections.output.native_title, t.sections.output.native_badge, t.sections.output.native_note)
+					form.native-calculator(oninput="nativeTotal.value = (nativeQty.valueAsNumber * nativePrice.valueAsNumber).toFixed(2)")
+						+formGroup("Quantity")
+							input#nativeQty(type="number", value="1", min="1")
+						+formGroup("Price ($)")
+							input#nativePrice(type="number", value="29.99", step="0.01")
+						.output-display
+							label(for="nativeTotal") Total: $
+							output#nativeTotal(for="nativeQty nativePrice") 29.99
+
+					+prosList(t.sections.output.native_pros_title, t.sections.output.native_pros)
+
 		//- Meter Section
 		+section(t.sections.meter.title)
 			.comparison-grid
@@ -417,4 +445,10 @@ html(lang=lang, dir=dir)
 			function toggleJsPopover() {
 				const popover = document.getElementById('jsPopover');
 				popover.style.display = popover.style.display === 'none' ? 'block' : 'none';
+			}
+
+			function updateJsTotal() {
+				const qty = document.getElementById('js-qty').value || 0;
+				const price = document.getElementById('js-price').value || 0;
+				document.getElementById('js-total').textContent = (qty * price).toFixed(2);
 			}

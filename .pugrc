@@ -160,6 +160,28 @@
 						"Consistent UX aligned with platform conventions"
 					]
 				},
+				"output": {
+					"title": "🔢 Output & Calculation Patterns",
+					"js_title": "Custom Calculation Display",
+					"js_badge": "SEMANTIC-VOID",
+					"js_warning": "Accessibility Gap: No semantic indication that content is a calculated result without explicit ARIA live regions.",
+					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons": [
+						"No semantic indication of calculated result",
+						"Manual ARIA live region setup for updates",
+						"Generic span/div lacks form association"
+					],
+					"native_title": "Native Output Element",
+					"native_badge": "SEMANTIC",
+					"native_note": "Form Integration: Built-in calculation result semantics, automatic form association, and screen reader announcement.",
+					"native_calc_label": "Price Calculator",
+					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros": [
+						"Semantic indication of calculated/computed result",
+						"Automatic form association via 'for' attribute",
+						"Screen readers announce as calculation output"
+					]
+				},
 				"meter": {
 					"title": "📏 Meter & Gauge Patterns",
 					"js_title": "Custom Gauge Implementation",
