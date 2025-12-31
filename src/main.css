@@ -775,6 +775,38 @@ input[type="range"] {
     line-height: 1.4;
 }
 
+.footer-note {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.footer-note a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-note a:hover {
+    text-decoration: underline;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+}
+
 @media (max-width: 768px) {
     .summary-section {
         grid-template-columns: 1fr;
