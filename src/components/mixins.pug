@@ -1,6 +1,8 @@
-mixin section(title)
+mixin section(title, code)
 	.section
 		h2.section-title= title
+		if code
+			code.section-code= code
 		block
 
 mixin badColumn(title, badge, warning)

@@ -72,11 +72,22 @@ body {
 
 .section-title {
     font-size: 1.25rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
     padding: 0;
     text-align: left;
     color: var(--color-text);
     font-weight: 600;
+}
+
+.section-code {
+    display: block;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    background: var(--color-code-bg);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
 }
 
 .column {
@@ -273,7 +284,7 @@ body {
     position: relative;
 }
 
-.pros li::before {
+.good .pros li::before {
     content: '✓';
     position: absolute;
     left: 0;
@@ -281,7 +292,7 @@ body {
     font-weight: bold;
 }
 
-.cons li::before {
+.bad .cons li::before {
     content: '✗';
     position: absolute;
     left: 0;

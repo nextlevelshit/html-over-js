@@ -11,7 +11,8 @@
 			},
 			"sections": {
 				"disclosure": {
-					"title": "Collapsible Content — <details> <summary>",
+					"title": "Collapsible Content",
+					"code": "<details> <summary>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: ARIA state management, keyboard events, focus handling, screen reader compatibility",
@@ -40,7 +41,8 @@
 					]
 				},
 				"modals": {
-					"title": "Modal Dialogs — <dialog>",
+					"title": "Modal Dialogs",
+					"code": "<dialog>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Focus trapping, inert background, ESC key handling, backdrop clicks, ARIA modal role",
@@ -71,7 +73,8 @@
 					]
 				},
 				"validation": {
-					"title": "Form Validation — <input type=\"email\"> pattern required",
+					"title": "Form Validation",
+					"code": "<input type=\"email\" pattern=\"...\" required>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Custom error messages, timing coordination, accessibility announcements",
@@ -105,7 +108,8 @@
 					]
 				},
 				"progress": {
-					"title": "Progress Bars — <progress>",
+					"title": "Progress Bars",
+					"code": "<progress value=\"70\" max=\"100\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: ARIA live regions, role=progressbar, value announcements",
@@ -134,7 +138,8 @@
 					]
 				},
 				"temporal": {
-					"title": "Date/Time Inputs — <input type=\"date\"> type=\"time\" type=\"datetime-local\"",
+					"title": "Date/Time Inputs",
+					"code": "<input type=\"date\"> <input type=\"time\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Calendar widget, i18n, timezone handling, keyboard navigation, touch events",
@@ -161,7 +166,8 @@
 					]
 				},
 				"fieldset": {
-					"title": "Form Grouping — <fieldset> <legend>",
+					"title": "Form Grouping",
+					"code": "<fieldset> <legend>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: ARIA group role, explicit labeling, manual disabled propagation",
@@ -182,7 +188,8 @@
 					]
 				},
 				"output": {
-					"title": "Calculated Results — <output>",
+					"title": "Calculated Results",
+					"code": "<output for=\"a b\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: ARIA live regions, manual form association",
@@ -204,7 +211,8 @@
 					]
 				},
 				"meter": {
-					"title": "Measurements — <meter>",
+					"title": "Measurements",
+					"code": "<meter value=\"0.7\" low=\"0.3\" high=\"0.8\" optimum=\"1\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Manual color coding, ARIA roles, no distinction from progress",
@@ -228,7 +236,8 @@
 					]
 				},
 				"figure": {
-					"title": "Figures & Captions — <figure> <figcaption>",
+					"title": "Figures & Captions",
+					"code": "<figure> <figcaption>",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: ARIA labeling, manual content-caption association",
@@ -249,7 +258,8 @@
 					]
 				},
 				"popover": {
-					"title": "Popovers — popover popovertarget",
+					"title": "Popovers",
+					"code": "<div popover> <button popovertarget=\"...\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Positioning logic, z-index, click-outside, ESC handling",
@@ -274,7 +284,8 @@
 					]
 				},
 				"color": {
-					"title": "Color Picker — <input type=\"color\">",
+					"title": "Color Picker",
+					"code": "<input type=\"color\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Color space math, gradient UI, hue/saturation controls, format conversion",
@@ -299,7 +310,8 @@
 					]
 				},
 				"range": {
-					"title": "Range Slider — <input type=\"range\">",
+					"title": "Range Slider",
+					"code": "<input type=\"range\" min=\"0\" max=\"100\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Drag/touch handling, value interpolation, ARIA slider role",
@@ -324,7 +336,8 @@
 					]
 				},
 				"autocomplete": {
-					"title": "Autocomplete — <datalist>",
+					"title": "Autocomplete",
+					"code": "<input list=\"...\"> <datalist id=\"...\">",
 					"js_title": "JavaScript",
 					"js_badge": "JS",
 					"js_warning": "Requires: Dropdown positioning, keyboard nav, ARIA combobox, touch handling",
