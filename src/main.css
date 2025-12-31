@@ -293,6 +293,14 @@ body {
     font-weight: 600;
 }
 
+.cons-list li {
+    color: #8b6b6b;
+}
+
+.pros-list li {
+    color: var(--color-primary);
+}
+
 .pros-list li::before {
     content: '✓';
     position: absolute;
