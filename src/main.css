@@ -128,21 +128,27 @@ body {
 .bad textarea,
 .bad select {
     border-color: #c5c5c7;
+    background: #f8f8f8;
 }
 
 .bad input:focus,
 .bad textarea:focus,
 .bad select:focus {
-    outline-color: #86868b;
+    outline: 2px solid #86868b;
+    outline-offset: 2px;
     border-color: #86868b;
 }
 
 .bad input:valid {
-    border-color: #86868b;
+    border-color: #c5c5c7;
 }
 
 .bad input:invalid {
     border-color: #a0a0a5;
+}
+
+.bad input[type="color"] {
+    border-color: #c5c5c7;
 }
 
 /* Info cards - muted, grayish style */

@@ -335,7 +335,7 @@ html(lang=lang, dir=dir)
 			.comparison-grid
 				+badColumn(t.sections.autocomplete.js_title, t.sections.autocomplete.js_badge, t.sections.autocomplete.js_warning)
 					+formGroup(t.sections.autocomplete.js_label)
-						input#js-search(type="text", placeholder=t.sections.autocomplete.js_placeholder, autocomplete="off", onkeyup="filterFrameworks(this.value)")
+						input#js-search(type="text", placeholder=t.sections.autocomplete.js_placeholder, autocomplete="off", onkeyup="filterCities(this.value)")
 						#js-results(
 							style="display: none; position: absolute; background: var(--color-card); border: 1px solid var(--color-border); max-height: 200px; overflow-y: auto; z-index: 100"
 						)
@@ -429,22 +429,22 @@ html(lang=lang, dir=dir)
 			.zen-quote= t.summary.quote
 
 		script.
-			// JavaScript functions from original HTML
-			const frameworks = ['React', 'Vue.js', 'Angular', 'Svelte', 'Solid', 'Alpine.js', 'Lit', 'Preact', 'Qwik', 'SvelteKit', 'Next.js', 'Nuxt.js'];
+			// JavaScript functions
+			const cities = ['Berlin', 'Paris', 'London', 'Rome', 'Madrid', 'Kyiv', 'Tokyo', 'Beijing', 'Seoul', 'Bangkok', 'Jakarta', 'Manila', 'Hanoi', 'Singapore', 'Buenos Aires', 'Lima', 'Santiago', 'Bogotá', 'Cairo', 'Pretoria'];
 
-			function filterFrameworks(value) {
+			function filterCities(value) {
 				const results = document.getElementById('js-results');
 				if (!value) {
 					results.style.display = 'none';
 					return;
 				}
-				const filtered = frameworks.filter(fw => fw.toLowerCase().includes(value.toLowerCase()));
-				results.innerHTML = filtered.map(fw => `<div style="padding:8px; cursor:pointer;" onclick="selectFramework('${fw}')">${fw}</div>`).join('');
+				const filtered = cities.filter(c => c.toLowerCase().includes(value.toLowerCase()));
+				results.innerHTML = filtered.map(c => `<div style="padding:8px; cursor:pointer;" onclick="selectCity('${c}')">${c}</div>`).join('');
 				results.style.display = filtered.length ? 'block' : 'none';
 			}
 
-			function selectFramework(fw) {
-				document.getElementById('js-search').value = fw;
+			function selectCity(city) {
+				document.getElementById('js-search').value = city;
 				document.getElementById('js-results').style.display = 'none';
 			}
 
