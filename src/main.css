@@ -262,7 +262,7 @@ body {
 }
 
 .pros-cons {
-    margin: 1.5rem 0;
+    margin-top: 2rem;
 }
 
 .pros-cons h4 {
@@ -290,7 +290,7 @@ body {
     padding: 0.5rem 0;
     padding-left: 1.5rem;
     position: relative;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .pros-list li::before {
@@ -662,31 +662,61 @@ input[type="range"] {
 
 .summary-content h3 {
     font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     color: var(--color-text);
     font-weight: 600;
 }
 
-.summary-content p {
-    color: var(--color-text-muted);
-    font-size: 0.875rem;
-    line-height: 1.6;
+.summary-intro {
+    color: var(--color-text);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.summary-approach-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
 }
 
 .summary-list {
     list-style: disc;
     padding-left: 1.25rem;
-    margin: 1rem 0;
+    margin: 0 0 1.5rem 0;
     color: var(--color-text-muted);
     font-size: 0.875rem;
 }
 
 .summary-list li {
     padding: 0.25rem 0;
+    line-height: 1.5;
 }
 
 .summary-closing {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.summary-closing a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.summary-closing a:hover {
+    text-decoration: underline;
+}
+
+.summary-quote {
+    font-style: italic;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1rem;
+    margin: 0;
 }
 
 .summary-links h3 {
