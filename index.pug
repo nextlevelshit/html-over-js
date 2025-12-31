@@ -155,6 +155,29 @@ html(lang=lang, dir=dir)
 
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
+		//- Meter Section
+		+section(t.sections.meter.title)
+			.comparison-grid
+				+badColumn(t.sections.meter.js_title, t.sections.meter.js_badge, t.sections.meter.js_warning)
+					.js-gauge-container
+						.js-gauge-track
+							.js-gauge-fill(style="width: 70%; background: #f59e0b")
+						.js-gauge-label 70% - No semantic meaning
+
+					+consList(t.sections.meter.js_cons_title, t.sections.meter.js_cons)
+
+				+goodColumn(t.sections.meter.native_title, t.sections.meter.native_badge, t.sections.meter.native_note)
+					+formGroup(t.sections.meter.native_disk_label)
+						meter(value="0.7", min="0", max="1", low="0.25", high="0.75", optimum="0.5")
+
+					+formGroup(t.sections.meter.native_battery_label)
+						meter(value="0.25", min="0", max="1", low="0.25", high="0.75", optimum="1")
+
+					+formGroup(t.sections.meter.native_score_label)
+						meter(value="0.92", min="0", max="1", low="0.25", high="0.75", optimum="1")
+
+					+prosList(t.sections.meter.native_pros_title, t.sections.meter.native_pros)
+
 		//- Figure Section
 		+section(t.sections.figure.title)
 			.comparison-grid

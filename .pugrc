@@ -160,6 +160,30 @@
 						"Consistent UX aligned with platform conventions"
 					]
 				},
+				"meter": {
+					"title": "📏 Meter & Gauge Patterns",
+					"js_title": "Custom Gauge Implementation",
+					"js_badge": "SEMANTIC-VOID",
+					"js_warning": "Accessibility Gap: No semantic distinction between progress and measurement without explicit ARIA roles.",
+					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons": [
+						"No semantic distinction from progress bars",
+						"Manual color coding for low/high/optimum ranges",
+						"Custom ARIA attributes required for accessibility"
+					],
+					"native_title": "Native Meter Element",
+					"native_badge": "SEMANTIC",
+					"native_note": "Semantic Measurement: Built-in low/high/optimum thresholds with automatic color changes and screen reader support.",
+					"native_disk_label": "Disk Usage (70%)",
+					"native_battery_label": "Battery Level (25% - Low)",
+					"native_score_label": "Performance Score (92% - Optimal)",
+					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros": [
+						"Semantic distinction from progress (measurement vs task)",
+						"Automatic color changes for low/high/optimum ranges",
+						"Screen readers announce value context appropriately"
+					]
+				},
 				"figure": {
 					"title": "🖼️ Figure & Caption Patterns",
 					"js_title": "Custom Image Caption",
