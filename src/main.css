@@ -124,6 +124,27 @@ body {
     background: #6c757d;
 }
 
+.bad input,
+.bad textarea,
+.bad select {
+    border-color: #c5c5c7;
+}
+
+.bad input:focus,
+.bad textarea:focus,
+.bad select:focus {
+    outline-color: #86868b;
+    border-color: #86868b;
+}
+
+.bad input:valid {
+    border-color: #86868b;
+}
+
+.bad input:invalid {
+    border-color: #a0a0a5;
+}
+
 /* Info cards - muted, grayish style */
 .info-card {
     background: #f5f5f7;
