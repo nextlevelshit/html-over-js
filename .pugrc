@@ -6,18 +6,18 @@
 				"description": "Master native HTML capabilities and progressive enhancement patterns. This guide demonstrates how leveraging built-in browser features reduces complexity, improves performance, and creates more maintainable codebases."
 			},
 			"hero": {
-				"title": "🚀 HTML Fundamentals",
-				"subtitle": "Master native HTML capabilities and progressive enhancement patterns. This guide demonstrates how leveraging built-in browser features reduces complexity, improves performance, and creates more maintainable codebases."
+				"title": "HTML Over JavaScript",
+				"subtitle": "Native HTML elements solve 90% of common UI problems. This guide demonstrates how leveraging built-in browser features reduces complexity, improves performance, and creates more maintainable codebases."
 			},
 			"sections": {
 				"disclosure": {
-					"title": "🎯 Details/Summary Patterns",
+					"title": "Details/Summary Patterns",
 					"js_title": "JavaScript-Dependent Implementation",
 					"js_badge": "COMPLEX",
 					"js_warning": "Implementation Overhead: Manual ARIA state management, keyboard event handling, focus management, and screen reader compatibility.",
 					"js_content1": "Custom collapsible implementations require comprehensive event handling, state synchronization across components, and careful attention to accessibility requirements including proper ARIA attributes and keyboard navigation patterns.",
 					"js_content2": "Managing state across multiple collapsible sections introduces complexity in event coordination, memory management, and performance optimization, particularly when dealing with dynamic content loading.",
-					"js_cons_title": "❌ Architecture Complexity:",
+					"js_cons_title": "Issues: Architecture Complexity:",
 					"js_cons": [
 						"Event delegation and memory leak prevention",
 						"ARIA state synchronization and keyboard trap management",
@@ -32,7 +32,7 @@
 					"native_enhancement_content": "Starting with functional HTML ensures graceful degradation across all environments. CSS and JavaScript become enhancement layers rather than functional requirements, improving reliability and reducing technical debt.",
 					"native_performance_title": "Performance Characteristics",
 					"native_performance_content": "Native elements eliminate bundle size overhead, reduce runtime memory consumption, and leverage browser optimizations unavailable to custom implementations. Hardware acceleration and efficient event handling come built-in.",
-					"native_pros_title": "✅ Platform Advantages:",
+					"native_pros_title": "Benefits: Platform Advantages:",
 					"native_pros": [
 						"Zero JavaScript footprint with full accessibility compliance",
 						"Browser-native performance optimizations and hardware acceleration",
@@ -40,7 +40,7 @@
 					]
 				},
 				"modals": {
-					"title": "🪟 Modal Dialog Patterns",
+					"title": "Modal Dialog Patterns",
 					"js_title": "Custom Modal Implementation",
 					"js_badge": "BRITTLE",
 					"js_warning": "Critical Requirements: Focus trapping, inert background content, ESC key handling, backdrop click management, and ARIA modal semantics.",
@@ -49,7 +49,7 @@
 					"js_modal_content": "This approach requires managing the modal stack, preventing background interaction, coordinating focus management, and ensuring proper cleanup to avoid memory leaks and accessibility violations.",
 					"js_modal_issue": "Critical Issue: Background content remains accessible to screen readers and keyboard navigation without explicit inert management.",
 					"js_modal_close": "Close Modal",
-					"js_cons_title": "❌ Implementation Challenges:",
+					"js_cons_title": "Issues: Implementation Challenges:",
 					"js_cons": [
 						"Focus trap implementation and restoration complexity",
 						"Modal stack management and z-index coordination",
@@ -63,7 +63,7 @@
 					"native_dialog_content": "The HTML5 dialog element provides robust modal functionality with automatic focus management, backdrop interaction handling, and proper accessibility semantics built into the browser engine.",
 					"native_dialog_advantage": "Key Advantage: Background content becomes automatically inert, preventing interaction and screen reader access without additional implementation.",
 					"native_dialog_close": "Close Dialog",
-					"native_pros_title": "✅ Engine-Level Features:",
+					"native_pros_title": "Benefits: Engine-Level Features:",
 					"native_pros": [
 						"Automatic focus trapping with proper restoration",
 						"Built-in ESC key handling and backdrop click support",
@@ -71,7 +71,7 @@
 					]
 				},
 				"validation": {
-					"title": "📝 Constraint Validation Patterns",
+					"title": "Constraint Validation Patterns",
 					"js_title": "Custom Validation Logic",
 					"js_badge": "FRAGILE",
 					"js_warning": "Validation Complexity: Custom error messaging, timing coordination, accessibility announcements, and server-client synchronization.",
@@ -80,7 +80,7 @@
 					"js_regex_label": "Pattern Matching (UUID)",
 					"js_regex_error": "UUID format required: 8-4-4-4-12 hex digits",
 					"js_submit": "Validate Form",
-					"js_cons_title": "❌ Validation Brittleness:",
+					"js_cons_title": "Issues: Validation Brittleness:",
 					"js_cons": [
 						"Regex patterns miss edge cases and internationalization",
 						"Error timing and accessibility announcement coordination",
@@ -97,7 +97,7 @@
 					"native_api_label": "API Endpoint URL",
 					"native_api_placeholder": "https://api.example.org/v1",
 					"native_submit": "Submit Form",
-					"native_pros_title": "✅ Specification Compliance:",
+					"native_pros_title": "Benefits: Specification Compliance:",
 					"native_pros": [
 						"RFC-compliant validation patterns with internationalization",
 						"Automatic error messaging in user's preferred language",
@@ -105,13 +105,13 @@
 					]
 				},
 				"progress": {
-					"title": "📊 Progress Indication Patterns",
+					"title": "Progress Indication Patterns",
 					"js_title": "Custom Progress Implementation",
 					"js_badge": "SEMANTIC-VOID",
 					"js_warning": "Accessibility Gap: No semantic meaning without explicit ARIA implementation and screen reader progress announcements.",
 					"js_text": "Build Progress:",
 					"js_button": "Start Build Process",
-					"js_cons_title": "❌ Semantic Limitations:",
+					"js_cons_title": "Issues: Semantic Limitations:",
 					"js_cons": [
 						"No inherent semantic meaning for assistive technologies",
 						"Manual ARIA live region management for progress updates",
@@ -126,7 +126,7 @@
 					"native_indeterminate_text": "Processing dependencies...",
 					"native_dynamic": "Dynamic Progress:",
 					"native_button": "Start Process",
-					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros_title": "Benefits: Semantic Advantages:",
 					"native_pros": [
 						"Built-in progress role with automatic value announcements",
 						"Indeterminate state support for unknown duration operations",
@@ -134,14 +134,14 @@
 					]
 				},
 				"temporal": {
-					"title": "📅 Temporal Input Patterns",
+					"title": "Temporal Input Patterns",
 					"js_title": "Custom Date Picker",
 					"js_badge": "HEAVYWEIGHT",
 					"js_warning": "Implementation Scope: Calendar widget architecture, keyboard navigation, internationalization, timezone handling, and mobile touch optimization.",
 					"js_label": "Deployment Date (Custom)",
 					"js_placeholder": "YYYY-MM-DD",
 					"js_picker_content": "[Calendar widget implementation]\nRequires: Date manipulation library, internationalization,\nkeyboard navigation, mobile gesture handling,\ntimezone calculations, accessibility compliance.",
-					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons_title": "Issues: Implementation Overhead:",
 					"js_cons": [
 						"Large JavaScript libraries and complex calendar logic",
 						"Mobile UX inconsistency with platform date pickers",
@@ -153,7 +153,7 @@
 					"native_release_label": "Release Date",
 					"native_timestamp_label": "Build Timestamp",
 					"native_window_label": "Deployment Window",
-					"native_pros_title": "✅ Platform Integration:",
+					"native_pros_title": "Benefits: Platform Integration:",
 					"native_pros": [
 						"Zero-bundle impact with native OS picker integration",
 						"Automatic validation and internationalization support",
@@ -161,11 +161,11 @@
 					]
 				},
 				"fieldset": {
-					"title": "📋 Form Grouping Patterns",
+					"title": "Form Grouping Patterns",
 					"js_title": "Custom Form Section",
 					"js_badge": "SEMANTIC-VOID",
 					"js_warning": "Accessibility Gap: No semantic grouping of related form controls without explicit ARIA group roles.",
-					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons_title": "Issues: Implementation Overhead:",
 					"js_cons": [
 						"No inherent semantic grouping of form controls",
 						"Manual ARIA group role and labeling required",
@@ -174,7 +174,7 @@
 					"native_title": "Native Fieldset Element",
 					"native_badge": "SEMANTIC",
 					"native_note": "Form Semantics: Built-in grouping with legend, automatic disabled state propagation, and screen reader support.",
-					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros_title": "Benefits: Semantic Advantages:",
 					"native_pros": [
 						"Semantic grouping with legend as accessible name",
 						"Disabled attribute propagates to all child controls",
@@ -182,11 +182,11 @@
 					]
 				},
 				"output": {
-					"title": "🔢 Output & Calculation Patterns",
+					"title": "Output & Calculation Patterns",
 					"js_title": "Custom Calculation Display",
 					"js_badge": "SEMANTIC-VOID",
 					"js_warning": "Accessibility Gap: No semantic indication that content is a calculated result without explicit ARIA live regions.",
-					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons_title": "Issues: Implementation Overhead:",
 					"js_cons": [
 						"No semantic indication of calculated result",
 						"Manual ARIA live region setup for updates",
@@ -196,7 +196,7 @@
 					"native_badge": "SEMANTIC",
 					"native_note": "Form Integration: Built-in calculation result semantics, automatic form association, and screen reader announcement.",
 					"native_calc_label": "Price Calculator",
-					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros_title": "Benefits: Semantic Advantages:",
 					"native_pros": [
 						"Semantic indication of calculated/computed result",
 						"Automatic form association via 'for' attribute",
@@ -204,11 +204,11 @@
 					]
 				},
 				"meter": {
-					"title": "📏 Meter & Gauge Patterns",
+					"title": "Meter & Gauge Patterns",
 					"js_title": "Custom Gauge Implementation",
 					"js_badge": "SEMANTIC-VOID",
 					"js_warning": "Accessibility Gap: No semantic distinction between progress and measurement without explicit ARIA roles.",
-					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons_title": "Issues: Implementation Overhead:",
 					"js_cons": [
 						"No semantic distinction from progress bars",
 						"Manual color coding for low/high/optimum ranges",
@@ -220,7 +220,7 @@
 					"native_disk_label": "Disk Usage (70%)",
 					"native_battery_label": "Battery Level (25% - Low)",
 					"native_score_label": "Performance Score (92% - Optimal)",
-					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros_title": "Benefits: Semantic Advantages:",
 					"native_pros": [
 						"Semantic distinction from progress (measurement vs task)",
 						"Automatic color changes for low/high/optimum ranges",
@@ -228,11 +228,11 @@
 					]
 				},
 				"figure": {
-					"title": "🖼️ Figure & Caption Patterns",
+					"title": "Figure & Caption Patterns",
 					"js_title": "Custom Image Caption",
 					"js_badge": "SEMANTIC-VOID",
 					"js_warning": "Accessibility Gap: No semantic association between image and caption without explicit ARIA attributes.",
-					"js_cons_title": "❌ Semantic Limitations:",
+					"js_cons_title": "Issues: Semantic Limitations:",
 					"js_cons": [
 						"No inherent association between content and caption",
 						"Manual ARIA labeling required for accessibility",
@@ -241,7 +241,7 @@
 					"native_title": "Native Figure Element",
 					"native_badge": "SEMANTIC",
 					"native_note": "Semantic Association: Built-in content-caption relationship, proper accessibility, works for images, code, quotes, and more.",
-					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros_title": "Benefits: Semantic Advantages:",
 					"native_pros": [
 						"Automatic content-caption semantic association",
 						"Works for images, code blocks, diagrams, quotes",
@@ -249,12 +249,12 @@
 					]
 				},
 				"popover": {
-					"title": "💬 Popover & Tooltip Patterns",
+					"title": "Popover & Tooltip Patterns",
 					"js_title": "Custom Popover Implementation",
 					"js_badge": "COMPLEX",
 					"js_warning": "Implementation Scope: Positioning logic, viewport collision, z-index management, click-outside detection, and focus management.",
 					"js_button": "Show Custom Tooltip",
-					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons_title": "Issues: Implementation Overhead:",
 					"js_cons": [
 						"Complex positioning algorithms for viewport collision",
 						"Manual click-outside and ESC key dismissal logic",
@@ -266,7 +266,7 @@
 					"native_button": "Show Native Popover",
 					"native_popover_title": "Native Popover",
 					"native_popover_content": "This popover uses the native popover API. Click outside or press ESC to dismiss.",
-					"native_pros_title": "✅ Native Advantages:",
+					"native_pros_title": "Benefits: Native Advantages:",
 					"native_pros": [
 						"Zero JavaScript with automatic light dismiss behavior",
 						"Built-in top-layer positioning (no z-index issues)",
@@ -274,12 +274,12 @@
 					]
 				},
 				"color": {
-					"title": "🎨 Color Picker Patterns",
+					"title": "Color Picker Patterns",
 					"js_title": "Custom Color Picker",
 					"js_badge": "HEAVYWEIGHT",
 					"js_warning": "Implementation Scope: Color space math, gradient rendering, hue/saturation controls, alpha channel, and format conversion (hex, rgb, hsl).",
 					"js_label": "Theme Color (Custom)",
-					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons_title": "Issues: Implementation Overhead:",
 					"js_cons": [
 						"Complex color space mathematics and conversions",
 						"Custom UI for hue wheels, gradients, and alpha sliders",
@@ -291,7 +291,7 @@
 					"native_primary_label": "Primary Color",
 					"native_accent_label": "Accent Color",
 					"native_bg_label": "Background Color",
-					"native_pros_title": "✅ Native Advantages:",
+					"native_pros_title": "Benefits: Native Advantages:",
 					"native_pros": [
 						"Zero JavaScript with full OS color picker integration",
 						"Eyedropper tool on supported browsers (Chrome, Edge)",
@@ -299,12 +299,12 @@
 					]
 				},
 				"range": {
-					"title": "🎚️ Range Slider Patterns",
+					"title": "Range Slider Patterns",
 					"js_title": "Custom Slider Implementation",
 					"js_badge": "COMPLEX",
 					"js_warning": "Implementation Scope: Drag handling, touch events, value interpolation, track/thumb styling, and ARIA slider semantics.",
 					"js_label": "Volume Control (Custom)",
-					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons_title": "Issues: Implementation Overhead:",
 					"js_cons": [
 						"Complex mouse/touch event coordination and drag handling",
 						"Manual ARIA slider implementation with value announcements",
@@ -316,7 +316,7 @@
 					"native_volume_label": "Volume Level",
 					"native_brightness_label": "Brightness",
 					"native_quality_label": "Quality (with ticks)",
-					"native_pros_title": "✅ Native Advantages:",
+					"native_pros_title": "Benefits: Native Advantages:",
 					"native_pros": [
 						"Zero JavaScript with full keyboard and touch support",
 						"Built-in ARIA slider role with automatic announcements",
@@ -324,13 +324,13 @@
 					]
 				},
 				"autocomplete": {
-					"title": "🔍 Autocomplete Patterns",
+					"title": "Autocomplete Patterns",
 					"js_title": "Custom Autocomplete",
 					"js_badge": "INTERACTION-HEAVY",
 					"js_warning": "Interaction Complexity: Dropdown positioning, keyboard navigation, ARIA combobox implementation, and mobile touch handling.",
 					"js_label": "Framework Search (Custom)",
 					"js_placeholder": "Type framework name...",
-					"js_cons_title": "❌ Interaction Management:",
+					"js_cons_title": "Issues: Interaction Management:",
 					"js_cons": [
 						"Complex ARIA combobox implementation and state management",
 						"Dropdown positioning and viewport collision detection",
@@ -343,7 +343,7 @@
 					"native_framework_placeholder": "Select or type framework...",
 					"native_language_label": "Programming Language",
 					"native_language_placeholder": "Choose language...",
-					"native_pros_title": "✅ Zero-Configuration Benefits:",
+					"native_pros_title": "Benefits: Zero-Configuration Benefits:",
 					"native_pros": [
 						"Native combobox semantics with automatic ARIA support",
 						"Platform-consistent keyboard and interaction patterns",
