@@ -379,14 +379,13 @@
 			},
 			"summary": {
 				"title": "Summary",
-				"content": "Native HTML elements include built-in accessibility, keyboard support, and platform integration. Before adding JavaScript, check if a native element exists.",
-				"approach_title": "Progressive Enhancement:",
+				"content": "Native HTML elements represent decades of browser engineering: built-in accessibility, keyboard navigation, screen reader support, and platform integration. Before reaching for JavaScript, check if a native element already solves your problem.",
+				"approach_title": "Progressive Enhancement",
 				"approach_items": [
-					"Start with semantic HTML",
-					"Add CSS for visual design",
-					"Use JavaScript only when native elements are insufficient"
+					"Start with semantic HTML that works everywhere",
+					"Layer CSS for visual design without breaking functionality",
+					"Add JavaScript only when native capabilities are insufficient"
 				],
-				"closing": "Check browser support at caniuse.com before using newer elements.",
 				"quote": "The best code is the code you don't have to write."
 			}
 		},
