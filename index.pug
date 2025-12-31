@@ -343,17 +343,45 @@ html(lang=lang, dir=dir)
 					+consList(t.sections.autocomplete.js_cons_title, t.sections.autocomplete.js_cons)
 
 				+goodColumn(t.sections.autocomplete.native_title, t.sections.autocomplete.native_badge, t.sections.autocomplete.native_note)
-					+formGroup(t.sections.autocomplete.native_framework_label)
-						input#native-framework(type="text", list="frameworks", placeholder=t.sections.autocomplete.native_framework_placeholder)
-						datalist#frameworks
-							option(value="React") React - Component-based library
-							option(value="Vue.js") Vue.js - Progressive framework
-							option(value="Angular") Angular - Full platform
-							option(value="Svelte") Svelte - Compile-time framework
-							option(value="Solid") Solid - Fine-grained reactivity
-							option(value="Alpine.js") Alpine.js - Minimal framework
-							option(value="Lit") Lit - Web Components library
-							option(value="Preact") Preact - Lightweight React alternative
+					+formGroup(t.sections.autocomplete.native_cities_label)
+						input#native-cities(type="text", list="cities", placeholder=t.sections.autocomplete.native_cities_placeholder)
+						datalist#cities
+							//- Europe
+							option(value="Berlin") Berlin - Germany
+							option(value="Paris") Paris - France
+							option(value="London") London - United Kingdom
+							option(value="Rome") Rome - Italy
+							option(value="Madrid") Madrid - Spain
+							option(value="Kyiv") Kyiv - Ukraine
+							//- North America
+							option(value="Washington D.C.") Washington D.C. - United States
+							option(value="Ottawa") Ottawa - Canada
+							option(value="Mexico City") Mexico City - Mexico
+							//- South America
+							option(value="Brasília") Brasília - Brazil
+							option(value="Buenos Aires") Buenos Aires - Argentina
+							option(value="Lima") Lima - Peru
+							option(value="Santiago") Santiago - Chile
+							option(value="Bogotá") Bogotá - Colombia
+							option(value="Caracas") Caracas - Venezuela
+							option(value="Montevideo") Montevideo - Uruguay
+							//- Asia
+							option(value="Tokyo") Tokyo - Japan
+							option(value="Beijing") Beijing - China
+							option(value="New Delhi") New Delhi - India
+							option(value="Seoul") Seoul - South Korea
+							option(value="Bangkok") Bangkok - Thailand
+							option(value="Jakarta") Jakarta - Indonesia
+							option(value="Manila") Manila - Philippines
+							option(value="Hanoi") Hanoi - Vietnam
+							option(value="Singapore") Singapore - Singapore
+							option(value="Kuala Lumpur") Kuala Lumpur - Malaysia
+							//- Africa & Middle East
+							option(value="Cairo") Cairo - Egypt
+							option(value="Pretoria") Pretoria - South Africa
+							//- Oceania
+							option(value="Canberra") Canberra - Australia
+							option(value="Wellington") Wellington - New Zealand
 
 					+formGroup(t.sections.autocomplete.native_language_label)
 						input#native-language(type="text", list="languages", placeholder=t.sections.autocomplete.native_language_placeholder)

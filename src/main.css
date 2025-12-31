@@ -576,32 +576,30 @@ input[list] {
 
 input[type="range"] {
     width: 100%;
+}
+
+/* Only style range inputs in bad/JS column */
+.bad input[type="range"] {
     height: 6px;
     border-radius: 3px;
     background: var(--color-border);
-    outline: none;
     -webkit-appearance: none;
 }
 
-input[type="range"]:focus {
-    outline: var(--focus-outline);
-    outline-offset: var(--focus-offset);
-}
-
-input[type="range"]::-webkit-slider-thumb {
+.bad input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: var(--color-primary);
+    background: #86868b;
     cursor: pointer;
 }
 
-input[type="range"]::-moz-range-thumb {
+.bad input[type="range"]::-moz-range-thumb {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: var(--color-primary);
+    background: #86868b;
     cursor: pointer;
     border: none;
 }
