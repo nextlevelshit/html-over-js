@@ -775,6 +775,10 @@ input[type="color"]::-webkit-color-swatch {
     padding: 1.5rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     max-width: 300px;
+    margin: auto;
+    inset: 0;
+    width: fit-content;
+    height: fit-content;
 }
 
 [popover] h4 {
