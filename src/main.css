@@ -169,8 +169,14 @@ body {
 }
 
 .info-note {
+    background: #e8f4fc;
+    border: 1px solid #c5dff0;
     border-left: 3px solid var(--color-primary);
-    color: #515154;
+    color: #1a4a66;
+}
+
+.info-note strong {
+    color: var(--color-primary);
 }
 
 .info-note .info-list li::before {
