@@ -470,8 +470,14 @@ dialog::backdrop {
     border-color: var(--color-danger);
 }
 
-.form-group input:valid {
+.good .form-group input:valid {
     border-color: var(--color-primary);
+}
+
+.bad .form-group input,
+.bad .form-group input:valid,
+.bad .form-group input:invalid {
+    border-color: #c5c5c7;
 }
 
 .js-error {
