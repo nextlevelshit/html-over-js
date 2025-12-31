@@ -8,8 +8,16 @@ mixin badColumn(title, badge, warning)
 		h3= title + " "
 			span.perf-indicator.perf-slow= badge
 
-		.accessibility-note
-			strong ⚠️ #{warning}
+		.info-card.info-warning
+			- const parts = warning.split(/[,;]/).map(s => s.trim()).filter(s => s)
+			- const header = parts[0].includes(':') ? parts[0].split(':')[0] + ':' : ''
+			- const firstItem = parts[0].includes(':') ? parts[0].split(':').slice(1).join(':').trim() : parts[0]
+			if header
+				strong= header
+			ul.info-list
+				li= firstItem
+				each part in parts.slice(1)
+					li= part
 
 		block
 
@@ -18,8 +26,16 @@ mixin goodColumn(title, badge, note)
 		h3= title + " "
 			span.perf-indicator.perf-fast= badge
 
-		.accessibility-note
-			strong 🎯 #{note}
+		.info-card.info-note
+			- const parts = note.split(/[,;]/).map(s => s.trim()).filter(s => s)
+			- const header = parts[0].includes(':') ? parts[0].split(':')[0] + ':' : ''
+			- const firstItem = parts[0].includes(':') ? parts[0].split(':').slice(1).join(':').trim() : parts[0]
+			if header
+				strong= header
+			ul.info-list
+				li= firstItem
+				each part in parts.slice(1)
+					li= part
 
 		block
 

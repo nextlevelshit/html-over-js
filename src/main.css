@@ -29,9 +29,9 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
     line-height: 1.5;
-    max-width: 960px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 3rem 2rem;
     background: var(--color-bg);
     color: var(--color-text);
     min-height: 100vh;
@@ -124,14 +124,57 @@ body {
     background: #6c757d;
 }
 
-.accessibility-note {
-    background: var(--color-warning-bg);
-    border: 1px solid #ffc107;
-    color: var(--color-warning);
-    padding: 1rem;
+/* Info cards - muted, grayish style */
+.info-card {
+    background: #f5f5f7;
+    border: 1px solid #e5e5e7;
+    color: #6c757d;
+    padding: 1rem 1.25rem;
     border-radius: var(--radius);
-    margin: 1.5rem 0;
-    font-size: 0.875rem;
+    margin: 1rem 0;
+    font-size: 0.8125rem;
+}
+
+.info-card strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #515154;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-list li {
+    padding: 0.4rem 0;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.4;
+}
+
+.info-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #86868b;
+}
+
+.info-warning {
+    border-left: 3px solid #86868b;
+}
+
+.info-note {
+    border-left: 3px solid var(--color-primary);
+    color: #515154;
+}
+
+.info-note .info-list li::before {
+    color: var(--color-primary);
 }
 
 .code-block {
