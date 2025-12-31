@@ -417,11 +417,16 @@ html(lang=lang, dir=dir)
 		.summary-section
 			.summary-content
 				h3= t.summary.title
-				p= t.summary.content
+				p.summary-intro= t.summary.content
+
+				h4.summary-approach-title= t.summary.approach_title
 				ul.summary-list
 					each item in t.summary.approach_items
 						li= item
-				p.summary-closing= t.summary.closing
+
+				p.summary-closing Check browser support at #[a(href="https://caniuse.com/" target="_blank" rel="noopener") caniuse.com] before using newer elements.
+
+				blockquote.summary-quote= t.summary.quote
 
 			.summary-links
 				h3 Related Projects
