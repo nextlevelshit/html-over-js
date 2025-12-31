@@ -116,6 +116,14 @@ body {
     color: var(--color-primary);
 }
 
+.bad button {
+    background: var(--color-text-muted);
+}
+
+.bad button:hover {
+    background: #6c757d;
+}
+
 .accessibility-note {
     background: var(--color-warning-bg);
     border: 1px solid #ffc107;
