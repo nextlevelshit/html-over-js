@@ -160,6 +160,27 @@
 						"Consistent UX aligned with platform conventions"
 					]
 				},
+				"fieldset": {
+					"title": "📋 Form Grouping Patterns",
+					"js_title": "Custom Form Section",
+					"js_badge": "SEMANTIC-VOID",
+					"js_warning": "Accessibility Gap: No semantic grouping of related form controls without explicit ARIA group roles.",
+					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons": [
+						"No inherent semantic grouping of form controls",
+						"Manual ARIA group role and labeling required",
+						"Disabled state doesn't propagate to children"
+					],
+					"native_title": "Native Fieldset Element",
+					"native_badge": "SEMANTIC",
+					"native_note": "Form Semantics: Built-in grouping with legend, automatic disabled state propagation, and screen reader support.",
+					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros": [
+						"Semantic grouping with legend as accessible name",
+						"Disabled attribute propagates to all child controls",
+						"Screen readers announce group and legend relationship"
+					]
+				},
 				"output": {
 					"title": "🔢 Output & Calculation Patterns",
 					"js_title": "Custom Calculation Display",

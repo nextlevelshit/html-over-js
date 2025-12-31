@@ -155,6 +155,37 @@ html(lang=lang, dir=dir)
 
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
+		//- Fieldset Section
+		+section(t.sections.fieldset.title)
+			.comparison-grid
+				+badColumn(t.sections.fieldset.js_title, t.sections.fieldset.js_badge, t.sections.fieldset.js_warning)
+					.js-form-section
+						.js-section-title Shipping Address
+						.js-section-content
+							+formGroup("Street")
+								input(type="text", placeholder="123 Main St")
+							+formGroup("City")
+								input(type="text", placeholder="New York")
+
+					+consList(t.sections.fieldset.js_cons_title, t.sections.fieldset.js_cons)
+
+				+goodColumn(t.sections.fieldset.native_title, t.sections.fieldset.native_badge, t.sections.fieldset.native_note)
+					fieldset
+						legend Shipping Address
+						+formGroup("Street")
+							input(type="text", placeholder="123 Main St")
+						+formGroup("City")
+							input(type="text", placeholder="New York")
+
+					fieldset(disabled)
+						legend Billing Address (disabled)
+						+formGroup("Street")
+							input(type="text", placeholder="All inputs disabled")
+						+formGroup("City")
+							input(type="text", placeholder="Via fieldset")
+
+					+prosList(t.sections.fieldset.native_pros_title, t.sections.fieldset.native_pros)
+
 		//- Output Section
 		+section(t.sections.output.title)
 			.comparison-grid
