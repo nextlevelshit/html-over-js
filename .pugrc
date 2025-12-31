@@ -160,6 +160,31 @@
 						"Consistent UX aligned with platform conventions"
 					]
 				},
+				"popover": {
+					"title": "💬 Popover & Tooltip Patterns",
+					"js_title": "Custom Popover Implementation",
+					"js_badge": "COMPLEX",
+					"js_warning": "Implementation Scope: Positioning logic, viewport collision, z-index management, click-outside detection, and focus management.",
+					"js_button": "Show Custom Tooltip",
+					"js_cons_title": "❌ Implementation Overhead:",
+					"js_cons": [
+						"Complex positioning algorithms for viewport collision",
+						"Manual click-outside and ESC key dismissal logic",
+						"Z-index stacking context management across components"
+					],
+					"native_title": "Native Popover API",
+					"native_badge": "ZERO-JS",
+					"native_note": "Platform Native: Built-in positioning, light dismiss, focus management, and accessibility semantics.",
+					"native_button": "Show Native Popover",
+					"native_popover_title": "Native Popover",
+					"native_popover_content": "This popover uses the native popover API. Click outside or press ESC to dismiss.",
+					"native_pros_title": "✅ Native Advantages:",
+					"native_pros": [
+						"Zero JavaScript with automatic light dismiss behavior",
+						"Built-in top-layer positioning (no z-index issues)",
+						"Keyboard accessible with ESC to close"
+					]
+				},
 				"color": {
 					"title": "🎨 Color Picker Patterns",
 					"js_title": "Custom Color Picker",

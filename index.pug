@@ -155,6 +155,24 @@ html(lang=lang, dir=dir)
 
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
+		//- Popover Section
+		+section(t.sections.popover.title)
+			.comparison-grid
+				+badColumn(t.sections.popover.js_title, t.sections.popover.js_badge, t.sections.popover.js_warning)
+					button(onclick="toggleJsPopover()")= t.sections.popover.js_button
+					#jsPopover.js-popover(style="display: none")
+						| Custom popover with manual positioning and dismiss logic
+
+					+consList(t.sections.popover.js_cons_title, t.sections.popover.js_cons)
+
+				+goodColumn(t.sections.popover.native_title, t.sections.popover.native_badge, t.sections.popover.native_note)
+					button(popovertarget="nativePopover")= t.sections.popover.native_button
+					#nativePopover(popover)
+						h4= t.sections.popover.native_popover_title
+						p= t.sections.popover.native_popover_content
+
+					+prosList(t.sections.popover.native_pros_title, t.sections.popover.native_pros)
+
 		//- Color Picker Section
 		+section(t.sections.color.title)
 			.comparison-grid
@@ -349,4 +367,9 @@ html(lang=lang, dir=dir)
 			function openDatePicker() {
 				const picker = document.getElementById('datePicker');
 				picker.style.display = picker.style.display === 'none' ? 'block' : 'none';
+			}
+
+			function toggleJsPopover() {
+				const popover = document.getElementById('jsPopover');
+				popover.style.display = popover.style.display === 'none' ? 'block' : 'none';
 			}
