@@ -155,6 +155,28 @@ html(lang=lang, dir=dir)
 
 					+prosList(t.sections.temporal.native_pros_title, t.sections.temporal.native_pros)
 
+		//- Figure Section
+		+section(t.sections.figure.title)
+			.comparison-grid
+				+badColumn(t.sections.figure.js_title, t.sections.figure.js_badge, t.sections.figure.js_warning)
+					.js-image-container
+						.js-image-placeholder 📷
+						.js-image-caption A custom caption with no semantic association
+
+					+consList(t.sections.figure.js_cons_title, t.sections.figure.js_cons)
+
+				+goodColumn(t.sections.figure.native_title, t.sections.figure.native_badge, t.sections.figure.native_note)
+					figure
+						.figure-placeholder 📷
+						figcaption A semantic caption automatically associated with the figure content
+
+					figure
+						pre
+							code const greeting = "Hello, World!";
+						figcaption Code example with semantic caption
+
+					+prosList(t.sections.figure.native_pros_title, t.sections.figure.native_pros)
+
 		//- Popover Section
 		+section(t.sections.popover.title)
 			.comparison-grid

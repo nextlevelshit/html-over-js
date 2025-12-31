@@ -160,6 +160,27 @@
 						"Consistent UX aligned with platform conventions"
 					]
 				},
+				"figure": {
+					"title": "🖼️ Figure & Caption Patterns",
+					"js_title": "Custom Image Caption",
+					"js_badge": "SEMANTIC-VOID",
+					"js_warning": "Accessibility Gap: No semantic association between image and caption without explicit ARIA attributes.",
+					"js_cons_title": "❌ Semantic Limitations:",
+					"js_cons": [
+						"No inherent association between content and caption",
+						"Manual ARIA labeling required for accessibility",
+						"Generic div structure lacks semantic meaning"
+					],
+					"native_title": "Native Figure Element",
+					"native_badge": "SEMANTIC",
+					"native_note": "Semantic Association: Built-in content-caption relationship, proper accessibility, works for images, code, quotes, and more.",
+					"native_pros_title": "✅ Semantic Advantages:",
+					"native_pros": [
+						"Automatic content-caption semantic association",
+						"Works for images, code blocks, diagrams, quotes",
+						"Screen readers announce figure and caption relationship"
+					]
+				},
 				"popover": {
 					"title": "💬 Popover & Tooltip Patterns",
 					"js_title": "Custom Popover Implementation",
